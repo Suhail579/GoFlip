@@ -1,0 +1,565 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .profile-page {
+        background-color: #CFDCBD;
+        background-image: radial-gradient(rgba(29, 61, 45, 0.1) 1px, transparent 1px);
+        background-size: 20px 20px;
+        min-height: 100vh;
+        padding: 30px 20px 60px;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .profile-wrap {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+
+    /* ================================
+       PROFILE CARD
+    ================================= */
+
+    .profile-card {
+        background-color: #FFFFFF;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow:
+            0 2px 6px rgba(29, 61, 45, 0.06),
+            0 14px 30px rgba(29, 61, 45, 0.12);
+        margin-bottom: 20px;
+    }
+
+
+    /* ================================
+       COVER BANNER
+    ================================= */
+
+    .profile-cover {
+        background: linear-gradient(135deg, #1D3D2D, #2F5A41);
+        height: 110px;
+        position: relative;
+    }
+
+    .profile-cover::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+        background-size: 14px 14px;
+    }
+
+    .share-btn {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background-color: rgba(255, 255, 255, 0.92);
+        color: #1D3D2D;
+        border: none;
+        font-size: 12.5px;
+        font-weight: 700;
+        padding: 8px 14px;
+        border-radius: 999px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+        transition: background 0.15s ease, transform 0.12s ease;
+    }
+
+    .share-btn:hover {
+        background-color: #FFFFFF;
+        transform: translateY(-1px);
+    }
+
+    .share-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+
+
+    /* ================================
+       AVATAR — overlaps the cover
+    ================================= */
+
+    .profile-header {
+        padding: 0 28px 24px;
+        margin-top: -46px;
+        position: relative;
+    }
+
+    .profile-image {
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #FFFFFF;
+        box-shadow: 0 8px 18px rgba(29, 61, 45, 0.18);
+    }
+
+    .profile-image-fallback {
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+        background-color: #1D3D2D;
+        color: #F0F3E8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Fraunces', serif;
+        font-weight: 700;
+        font-size: 32px;
+        border: 4px solid #FFFFFF;
+        box-shadow: 0 8px 18px rgba(29, 61, 45, 0.18);
+    }
+
+    .profile-username {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        font-size: 22px;
+        color: #1D3D2D;
+        margin: 14px 0 4px;
+    }
+
+    .profile-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background-color: #E9F8EE;
+        color: #2F8F5B;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 999px;
+    }
+
+    .profile-badge svg {
+        width: 12px;
+        height: 12px;
+    }
+
+
+    /* ================================
+       INFO GRID
+    ================================= */
+
+    .info-grid {
+        padding: 0 28px 28px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .info-tile {
+        background-color: #F0F3E8;
+        border-radius: 12px;
+        padding: 14px 15px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        transition: transform 0.15s ease;
+    }
+
+    .info-tile:hover {
+        transform: translateY(-2px);
+    }
+
+    .info-tile.full {
+        grid-column: 1 / -1;
+    }
+
+    .info-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background-color: #DAE3CE;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .info-icon svg {
+        width: 16px;
+        height: 16px;
+        color: #1D3D2D;
+    }
+
+    .info-label {
+        font-size: 10.5px;
+        color: #8A9484;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        margin-bottom: 2px;
+    }
+
+    .info-value {
+        font-size: 14px;
+        color: #1D3D2D;
+        font-weight: 600;
+        word-break: break-word;
+    }
+
+    .info-empty {
+        color: #A6AA9C;
+        font-weight: 500;
+        font-style: italic;
+    }
+
+
+    /* ================================
+       ACTIONS
+    ================================= */
+
+    .actions-card {
+        background-color: #FFFFFF;
+        border-radius: 20px;
+        padding: 10px;
+        box-shadow:
+            0 2px 6px rgba(29, 61, 45, 0.06),
+            0 10px 24px rgba(29, 61, 45, 0.1);
+    }
+
+    .action-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 15px 16px;
+        text-decoration: none;
+        color: #1D3D2D;
+        font-size: 14.5px;
+        font-weight: 600;
+        border-radius: 12px;
+        transition: background 0.15s ease;
+    }
+
+    .action-link:hover {
+        background-color: #F0F3E8;
+    }
+
+    .action-link svg {
+        width: 18px;
+        height: 18px;
+        color: #1D3D2D;
+        flex-shrink: 0;
+    }
+
+    .action-link .chev {
+        margin-left: auto;
+        width: 15px;
+        height: 15px;
+        color: #A6AA9C;
+    }
+
+    .action-divider {
+        height: 1px;
+        background-color: #EDEFE4;
+        margin: 2px 16px;
+    }
+
+    .action-link.danger {
+        color: #B3402B;
+    }
+
+    .action-link.danger svg {
+        color: #B3402B;
+    }
+
+
+    /* ================================
+       LOGGED OUT STATE
+    ================================= */
+
+    .logged-out-card {
+        background-color: #FFFFFF;
+        border-radius: 20px;
+        padding: 40px 28px;
+        text-align: center;
+        box-shadow:
+            0 2px 6px rgba(29, 61, 45, 0.06),
+            0 10px 24px rgba(29, 61, 45, 0.1);
+    }
+
+    .logged-out-card svg {
+        width: 44px;
+        height: 44px;
+        color: #8A9484;
+        margin-bottom: 14px;
+    }
+
+    .logged-out-card h2 {
+        font-family: 'Fraunces', serif;
+        font-size: 18px;
+        color: #1D3D2D;
+        margin: 0 0 6px;
+    }
+
+    .logged-out-card p {
+        font-size: 13.5px;
+        color: #6B7568;
+        margin: 0 0 20px;
+    }
+
+    .login-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #1D3D2D;
+        color: #F0F3E8;
+        padding: 12px 24px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        box-shadow: 0 10px 22px rgba(29, 61, 45, 0.25);
+        transition: background 0.15s ease, transform 0.12s ease;
+    }
+
+    .login-cta:hover {
+        background-color: #274F3B;
+        color: #F0F3E8;
+        transform: translateY(-1px);
+    }
+
+
+    /* ================================
+       TOAST (share confirmation)
+    ================================= */
+
+    .copy-toast {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background-color: #1D3D2D;
+        color: #F0F3E8;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 999px;
+        box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        z-index: 100;
+    }
+
+    .copy-toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+
+    /* ================================
+       MOBILE
+    ================================= */
+
+    @media (max-width: 600px) {
+
+        .profile-page { padding: 18px 12px 40px; }
+        .profile-header { padding: 0 18px 20px; }
+        .info-grid { padding: 0 18px 22px; grid-template-columns: 1fr; }
+        .profile-username { font-size: 19px; }
+        .profile-image, .profile-image-fallback { width: 76px; height: 76px; }
+
+    }
+
+</style>
+
+
+{% if user.is_authenticated %}
+
+    <div class="profile-page">
+        <div class="profile-wrap">
+
+            <div class="profile-card">
+
+                <div class="profile-cover">
+                    <button type="button" class="share-btn" onclick="shareProfile()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                        Share profile
+                    </button>
+                </div>
+
+                <div class="profile-header">
+
+                    {% if user.profile_image %}
+                        <img src="{{ user.profile_image.url }}" class="profile-image" alt="{{ user.username }}">
+                    {% else %}
+                        <div class="profile-image-fallback">
+                            {{ user.username|slice:":1"|upper }}
+                        </div>
+                    {% endif %}
+
+                    <h1 class="profile-username">{{ user.username }}</h1>
+
+                    <span class="profile-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        Verified member
+                    </span>
+
+                </div>
+
+                <div class="info-grid">
+
+                    <div class="info-tile full">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div>
+                            <div class="info-label">Email</div>
+                            <div class="info-value">{{ user.email }}</div>
+                        </div>
+                    </div>
+
+                    <div class="info-tile">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div>
+                            <div class="info-label">Phone</div>
+                            <div class="info-value">
+                                {% if user.phone %}{{ user.phone }}{% else %}<span class="info-empty">Not added</span>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-tile">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        </div>
+                        <div>
+                            <div class="info-label">Pincode</div>
+                            <div class="info-value">
+                                {% if user.pincode %}{{ user.pincode }}{% else %}<span class="info-empty">Not added</span>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-tile full">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                        </div>
+                        <div>
+                            <div class="info-label">Address</div>
+                            <div class="info-value">
+                                {% if user.address %}{{ user.address }}{% else %}<span class="info-empty">Not added</span>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-tile full">
+                        <div class="info-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 7.65l.77.78L12 20.66l7.65-7.65.77-.78a5.4 5.4 0 0 0 0-7.65z"/></svg>
+                        </div>
+                        <div>
+                            <div class="info-label">Location</div>
+                            <div class="info-value">
+                                {% if user.Location %}{{ user.Location }}{% else %}<span class="info-empty">Not added</span>{% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="actions-card">
+
+                <a href="{% url 'Editprofiles' %}" class="action-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    Edit profile
+                    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+
+                <div class="action-divider"></div>
+
+                <a href="{% url 'password_change' %}" class="action-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    Change password
+                    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+
+                <div class="action-divider"></div>
+
+                <a href="{% url 'Addproduct' %}" class="action-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    List an item
+                    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+
+                <div class="action-divider"></div>
+
+                <a href="{% url 'Viewproduct' %}" class="action-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    My listings
+                    <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+
+                <div class="action-divider"></div>
+
+                <a href="{% url 'Logout' %}" class="action-link danger">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Log out
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="copy-toast" id="copyToast">Profile link copied</div>
+
+    <script>
+        function shareProfile() {
+            const shareData = {
+                title: "{{ user.username }}'s profile",
+                text: "Check out {{ user.username }}'s profile on Kindred",
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData).catch(err => console.log('Share cancelled:', err));
+            } else {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    const toast = document.getElementById('copyToast');
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2200);
+                });
+            }
+        }
+    </script>
+
+{% else %}
+
+    <div class="profile-page">
+        <div class="profile-wrap">
+
+            <div class="logged-out-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+                <h2>You're not signed in</h2>
+                <p>Log in to view and manage your profile.</p>
+                <a href="{% url 'Login' %}" class="login-cta">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                    Log in
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+{% endif %}
+
+{% endblock %}

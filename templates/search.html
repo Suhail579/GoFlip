@@ -1,0 +1,1121 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* ================================
+       PAGE
+    ================================= */
+
+    .page-wrap {
+        background-color: #CFDCBD;
+
+        background-image: radial-gradient(
+            rgba(29, 61, 45, 0.1) 1px,
+            transparent 1px
+        );
+
+        background-size: 20px 20px;
+
+        min-height: 100vh;
+
+        padding: 30px 20px 60px;
+    }
+
+
+    /* ================================
+       SEARCH HEADER
+    ================================= */
+
+    .search-heading {
+        max-width: 1290px;
+        margin: 0 auto 22px;
+
+        font-family: 'Fraunces', serif;
+        font-size: 28px;
+        font-weight: 600;
+
+        color: #1D3D2D;
+    }
+
+
+    /* ================================
+       PRODUCT GRID
+    ================================= */
+
+    .product-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(5, minmax(0, 1fr));
+
+        gap: 22px;
+
+        width: 100%;
+
+        max-width: 1290px;
+
+        margin: 0 auto;
+    }
+
+
+    /* ================================
+       CARD LINK
+    ================================= */
+
+    .product-card-link {
+
+        text-decoration: none;
+
+        color: inherit;
+
+        display: block;
+
+        min-width: 0;
+    }
+
+
+    /* ================================
+       PRODUCT CARD
+    ================================= */
+
+    .product-card {
+
+        background-color: #FFFFFF;
+
+        border-radius: 16px;
+
+        overflow: hidden;
+
+        box-shadow:
+            0 2px 6px rgba(29, 61, 45, 0.06),
+            0 10px 22px rgba(29, 61, 45, 0.10);
+
+        transition:
+            transform 0.15s ease,
+            box-shadow 0.15s ease;
+    }
+
+
+    .product-card-link:hover .product-card {
+
+        transform: translateY(-4px);
+
+        box-shadow:
+            0 4px 10px rgba(29, 61, 45, 0.10),
+            0 16px 30px rgba(29, 61, 45, 0.16);
+    }
+
+
+    /* ================================
+       IMAGE
+    ================================= */
+
+    .product-image-box {
+
+        width: 100%;
+
+        aspect-ratio: 4 / 3;
+
+        background-color: #E9EFDD;
+
+        position: relative;
+
+        overflow: hidden;
+    }
+
+
+    .product-image-box img {
+
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        display: block;
+
+        transition: transform 0.25s ease;
+    }
+
+
+    .product-card-link:hover
+    .product-image-box img {
+
+        transform: scale(1.03);
+    }
+
+
+    /* ================================
+       NO IMAGE
+    ================================= */
+
+    .no-image-text {
+
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        transform:
+            translate(-50%, -50%);
+
+        font-family: 'Inter', sans-serif;
+
+        font-size: 12px;
+
+        color: #8A9484;
+
+        margin: 0;
+    }
+
+
+    /* ================================
+       CATEGORY TAG
+    ================================= */
+
+    .category-tag {
+
+        position: absolute;
+
+        top: 10px;
+
+        left: 10px;
+
+        background-color: #1D3D2D;
+
+        color: #F0F3E8;
+
+        font-family: 'Inter', sans-serif;
+
+        font-size: 11px;
+
+        font-weight: 600;
+
+        padding: 4px 10px;
+
+        border-radius: 999px;
+
+        text-transform: capitalize;
+
+        z-index: 2;
+    }
+
+
+    /* ================================
+       PRODUCT INFORMATION
+    ================================= */
+
+    .product-info {
+
+        padding: 12px 12px 13px;
+
+        margin-left: 6px;
+
+        min-width: 0;
+    }
+
+
+    /* ================================
+       PRICE
+    ================================= */
+
+    .product-price {
+
+        font-family: 'Inter', sans-serif;
+
+        font-size: 19px;
+
+        font-weight: 700;
+
+        color: #1D3D2D;
+
+        margin: 0 0 6px;
+    }
+
+
+    /* ================================
+       EXTRA FIELD
+    ================================= */
+
+    .product-extra {
+
+        font-family: 'Inter', sans-serif;
+
+        font-size: 12.5px;
+
+        font-weight: 600;
+
+        color: #4B5A47;
+
+        background-color: #E9EFDD;
+
+        display: inline-block;
+
+        max-width: 100%;
+
+        padding: 3px 9px;
+
+        border-radius: 999px;
+
+        margin-left: -2px;
+
+        margin-bottom: 7px;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    /* ================================
+       TITLE
+    ================================= */
+
+    .product-title {
+
+        font-family: 'Fraunces', serif;
+
+        font-size: 14.5px;
+
+        font-weight: 600;
+
+        color: #1D3D2D;
+
+        margin: 0 0 8px;
+
+        margin-left: 2px;
+
+        line-height: 1.35;
+
+        display: -webkit-box;
+
+        -webkit-line-clamp: 1;
+
+        -webkit-box-orient: vertical;
+
+        overflow: hidden;
+    }
+
+
+    /* ================================
+       LOCATION
+    ================================= */
+
+    .product-location {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 5px;
+
+        font-family: 'Inter', sans-serif;
+
+        font-size: 12px;
+
+        color: #6B7568;
+
+        min-width: 0;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    .product-location svg {
+
+        width: 13px;
+
+        height: 13px;
+
+        flex-shrink: 0;
+
+        color: #8A9484;
+    }
+
+
+    /* ================================
+       NO RESULTS
+    ================================= */
+
+    .no-results {
+
+        grid-column: 1 / -1;
+
+        text-align: center;
+
+        padding: 70px 20px;
+
+        font-family: 'Inter', sans-serif;
+
+        color: #4B5A47;
+    }
+
+
+    .no-results h3 {
+
+        margin: 0;
+
+        font-size: 20px;
+    }
+
+
+    /* ================================
+       1100px
+    ================================= */
+
+    @media (max-width: 1100px) {
+
+        .product-grid {
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 18px;
+        }
+    }
+
+
+    /* ================================
+       850px
+    ================================= */
+
+    @media (max-width: 850px) {
+
+        .page-wrap {
+
+            padding: 25px 15px 50px;
+        }
+
+        .product-grid {
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 16px;
+        }
+
+        .search-heading {
+
+            font-size: 25px;
+        }
+    }
+
+
+    /* ================================
+       600px
+    ================================= */
+
+    @media (max-width: 600px) {
+
+        .page-wrap {
+
+            padding: 1px 12px 40px;
+        }
+
+        .product-grid {
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 13px;
+        }
+
+        .product-card {
+
+            border-radius: 13px;
+        }
+
+        .product-info {
+
+            padding: 11px 12px 13px;
+        }
+
+        .product-price {
+
+            font-size: 16px;
+
+            margin-bottom: 5px;
+        }
+
+        .product-extra {
+
+            font-size: 11px;
+
+            padding: 2px 8px;
+
+            margin-bottom: 6px;
+        }
+
+        .product-title {
+
+            font-size: 13px;
+
+            margin-bottom: 7px;
+        }
+
+        .product-location {
+
+            font-size: 11px;
+        }
+
+        .product-location svg {
+
+            width: 12px;
+
+            height: 12px;
+        }
+
+        .category-tag {
+
+            font-size: 10px;
+
+            padding: 3px 8px;
+
+            top: 8px;
+
+            left: 8px;
+        }
+
+        .search-heading {
+
+            font-size: 22px;
+
+            margin-bottom: 17px;
+        }
+    }
+
+
+    /* ================================
+       380px
+    ================================= */
+
+    @media (max-width: 380px) {
+
+        .product-grid {
+
+            gap: 10px;
+        }
+
+        .product-info {
+
+            padding: 9px 10px 11px;
+        }
+
+        .product-price {
+
+            font-size: 15px;
+        }
+
+        .product-extra {
+
+            font-size: 10px;
+        }
+
+        .product-title {
+
+            font-size: 12px;
+        }
+
+        .product-location {
+
+            font-size: 10px;
+        }
+    }
+
+</style>
+
+
+<!-- =========================================
+     PAGE
+========================================= -->
+
+<div class="page-wrap">
+
+
+    <!-- SEARCH TITLE -->
+
+    <h1 class="search-heading">
+        Search Results
+    </h1>
+
+
+    <!-- PRODUCT GRID -->
+
+    <div class="product-grid">
+
+
+        {% for product in d %}
+
+
+        <!-- =================================
+             BOOK
+        ================================== -->
+
+        {% if product.category == "books" or product.category == "book" %}
+
+        <a href="{% url 'Book_Details' product.id %}"
+           class="product-card-link">
+
+            <div class="product-card">
+
+                <div class="product-image-box">
+
+                    <span class="category-tag">
+                        Book
+                    </span>
+
+                    {% if product.Images %}
+
+                        <img src="{{ product.Images.url }}"
+                             alt="{{ product.Title }}">
+
+                    {% else %}
+
+                        <p class="no-image-text">
+                            No image
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <!-- PRICE -->
+
+                    <p class="product-price">
+                        ₹{{ product.Price }}
+                    </p>
+
+
+                    <!-- BOOK NAME -->
+
+                    <span class="product-extra">
+                        {{ product.Book_name }}
+                    </span>
+
+
+                    <!-- TITLE -->
+
+                    <h4 class="product-title">
+                        {{ product.Title }}
+                    </h4>
+
+
+                    <!-- LOCATION -->
+
+                    <div class="product-location">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"/>
+
+                            <circle cx="12"
+                                    cy="10"
+                                    r="2.5"/>
+
+                        </svg>
+
+                        {{ product.location }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- =================================
+             ELECTRONICS
+        ================================== -->
+
+        {% elif product.category == "electronics" %}
+
+        <a href="{% url 'Electronics_Details' product.id %}"
+           class="product-card-link">
+
+            <div class="product-card">
+
+                <div class="product-image-box">
+
+                    <span class="category-tag">
+                        Electronics
+                    </span>
+
+                    {% if product.Images %}
+
+                        <img src="{{ product.Images.url }}"
+                             alt="{{ product.Title }}">
+
+                    {% else %}
+
+                        <p class="no-image-text">
+                            No image
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <p class="product-price">
+                        ₹{{ product.Price }}
+                    </p>
+
+                    <span class="product-extra">
+                        {{ product.Brand }}
+                    </span>
+
+                    <h4 class="product-title">
+                        {{ product.Title }}
+                    </h4>
+
+                    <div class="product-location">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"/>
+
+                            <circle cx="12"
+                                    cy="10"
+                                    r="2.5"/>
+
+                        </svg>
+
+                        {{ product.location }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- =================================
+             CAR
+        ================================== -->
+
+        {% elif product.category == "car" %}
+
+        <a href="{% url 'Car_Details' product.id %}"
+           class="product-card-link">
+
+            <div class="product-card">
+
+                <div class="product-image-box">
+
+                    <span class="category-tag">
+                        Car
+                    </span>
+
+                    {% if product.Images %}
+
+                        <img src="{{ product.Images.url }}"
+                             alt="{{ product.Title }}">
+
+                    {% else %}
+
+                        <p class="no-image-text">
+                            No image
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <p class="product-price">
+                        ₹{{ product.Price }}
+                    </p>
+
+                    <span class="product-extra">
+                        {{ product.KM_drive }} km
+                    </span>
+
+                    <h4 class="product-title">
+                        {{ product.Title }}
+                    </h4>
+
+                    <div class="product-location">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"/>
+
+                            <circle cx="12"
+                                    cy="10"
+                                    r="2.5"/>
+
+                        </svg>
+
+                        {{ product.location }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- =================================
+             BIKE
+        ================================== -->
+
+        {% elif product.category == "bike" %}
+
+        <a href="{% url 'Bike_Details' product.id %}"
+           class="product-card-link">
+
+            <div class="product-card">
+
+                <div class="product-image-box">
+
+                    <span class="category-tag">
+                        Bike
+                    </span>
+
+                    {% if product.Images %}
+
+                        <img src="{{ product.Images.url }}"
+                             alt="{{ product.Title }}">
+
+                    {% else %}
+
+                        <p class="no-image-text">
+                            No image
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <p class="product-price">
+                        ₹{{ product.Price }}
+                    </p>
+
+                    <span class="product-extra">
+                        {{ product.KM_drive }} km
+                    </span>
+
+                    <h4 class="product-title">
+                        {{ product.Title }}
+                    </h4>
+
+                    <div class="product-location">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"/>
+
+                            <circle cx="12"
+                                    cy="10"
+                                    r="2.5"/>
+
+                        </svg>
+
+                        {{ product.location }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- =================================
+             MOBILE
+        ================================== -->
+
+        {% elif product.category == "mobile" %}
+
+        <a href="{% url 'Mobile_Details' product.id %}"
+           class="product-card-link">
+
+            <div class="product-card">
+
+                <div class="product-image-box">
+
+                    <span class="category-tag">
+                        Mobile
+                    </span>
+
+                    {% if product.Images %}
+
+                        <img src="{{ product.Images.url }}"
+                             alt="{{ product.Title }}">
+
+                    {% else %}
+
+                        <p class="no-image-text">
+                            No image
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <p class="product-price">
+                        ₹{{ product.Price }}
+                    </p>
+
+                    <span class="product-extra">
+                        {{ product.Brand }}
+                    </span>
+
+                    <h4 class="product-title">
+                        {{ product.Title }}
+                    </h4>
+
+                    <div class="product-location">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"/>
+
+                            <circle cx="12"
+                                    cy="10"
+                                    r="2.5"/>
+
+                        </svg>
+
+                        {{ product.location }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- =================================
+             FURNITURE
+        ================================== -->
+
+        {% elif product.category == "furniture" %}
+
+        <a href="{% url 'Furniture_Details' product.id %}"
+           class="product-card-link">
+
+            <div class="product-card">
+
+                <div class="product-image-box">
+
+                    <span class="category-tag">
+                        Furniture
+                    </span>
+
+                    {% if product.Images %}
+
+                        <img src="{{ product.Images.url }}"
+                             alt="{{ product.Title }}">
+
+                    {% else %}
+
+                        <p class="no-image-text">
+                            No image
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <p class="product-price">
+                        ₹{{ product.Price }}
+                    </p>
+
+                    <span class="product-extra">
+                        {{ product.Item }}
+                    </span>
+
+                    <h4 class="product-title">
+                        {{ product.Title }}
+                    </h4>
+
+                    <div class="product-location">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"/>
+
+                            <circle cx="12"
+                                    cy="10"
+                                    r="2.5"/>
+
+                        </svg>
+
+                        {{ product.location }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- =================================
+             GADGETS
+        ================================== -->
+
+        {% elif product.category == "gadgets" %}
+
+        <a href="{% url 'Gadgets_Details' product.id %}"
+           class="product-card-link">
+
+            <div class="product-card">
+
+                <div class="product-image-box">
+
+                    <span class="category-tag">
+                        Gadgets
+                    </span>
+
+                    {% if product.Images %}
+
+                        <img src="{{ product.Images.url }}"
+                             alt="{{ product.Title }}">
+
+                    {% else %}
+
+                        <p class="no-image-text">
+                            No image
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <p class="product-price">
+                        ₹{{ product.Price }}
+                    </p>
+
+                    <span class="product-extra">
+                        {{ product.Brand }}
+                    </span>
+
+                    <h4 class="product-title">
+                        {{ product.Title }}
+                    </h4>
+
+                    <div class="product-location">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+
+                            <path d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"/>
+
+                            <circle cx="12"
+                                    cy="10"
+                                    r="2.5"/>
+
+                        </svg>
+
+                        {{ product.location }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </a>
+
+        {% endif %}
+
+
+        {% empty %}
+
+        <div class="no-results">
+
+            <h3>
+                No products found.
+            </h3>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
+

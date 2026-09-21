@@ -1,0 +1,2374 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+            GoFlip - Buy & Sell
+        {% endblock %}
+    </title>
+
+
+    <!-- =====================================================
+         BOOTSTRAP
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous"
+    >
+
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         BOOTSTRAP ICONS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <!-- =====================================================
+         MAIN CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+
+<style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    font-family: 'Inter', sans-serif;
+
+    color: #1D3D2D;
+
+    background: #CFDCBD;
+
+    background-image:
+        radial-gradient(
+            rgba(29, 61, 45, 0.10) 1px,
+            transparent 1px
+        );
+
+    background-size: 20px 20px;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* =====================================================
+   FIXED NAVBAR
+===================================================== */
+
+.GoFlip-nav-wrapper {
+
+    position: fixed;
+
+    top: 15px;
+
+    left: 0;
+
+    width: 100%;
+
+    padding: 0 12px;
+
+    display: flex;
+
+    justify-content: center;
+
+    z-index: 9999;
+}
+
+
+.GoFlip-navbar {
+
+    width: 100%;
+
+    max-width: 1299px;
+
+    min-height: 68px;
+
+    padding: 8px 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 16px;
+
+    background: #1D3D2D;
+
+    border-radius: 20px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.12),
+        0 16px 36px rgba(15, 32, 24, 0.35);
+
+    position: relative;
+}
+
+
+.GoFlip-navbar:hover {
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.15),
+        0 20px 45px rgba(15, 32, 24, 0.42);
+}
+
+
+/* =====================================================
+   NAVBAR SECTIONS
+===================================================== */
+
+.nav-section-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+
+.nav-section-center {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    flex: 1;
+}
+
+
+.nav-section-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+
+/* =====================================================
+   DESKTOP — BUY + SELL CENTER
+===================================================== */
+
+@media (min-width: 769px) {
+
+    .nav-section-center {
+
+        position: absolute;
+
+        left: 50%;
+
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 10px;
+
+        width: auto;
+
+        flex: none;
+
+        margin: 0;
+    }
+
+
+    .buy-link,
+    .sell-link {
+
+        margin: 0;
+    }
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.GoFlip-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    text-decoration: none;
+
+    color: #F0F3E8;
+
+    flex-shrink: 0;
+
+    margin-right: 4px;
+}
+
+
+.logo-icon {
+
+    width: 40px;
+
+    height: 40px;
+
+    min-width: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #c9d5ac;
+
+    color: #1D3D2D;
+
+    font-family: 'Fraunces', serif;
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+
+.GoFlip-logo:hover .logo-icon {
+
+    transform:
+        rotate(-6deg)
+        scale(1.08);
+
+    background: #FFFFFF;
+}
+
+
+.logo-text {
+
+    font-family: 'Fraunces', serif;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    letter-spacing: -0.3px;
+
+    color: #F0F3E8;
+}
+
+
+/* =====================================================
+   NAV LINKS
+===================================================== */
+
+.GoFlip-link,
+.nav-icon-btn,
+.mobile-search-toggle {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 8px 14px;
+
+    border-radius: 12px;
+
+    color:
+        rgba(240, 243, 232, 0.75);
+
+    background: transparent;
+
+    border: none;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.GoFlip-link i,
+.nav-icon-btn i,
+.mobile-search-toggle i {
+
+    font-size: 15px;
+}
+
+
+.GoFlip-link:hover,
+.nav-icon-btn:hover,
+.mobile-search-toggle:hover {
+
+    color: #1D3D2D;
+
+    background: #D8B36A;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =====================================================
+   BUY
+===================================================== */
+
+.buy-link {
+
+    background:
+        rgba(240, 243, 232, 0.08);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.06);
+
+    margin-left: 24px;
+}
+
+
+.buy-link:hover {
+
+    background: #F0F3E8;
+
+    color: #1D3D2D;
+}
+
+
+/* =====================================================
+   SELL
+===================================================== */
+
+.sell-link {
+
+    background: #D8B36A;
+
+    color: #1D3D2D;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.sell-link:hover {
+
+    background: #E5C782;
+
+    color: #1D3D2D;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.GoFlip-search {
+
+    width: 260px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #F0F3E8;
+
+    border-radius: 16px;
+
+    padding: 3px 3px 3px 12px;
+}
+
+
+.GoFlip-search input {
+
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    padding: 4px 0;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 13px;
+
+    color: #1D3D2D;
+}
+
+
+.GoFlip-search input::placeholder {
+
+    color: #8A9484;
+}
+
+
+.search-button {
+
+    width: 36px;
+
+    height: 36px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #1D3D2D;
+
+    color: #F0F3E8;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+
+.search-button:hover {
+
+    background: #274F3B;
+
+    transform: scale(1.08);
+}
+
+
+/* =====================================================
+   MOBILE SEARCH
+===================================================== */
+
+.mobile-search-toggle {
+
+    display: none;
+}
+
+
+.mobile-search-drawer {
+
+    display: none;
+
+    position: absolute;
+
+    top: 95px;
+
+    left: 0;
+
+    width: 100%;
+
+    padding: 0 4px;
+
+    z-index: 9998;
+}
+
+
+.mobile-search-drawer form {
+
+    background: #1D3D2D;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 20px;
+
+    padding: 8px 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+
+.mobile-search-drawer input {
+
+    flex: 1;
+
+    background: #F0F3E8;
+
+    border: none;
+
+    border-radius: 15px;
+
+    padding: 8px 14px;
+
+    font-size: 14px;
+
+    color: #1D3D2D;
+
+    outline: none;
+}
+
+
+.mobile-search-drawer button {
+
+    background: #D8B36A;
+
+    color: #1D3D2D;
+
+    border: none;
+
+    border-radius: 15px;
+
+    padding: 8px 16px;
+
+    font-weight: 600;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   ACCOUNT
+===================================================== */
+
+.GoFlip-account {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 5px 14px 5px 5px;
+
+    border-radius: 12px;
+
+    background: #F0F3E8;
+
+    color: #1D3D2D;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+.GoFlip-account:hover {
+
+    background: #DAE3CE;
+
+    color: #1D3D2D;
+
+    transform: translateY(-2px);
+}
+
+
+.user-circle {
+
+    width: 32px;
+
+    height: 32px;
+
+    border-radius: 9px;
+
+    background: #D8B36A;
+
+    color: #1D3D2D;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+.GoFlip-page {
+
+    padding-top: 134px;
+
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1024px) {
+
+    .GoFlip-search {
+
+        display: none;
+    }
+
+
+    .logo-text {
+
+        display: none;
+    }
+
+
+    .mobile-search-toggle {
+
+        display: flex;
+    }
+}
+
+
+/* =====================================================
+   MOBILE NAVBAR
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .GoFlip-nav-wrapper {
+
+        top: 15px;
+
+        left: 0;
+
+        width: 100%;
+
+        padding: 0 8px;
+
+        display: flex;
+
+        justify-content: center;
+    }
+
+
+    .GoFlip-navbar {
+
+        width: 100%;
+
+        min-height: 64px;
+
+        padding: 6px 8px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 0;
+
+        position: relative;
+
+        border-radius: 20px;
+    }
+
+
+    /* =================================================
+       LEFT SECTION
+    ================================================= */
+
+    .nav-section-left {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: flex-start;
+
+        gap: 2px;
+
+        flex: 0 0 auto;
+
+        min-width: 0;
+    }
+
+
+    /* =================================================
+       LOGO
+    ================================================= */
+
+    .GoFlip-logo {
+
+        margin: 0;
+
+        padding: 0;
+
+        gap: 0;
+    }
+
+
+    .logo-icon {
+
+        width: 40px;
+
+        min-width: 40px;
+
+        height: 40px;
+
+        border-radius: 11px;
+
+        font-size: 21px;
+    }
+
+
+    .logo-text {
+
+        display: none;
+    }
+
+
+    /* =================================================
+       CENTER — BUY + SELL
+    ================================================= */
+
+    .nav-section-center {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 5px;
+
+        flex: 0 0 auto;
+
+        min-width: 0;
+
+        margin: 0;
+
+        position: absolute;
+
+        left: 50%;
+
+        top: 50%;
+
+        transform: translate(
+            -50%,
+            -50%
+        );
+
+        z-index: 2;
+    }
+
+
+    /* =================================================
+       ALL NAV BUTTONS
+    ================================================= */
+
+    .GoFlip-link,
+    .nav-icon-btn,
+    .mobile-search-toggle {
+
+        width: 48px;
+
+        min-width: 48px;
+
+        height: 50px;
+
+        padding: 4px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 3px;
+
+        border-radius: 10px;
+
+        font-size: 9px;
+
+        line-height: 1;
+
+        margin: 0;
+
+        flex-shrink: 0;
+    }
+
+
+    .GoFlip-link i,
+    .nav-icon-btn i,
+    .mobile-search-toggle i {
+
+        font-size: 17px;
+
+        line-height: 1;
+    }
+
+
+    .GoFlip-link span,
+    .nav-icon-btn span,
+    .mobile-search-toggle span {
+
+        display: block !important;
+
+        font-size: 8px;
+
+        line-height: 1;
+
+        margin: 0;
+    }
+
+
+    /* =================================================
+       BUY
+    ================================================= */
+
+    .buy-link {
+
+        width: 48px;
+
+        min-width: 48px;
+
+        margin: 0;
+
+        padding: 4px;
+    }
+
+
+    /* =================================================
+       SELL
+    ================================================= */
+
+    .sell-link {
+
+        width: 48px;
+
+        min-width: 48px;
+
+        margin: 0;
+
+        padding: 4px;
+    }
+
+
+    /* =================================================
+       RIGHT SECTION
+    ================================================= */
+
+    .nav-section-right {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: flex-end;
+
+        gap: 2px;
+
+        flex: 0 0 auto;
+
+        min-width: 0;
+
+        margin-left: auto;
+    }
+
+
+    /* =================================================
+       DESKTOP SEARCH HIDDEN
+    ================================================= */
+
+    .GoFlip-search {
+
+        display: none;
+    }
+
+
+    /* =================================================
+       MOBILE SEARCH
+    ================================================= */
+
+    .mobile-search-toggle {
+
+        display: flex;
+
+        width: 48px;
+
+        min-width: 48px;
+
+        height: 50px;
+
+        transform: none !important;
+
+        margin-right: 10px;
+    }
+
+
+    .mobile-search-toggle:hover {
+
+        transform:
+            translateY(-2px) !important;
+    }
+
+
+    /* =================================================
+       WISHLIST
+    ================================================= */
+
+    .nav-section-right .nav-icon-btn {
+
+        width: 48px;
+
+        min-width: 48px;
+
+        height: 50px;
+
+        margin: 0;
+
+        transform: translateX(-9px);
+    }
+
+
+    /* =================================================
+       ACCOUNT / LOGIN
+    ================================================= */
+
+    .GoFlip-account {
+
+        width: 40px;
+
+        min-width: 40px;
+
+        height: 40px;
+
+        padding: 4px;
+
+        border-radius: 10px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+    }
+
+
+    .GoFlip-account span:not(.user-circle) {
+
+        display: none;
+    }
+
+
+    .user-circle {
+
+        width: 32px;
+
+        height: 32px;
+
+        border-radius: 8px;
+    }
+
+
+    /* =================================================
+       PAGE
+    ================================================= */
+
+    .GoFlip-page {
+
+        padding-top: 125px;
+    }
+}
+
+
+/* =====================================================
+   PROFILE POSITION
+===================================================== */
+
+.nav-section-left > .GoFlip-link[title="Profile"] {
+
+    transform: translateX(-8px);
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .GoFlip-nav-wrapper {
+
+        padding: 0 6px;
+    }
+
+
+    .GoFlip-navbar {
+
+        min-height: 60px;
+
+        padding: 5px 6px;
+
+        border-radius: 18px;
+    }
+
+
+    .logo-icon {
+
+        width: 38px;
+
+        min-width: 38px;
+
+        height: 38px;
+
+        font-size: 20px;
+
+        border-radius: 10px;
+    }
+
+
+    .nav-section-center {
+
+        gap: 5px;
+    }
+
+
+    .GoFlip-link,
+    .nav-icon-btn,
+    .mobile-search-toggle {
+
+        width: 44px;
+
+        min-width: 44px;
+
+        height: 48px;
+
+        padding: 3px;
+    }
+
+
+    .buy-link,
+    .sell-link {
+
+        width: 44px;
+
+        min-width: 44px;
+    }
+
+
+    .GoFlip-link i,
+    .nav-icon-btn i,
+    .mobile-search-toggle i {
+
+        font-size: 16px;
+    }
+
+
+    .GoFlip-link span,
+    .nav-icon-btn span,
+    .mobile-search-toggle span {
+
+        font-size: 7px;
+    }
+
+
+    .mobile-search-toggle {
+
+        width: 44px;
+
+        min-width: 44px;
+    }
+
+
+    .nav-section-right .nav-icon-btn {
+
+        width: 44px;
+
+        min-width: 44px;
+    }
+
+
+    .GoFlip-account {
+
+        width: 38px;
+
+        min-width: 38px;
+
+        height: 38px;
+    }
+
+
+    .user-circle {
+
+        width: 30px;
+
+        height: 30px;
+    }
+}
+
+
+/* =====================================================
+   GOFLIP AI BUTTON
+===================================================== */
+
+.goflip-ai-button {
+
+    position: fixed;
+
+    right: 80px;
+
+    bottom: 70px;
+
+    width: 62px;
+
+    height: 62px;
+
+    border:
+        3px solid #F0F3E8;
+
+    border-radius: 50%;
+
+    background: #1D3D2D;
+
+    color: #D8B36A;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 29px;
+
+    cursor: pointer;
+
+    z-index: 10001;
+
+    box-shadow:
+        0 8px 25px rgba(29, 61, 45, 0.30),
+        0 0 0 5px rgba(216, 179, 106, 0.15);
+
+    transition: all 0.25s ease;
+}
+
+
+.goflip-ai-button:hover {
+
+    transform:
+        translateY(-4px)
+        scale(1.06);
+
+    background: #D8B36A;
+
+    color: #1D3D2D;
+}
+
+
+.goflip-ai-button::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 13px;
+
+    height: 13px;
+
+    right: 0;
+
+    top: 0;
+
+    background: #D8B36A;
+
+    border:
+        2px solid #1D3D2D;
+
+    border-radius: 50%;
+}
+
+
+/* =====================================================
+   AI CHAT WINDOW
+===================================================== */
+
+.goflip-ai-chat {
+
+    position: fixed;
+
+    right: 140px;
+
+    bottom: 140px;
+
+    width: 360px;
+
+    height: 500px;
+
+    max-width: calc(100vw - 30px);
+
+    max-height: calc(100vh - 130px);
+
+    background: #F0F3E8;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    display: none;
+
+    flex-direction: column;
+
+    z-index: 10000;
+
+    border:
+        1px solid rgba(29, 61, 45, 0.12);
+
+    box-shadow:
+        0 18px 50px rgba(29, 61, 45, 0.30);
+}
+
+
+.goflip-ai-chat.show {
+
+    display: flex;
+
+    animation:
+        goflipAIOpen 0.2s ease;
+}
+
+
+@keyframes goflipAIOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scale(0.96);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =====================================================
+   AI HEADER
+===================================================== */
+
+.goflip-ai-header {
+
+    background: #1D3D2D;
+
+    color: #F0F3E8;
+
+    padding: 14px 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.goflip-ai-header-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.goflip-ai-avatar {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 13px;
+
+    background: #D8B36A;
+
+    color: #1D3D2D;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+
+.goflip-ai-title {
+
+    font-family: 'Fraunces', serif;
+
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+
+.goflip-ai-status {
+
+    margin-top: 2px;
+
+    font-size: 11px;
+
+    color:
+        rgba(240, 243, 232, 0.70);
+}
+
+
+.goflip-ai-close {
+
+    width: 34px;
+
+    height: 34px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        rgba(240, 243, 232, 0.08);
+
+    color: #F0F3E8;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   AI MESSAGES
+===================================================== */
+
+.goflip-ai-messages {
+
+    flex: 1;
+
+    padding: 16px;
+
+    overflow-y: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    background:
+        rgba(207, 220, 189, 0.45);
+}
+
+
+.goflip-ai-message {
+
+    max-width: 82%;
+
+    padding: 10px 13px;
+
+    border-radius: 15px;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    word-break: break-word;
+}
+
+
+.goflip-ai-message.bot {
+
+    align-self: flex-start;
+
+    background: #FFFFFF;
+
+    color: #1D3D2D;
+
+    border-bottom-left-radius: 5px;
+}
+
+
+.goflip-ai-message.user {
+
+    align-self: flex-end;
+
+    background: #1D3D2D;
+
+    color: #F0F3E8;
+
+    border-bottom-right-radius: 5px;
+}
+
+
+.goflip-ai-message.typing {
+
+    opacity: 0.65;
+
+    font-style: italic;
+}
+
+
+/* =====================================================
+   AI INPUT
+===================================================== */
+
+.goflip-ai-input-area {
+
+    padding: 10px;
+
+    background: #F0F3E8;
+
+    border-top:
+        1px solid rgba(29, 61, 45, 0.10);
+
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.goflip-ai-input {
+
+    flex: 1;
+
+    height: 43px;
+
+    border:
+        1px solid rgba(29, 61, 45, 0.15);
+
+    border-radius: 14px;
+
+    padding: 0 13px;
+
+    outline: none;
+
+    background: #FFFFFF;
+
+    color: #1D3D2D;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 13px;
+}
+
+
+.goflip-ai-input:focus {
+
+    border-color: #D8B36A;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(216, 179, 106, 0.18);
+}
+
+
+.goflip-ai-send {
+
+    width: 43px;
+
+    height: 43px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #1D3D2D;
+
+    color: #F0F3E8;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   AI MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .goflip-ai-button {
+
+        right: 29px;
+
+        bottom: 60px;
+
+        width: 58px;
+
+        height: 58px;
+
+        font-size: 27px;
+    }
+
+
+    .goflip-ai-chat {
+
+        right: 70px;
+
+        bottom: 129px;
+
+        width: 300px;
+
+        height: 400px;
+
+        max-width: calc(100vw - 20px);
+
+        max-height: calc(100vh - 120px);
+
+        border-radius: 20px;
+    }
+
+
+    .goflip-ai-header {
+
+        padding: 10px 12px;
+    }
+
+
+    .goflip-ai-avatar {
+
+        width: 36px;
+
+        height: 36px;
+
+        border-radius: 10px;
+
+        font-size: 18px;
+    }
+
+
+    .goflip-ai-title {
+
+        font-size: 15px;
+    }
+
+
+    .goflip-ai-status {
+
+        font-size: 10px;
+    }
+
+
+    .goflip-ai-messages {
+
+        padding: 12px;
+
+        gap: 8px;
+    }
+
+
+    .goflip-ai-message {
+
+        max-width: 85%;
+
+        padding: 8px 11px;
+
+        font-size: 12px;
+
+        line-height: 1.4;
+    }
+
+
+    .goflip-ai-input-area {
+
+        padding: 8px;
+
+        gap: 6px;
+    }
+
+
+    .goflip-ai-input {
+
+        height: 38px;
+
+        padding: 0 11px;
+
+        font-size: 12px;
+    }
+
+
+    .goflip-ai-send {
+
+        width: 38px;
+
+        height: 38px;
+
+        font-size: 14px;
+
+        border-radius: 12px;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE AI
+===================================================== */
+
+@media (max-width: 450px) {
+
+    .goflip-ai-button {
+
+        right: 16px;
+
+        bottom: 55px;
+
+        width: 56px;
+
+        height: 56px;
+
+        font-size: 26px;
+    }
+
+
+    .goflip-ai-chat {
+
+        right: 10px;
+
+        bottom: 120px;
+
+        width: 285px;
+
+        height: 380px;
+
+        max-width: calc(100vw - 20px);
+
+        max-height: calc(100vh - 105px);
+
+        border-radius: 18px;
+    }
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.site-footer {
+
+    width: 100%;
+
+    background: #1D3D2D;
+
+    color: #F0F3E8;
+
+    font-family: 'Inter', sans-serif;
+}
+
+
+.footer-content {
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 50px 30px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        1fr;
+
+    gap: 45px;
+}
+
+
+.footer-brand h2 {
+
+    font-family: 'Fraunces', serif;
+
+    font-size: 30px;
+
+    margin: 0 0 12px;
+
+    color: #F0F3E8;
+}
+
+
+.footer-brand p {
+
+    max-width: 280px;
+
+    color: #C9D5C2;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin: 0;
+}
+
+
+.footer-links h3,
+.footer-contact h3 {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin: 0 0 17px;
+
+    color: #FFFFFF;
+}
+
+
+.footer-links {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.footer-links a {
+
+    color: #C9D5C2;
+
+    font-size: 12px;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+
+.footer-links a:hover {
+
+    color: #FFFFFF;
+
+    transform:
+        translateX(3px);
+}
+
+
+.footer-contact p {
+
+    color: #C9D5C2;
+
+    font-size: 12px;
+
+    margin: 0 0 11px;
+}
+
+
+.footer-bottom {
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 18px 30px;
+
+    border-top:
+        1px solid rgba(240, 243, 232, 0.15);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.footer-bottom p {
+
+    margin: 0;
+
+    color: #AEBEAA;
+
+    font-size: 11px;
+}
+
+
+.social-links {
+
+    display: flex;
+
+    gap: 20px;
+}
+
+
+.social-links a {
+
+    color: #C9D5C2;
+
+    font-size: 11px;
+
+    text-decoration: none;
+}
+
+
+.social-links a:hover {
+
+    color: #FFFFFF;
+}
+
+
+@media (max-width: 700px) {
+
+    .footer-content {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        padding:
+            40px 22px;
+
+        gap: 30px;
+    }
+
+
+    .footer-brand {
+
+        grid-column:
+            1 / -1;
+    }
+
+
+    .footer-bottom {
+
+        padding:
+            18px 22px;
+
+        flex-direction:
+            column;
+
+        text-align:
+            center;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .footer-content {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 28px;
+    }
+
+
+    .footer-brand {
+
+        grid-column:
+            auto;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<div class="GoFlip-nav-wrapper">
+
+    <nav class="GoFlip-navbar">
+
+
+        <!-- =================================================
+             LEFT
+        ================================================== -->
+
+        <div class="nav-section-left">
+
+
+            <a
+                href="{% url 'Home' %}"
+                class="GoFlip-logo"
+                title="GoFlip Home"
+            >
+
+                <span class="logo-icon">
+                    Go
+                </span>
+
+                <span class="logo-text">
+                    Flip
+                </span>
+
+            </a>
+
+
+            {% if user.is_authenticated %}
+
+                <a
+                    href="{% url 'Home' %}"
+                    class="GoFlip-link"
+                    title="Home"
+                >
+
+                    <i class="bi bi-house-door"></i>
+
+                    <span>
+                        Home
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="{% url 'Profile' %}"
+                    class="GoFlip-link"
+                    title="Profile"
+                >
+
+                    <i class="bi bi-person"></i>
+
+                    <span>
+                        Profile
+                    </span>
+
+                </a>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- =================================================
+             CENTER
+        ================================================== -->
+
+        <div class="nav-section-center">
+
+
+            <a
+                href="{% url 'Viewproduct' %}"
+                class="GoFlip-link buy-link"
+                title="Buy"
+            >
+
+                <i class="bi bi-bag"></i>
+
+                <span>
+                    Buy
+                </span>
+
+            </a>
+
+
+            <a
+                href="{% url 'Addproduct' %}"
+                class="GoFlip-link sell-link"
+                title="Sell"
+            >
+
+                <i class="bi bi-plus-lg"></i>
+
+                <span>
+                    Sell
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+             RIGHT
+        ================================================== -->
+
+        <div class="nav-section-right">
+
+
+            {% if user.is_authenticated %}
+
+
+                <form
+                    method="get"
+                    action="{% url 'Search' %}"
+                    class="GoFlip-search"
+                >
+
+                    <input
+                        type="search"
+                        name="q"
+                        placeholder="Search..."
+                        aria-label="Search"
+                    >
+
+
+                    <button
+                        type="submit"
+                        class="search-button"
+                        aria-label="Search"
+                    >
+
+                        <i class="bi bi-search"></i>
+
+                    </button>
+
+                </form>
+
+
+                <button
+                    type="button"
+                    class="mobile-search-toggle"
+                    id="mobileSearchToggle"
+                    aria-label="Toggle Search"
+                    title="Search"
+                >
+
+                    <i class="bi bi-search"></i>
+
+                    <span>
+                        Search
+                    </span>
+
+                </button>
+
+
+                <a
+                    href=""
+                    class="nav-icon-btn"
+                    title="Wishlist"
+                >
+
+                    <i class="bi bi-heart"></i>
+
+                    <span>
+                        Wishlist
+                    </span>
+
+                </a>
+
+
+            {% else %}
+
+
+                <a
+                    href="{% url 'Login' %}"
+                    class="GoFlip-account"
+                    title="Login"
+                >
+
+                    <span class="user-circle">
+
+                        <i class="bi bi-box-arrow-in-right"></i>
+
+                    </span>
+
+                    <span>
+                        Login
+                    </span>
+
+                </a>
+
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+</div>
+
+
+<!-- =========================================================
+     MOBILE SEARCH
+========================================================= -->
+
+{% if user.is_authenticated %}
+
+<div
+    class="mobile-search-drawer"
+    id="mobileSearchDrawer"
+>
+
+    <form
+        method="get"
+        action="{% url 'Search' %}"
+    >
+
+        <input
+            type="search"
+            name="q"
+            placeholder="Search products..."
+            aria-label="Search"
+            required
+        >
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+</div>
+
+{% endif %}
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+<main class="GoFlip-page">
+
+    {% block content %}
+
+    {% endblock %}
+
+</main>
+
+
+<!-- =========================================================
+     GOFLIP AI BUTTON
+========================================================= -->
+
+{% if user.is_authenticated %}
+
+<button
+    type="button"
+    class="goflip-ai-button"
+    id="goflipAIButton"
+    aria-label="Open GoFlip AI"
+    aria-expanded="false"
+>
+
+    <i class="bi bi-robot"></i>
+
+</button>
+
+{% endif %}
+
+
+<!-- =========================================================
+     GOFLIP AI CHAT
+========================================================= -->
+
+<div
+    class="goflip-ai-chat"
+    id="goflipAIChat"
+    role="dialog"
+    aria-label="GoFlip AI Assistant"
+    aria-hidden="true"
+>
+
+
+    <div class="goflip-ai-header">
+
+
+        <div class="goflip-ai-header-left">
+
+
+            <div class="goflip-ai-avatar">
+
+                <i class="bi bi-robot"></i>
+
+            </div>
+
+
+            <div>
+
+                <div class="goflip-ai-title">
+                    GoFlip AI
+                </div>
+
+                <div class="goflip-ai-status">
+                    AI Assistant • Online
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="goflip-ai-close"
+            id="goflipAIClose"
+            aria-label="Close GoFlip AI"
+        >
+
+            <i class="bi bi-x-lg"></i>
+
+        </button>
+
+    </div>
+
+
+    <div
+        class="goflip-ai-messages"
+        id="goflipAIMessages"
+    >
+
+        <div class="goflip-ai-message bot">
+
+            Hi! 👋
+
+            <br>
+
+            I'm <strong>GoFlip AI</strong>.
+
+            <br>
+
+            How can I help you today?
+
+        </div>
+
+    </div>
+
+
+    <form
+        class="goflip-ai-input-area"
+        id="goflipAIForm"
+    >
+
+        {% csrf_token %}
+
+        <input
+            type="text"
+            class="goflip-ai-input"
+            id="goflipAIInput"
+            placeholder="Ask GoFlip AI..."
+            autocomplete="off"
+        >
+
+
+        <button
+            type="submit"
+            class="goflip-ai-send"
+            aria-label="Send message"
+        >
+
+            <i class="bi bi-send-fill"></i>
+
+        </button>
+
+    </form>
+
+</div>
+
+
+<!-- =========================================================
+     BOOTSTRAP JS
+========================================================= -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESa
+

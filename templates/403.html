@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>403 - Permission Denied | GoFlip</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: #CFDCBD;
+            color: #1D3D2D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .error-box {
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+            background: #F0F3E8;
+            border-radius: 28px;
+            padding: 55px 30px;
+            box-shadow: 0 15px 40px rgba(29, 61, 45, 0.12);
+        }
+
+        .error-code {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(90px, 18vw, 170px);
+            line-height: 1;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 34px;
+            margin: 20px 0 12px;
+        }
+
+        p {
+            color: #607064;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .home-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #1D3D2D;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+            background: #284f3b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="error-box">
+
+        <div class="error-code">403</div>
+
+        <h1>Permission Denied</h1>
+
+        <p>
+            You don't have permission to access this page.
+            Please check your account or go back to the home page.
+        </p>
+
+        <a href="/" class="home-btn">
+            ← Back to Home
+        </a>
+
+    </div>
+
+</body>
+</html>
+

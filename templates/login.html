@@ -1,0 +1,892 @@
+{% block content %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.auth-stage {
+    min-height: 100vh;
+
+    background: #CFDCBD;
+
+    background-image:
+        radial-gradient(
+            rgba(29, 61, 45, 0.12) 1px,
+            transparent 1px
+        );
+
+    background-size: 20px 20px;
+
+    font-family: 'Inter', sans-serif;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 80px 20px 50px;
+}
+
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.auth-card {
+    width: 100%;
+
+    max-width: 400px;
+
+    background: #F0F3E8;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 1px 2px rgba(29, 61, 45, 0.08),
+        0 14px 30px rgba(29, 61, 45, 0.16),
+        0 32px 56px rgba(29, 61, 45, 0.12);
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   TABS
+========================= */
+
+.tab-row {
+    display: flex;
+}
+
+.tab {
+    flex: 1;
+
+    text-align: center;
+
+    padding: 16px 0;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.tab-active {
+    background: #1D3D2D;
+
+    color: #F0F3E8;
+}
+
+.tab-inactive {
+    background: #DCE5D0;
+
+    color: #5C6B57;
+}
+
+.tab-inactive:hover {
+    background: #D2DEC4;
+}
+
+
+/* =========================
+   CARD BODY
+========================= */
+
+.card-body {
+    padding: 38px 35px 32px;
+}
+
+
+/* =========================
+   LOCATION
+========================= */
+
+.pin-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 16px;
+}
+
+.pin-row .loc {
+    font-size: 12px;
+
+    font-weight: 500;
+
+    color: #5C6B57;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.card-body h1 {
+    font-family: 'Fraunces', serif;
+
+    font-weight: 600;
+
+    font-size: 28px;
+
+    color: #1D3D2D;
+
+    margin: 0 0 7px;
+}
+
+.card-body .sub {
+    font-size: 14px;
+
+    color: #6B7568;
+
+    line-height: 1.5;
+
+    margin: 0 0 28px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.field {
+    margin-bottom: 17px;
+}
+
+.field label {
+    display: block;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #1D3D2D;
+
+    margin-bottom: 6px;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.field input {
+    display: block;
+
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 14px;
+
+    border: 1.5px solid #DAE3CE;
+
+    border-radius: 9px;
+
+    background: #FFFFFF;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 14px;
+
+    color: #1D3D2D;
+}
+
+.field input::placeholder {
+    color: #9AA292;
+}
+
+.field input:focus {
+    outline: none;
+
+    border-color: #1D3D2D;
+
+    box-shadow:
+        0 0 0 4px rgba(29, 61, 45, 0.1);
+}
+
+
+/* =========================
+   ERRORS
+========================= */
+
+.errorlist {
+    list-style: none;
+
+    padding: 0;
+
+    margin: 6px 0 0;
+
+    color: #B3402B;
+
+    font-size: 12px;
+
+    font-weight: 500;
+}
+
+
+/* =========================
+   FORGOT PASSWORD
+========================= */
+
+.row-between {
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin: -3px 0 20px;
+}
+
+.row-between a {
+    font-size: 12px;
+
+    color: #7D8979;
+
+    text-decoration: none;
+}
+
+.row-between a:hover {
+    color: #1D3D2D;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.submit-btn {
+    width: 100%;
+
+    height: 44px;
+
+    background: #1D3D2D;
+
+    color: #F0F3E8;
+
+    border: none;
+
+    border-radius: 9px;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 11px 22px rgba(29, 61, 45, 0.25);
+
+    transition: 0.2s ease;
+}
+
+.submit-btn:hover {
+    background: #274F3B;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   CARD FOOTER
+========================= */
+
+.ledger-note {
+    text-align: center;
+
+    padding-top: 16px;
+
+    font-size: 11px;
+
+    color: #9AA292;
+
+    border-top:
+        1px dashed #DAE3CE;
+
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   GoFlip MAIN FOOTER
+========================================================= */
+
+.site-footer {
+    width: 100%;
+
+    background: #1D3D2D;
+
+    color: #F0F3E8;
+
+    font-family: 'Inter', sans-serif;
+}
+
+
+/* =========================
+   FOOTER CONTENT
+========================= */
+
+.footer-content {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 50px 30px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        1fr;
+
+    gap: 45px;
+}
+
+
+/* =========================
+   BRAND
+========================= */
+
+.footer-brand h2 {
+    font-family: 'Fraunces', serif;
+
+    font-size: 30px;
+
+    margin: 0 0 12px;
+
+    color: #F0F3E8;
+}
+
+.footer-brand p {
+    max-width: 280px;
+
+    color: #C9D5C2;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin: 0;
+}
+
+
+/* =========================
+   FOOTER HEADINGS
+========================= */
+
+.footer-links h3,
+.footer-contact h3 {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin: 0 0 17px;
+
+    color: #FFFFFF;
+}
+
+
+/* =========================
+   LINKS
+========================= */
+
+.footer-links {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.footer-links a {
+    color: #C9D5C2;
+
+    font-size: 12px;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #FFFFFF;
+
+    transform: translateX(3px);
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.footer-contact p {
+    color: #C9D5C2;
+
+    font-size: 12px;
+
+    margin: 0 0 11px;
+}
+
+
+/* =========================
+   FOOTER BOTTOM
+========================= */
+
+.footer-bottom {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 18px 30px;
+
+    border-top:
+        1px solid rgba(240, 243, 232, 0.15);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.footer-bottom p {
+    margin: 0;
+
+    color: #AEBEAA;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   SOCIAL LINKS
+========================= */
+
+.social-links {
+    display: flex;
+
+    gap: 20px;
+}
+
+.social-links a {
+    color: #C9D5C2;
+
+    font-size: 11px;
+
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: #FFFFFF;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+
+        padding: 40px 22px;
+
+        gap: 30px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        padding: 18px 22px;
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .auth-stage {
+        padding: 60px 15px 40px;
+    }
+
+    .card-body {
+        padding: 30px 22px 28px;
+    }
+
+    .card-body h1 {
+        font-size: 24px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+
+        gap: 28px;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     LOGIN SECTION
+========================================================= -->
+
+<div class="auth-stage">
+
+    <div class="auth-card">
+
+        <!-- TABS -->
+
+        <div class="tab-row">
+
+            <span class="tab tab-active">
+                Log In
+            </span>
+
+            <a
+                href="{% url 'index' %}"
+                class="tab tab-inactive"
+            >
+                Register
+            </a>
+
+        </div>
+
+
+        <!-- CARD BODY -->
+
+        <div class="card-body">
+
+            <!-- LOCATION -->
+
+            <div class="pin-row">
+
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#5C6B57"
+                    stroke-width="2"
+                >
+
+                    <path
+                        d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"
+                    />
+
+                    <circle
+                        cx="12"
+                        cy="10"
+                        r="2.5"
+                    />
+
+                </svg>
+
+                <span class="loc">
+                    Trading near you
+                </span>
+
+            </div>
+
+
+            <h1>
+                Welcome back
+            </h1>
+
+            <p class="sub">
+                Sign in to message sellers and manage your listings.
+            </p>
+
+
+            <!-- LOGIN FORM -->
+
+            <form method="post" novalidate>
+
+                {% csrf_token %}
+
+                {% for field in form %}
+
+                    <div class="field">
+
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+
+
+                        <!-- USERNAME INPUT -->
+
+                        {% if field.name == "username" %}
+
+                            <input
+                                type="text"
+                                name="{{ field.name }}"
+                                id="{{ field.id_for_label }}"
+                                placeholder="Enter username"
+                                value="{{ field.value|default:'' }}"
+                            >
+
+                        {% elif field.name == "password" %}
+
+                            <input
+                                type="text"
+                                name="{{ field.name }}"
+                                id="{{ field.id_for_label }}"
+                                placeholder="Enter password"
+                                value="{{ field.value|default:'' }}"
+                            >
+
+                        {% endif %}
+
+
+                        {% if field.help_text %}
+
+                            <div class="helptext">
+                                {{ field.help_text }}
+                            </div>
+
+                        {% endif %}
+
+
+                        {% if field.errors %}
+
+                            <ul class="errorlist">
+
+                                {% for error in field.errors %}
+
+                                    <li>
+                                        {{ error }}
+                                    </li>
+
+                                {% endfor %}
+
+                            </ul>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endfor %}
+
+
+                {% if form.non_field_errors %}
+
+                    <ul class="errorlist">
+
+                        {% for error in form.non_field_errors %}
+
+                            <li>
+                                {{ error }}
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                {% endif %}
+
+
+               <div class="row-between">
+                   <a href="{% url 'password_reset' %}">
+                       Forgot Password?
+                   </a>
+               </div>
+
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Login
+                </button>
+
+            </form>
+
+
+            <p class="ledger-note">
+                GoFlip · trade with people you trust
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     GoFlip FOOTER
+========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+            <h2>
+                GoFlip
+            </h2>
+
+            <p>
+                Your local marketplace to buy and sell
+                products with people near you.
+            </p>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-links">
+
+            <h3>
+                Quick Links
+            </h3>
+
+            <a href="{% url 'Login' %}">
+                Sign in
+            </a>
+
+            <a href="{% url 'index' %}">
+                Create account
+            </a>
+
+            <a href="#">
+                About us
+            </a>
+
+            <a href="#">
+                Contact us
+            </a>
+
+        </div>
+
+
+        <!-- HELP -->
+
+        <div class="footer-links">
+
+            <h3>
+                Help
+            </h3>
+
+            <a href="#">
+                Help Center
+            </a>
+
+            <a href="#">
+                Safety
+            </a>
+
+            <a href="#">
+                Privacy Policy
+            </a>
+
+            <a href="#">
+                Terms & Conditions
+            </a>
+
+        </div>
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-contact">
+
+            <h3>
+                Contact
+            </h3>
+
+            <p>
+                📧 support@GoFlip.com
+            </p>
+
+            <p>
+                📞 +91 00000 00000
+            </p>
+
+            <p>
+                📍 India
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 GoFlip. All rights reserved.
+        </p>
+
+        <div class="social-links">
+
+            <a href="#">
+                Instagram
+            </a>
+
+            <a href="#">
+                Facebook
+            </a>
+
+            <a href="#">
+                X
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+{% endblock %}

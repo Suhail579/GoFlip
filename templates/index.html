@@ -1,0 +1,1364 @@
+{% load static %}
+
+{% block content %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+>   
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #CFDCBD;
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.auth-stage {
+    min-height: 100vh;
+
+    background: #CFDCBD;
+
+    background-image:
+        radial-gradient(
+            rgba(29, 61, 45, 0.12) 1px,
+            transparent 1px
+        );
+
+    background-size: 20px 20px;
+
+    font-family: 'Inter', sans-serif;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 95px 20px 50px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+
+    background: #F0F3E8;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 1px 2px rgba(29, 61, 45, 0.08),
+        0 14px 30px rgba(29, 61, 45, 0.16),
+        0 32px 56px rgba(29, 61, 45, 0.12);
+}
+
+
+/* =========================
+   TABS
+========================= */
+
+.tab-row {
+    display: flex;
+}
+
+.tab {
+    flex: 1;
+
+    text-align: center;
+
+    padding: 16px 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+.tab-active {
+    background: #1D3D2D;
+    color: #F0F3E8;
+}
+
+.tab-inactive {
+    background: #DCE5D0;
+    color: #5C6B57;
+}
+
+.tab-inactive:hover {
+    background: #D2DEC4;
+    color: #1D3D2D;
+}
+
+
+/* =========================
+   CARD BODY
+========================= */
+
+.card-body {
+    padding: 36px 32px 30px;
+}
+
+
+/* =========================
+   LOCATION
+========================= */
+
+.pin-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 14px;
+}
+
+.pin-row .loc {
+    font-size: 12px;
+
+    font-weight: 500;
+
+    color: #5C6B57;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.card-body h1 {
+    font-family: 'Fraunces', serif;
+
+    font-weight: 600;
+
+    font-size: 28px;
+
+    color: #1D3D2D;
+
+    margin: 0 0 7px;
+}
+
+.card-body .sub {
+    font-size: 14px;
+
+    color: #6B7568;
+
+    line-height: 1.5;
+
+    margin: 0 0 24px;
+}
+
+
+/* =========================
+   PROFILE IMAGE
+========================= */
+
+.profile-section {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+
+    padding: 10px;
+
+    background: #E6ECD9;
+
+    border: 1px dashed #C5D0B9;
+
+    border-radius: 10px;
+}
+
+.profile-label {
+    position: relative;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+}
+
+.profile-image {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 3px solid #F0F3E8;
+
+    box-shadow:
+        0 4px 12px rgba(29, 61, 45, 0.15);
+
+    transition: 0.2s;
+}
+
+.profile-label:hover .profile-image {
+    transform: scale(1.04);
+}
+
+.camera-button {
+    position: absolute;
+
+    right: -3px;
+    bottom: 0;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #1D3D2D;
+
+    color: white;
+
+    font-size: 10px;
+}
+
+.profile-info strong {
+    display: block;
+
+    font-size: 12px;
+
+    color: #1D3D2D;
+
+    margin-bottom: 3px;
+}
+
+.profile-info span {
+    font-size: 10px;
+
+    color: #9AA292;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   HIDDEN FILE INPUT
+========================= */
+
+.profile-file {
+    display: none;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.field {
+    margin-bottom: 15px;
+}
+
+.field label {
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #1D3D2D;
+
+    margin-bottom: 6px;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.field input,
+.field textarea,
+.field select {
+    display: block;
+
+    width: 100%;
+
+    height: 42px;
+
+    padding: 10px 12px;
+
+    border: 1.5px solid #DAE3CE;
+
+    border-radius: 9px;
+
+    background: #FFFFFF;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 13px;
+
+    color: #1D3D2D;
+
+    outline: none;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.field input::placeholder {
+    color: #9AA292;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+    outline: none;
+
+    border-color: #1D3D2D;
+
+    box-shadow:
+        0 0 0 4px rgba(29, 61, 45, 0.1);
+}
+
+
+/* =========================
+   TWO COLUMN ROW
+========================= */
+
+.register-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+}
+
+
+/* =========================
+   HELP TEXT
+========================= */
+
+.helptext {
+    font-size: 11px;
+
+    color: #9AA292;
+
+    margin-top: 5px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   ERRORS
+========================= */
+
+.errorlist {
+    list-style: none;
+
+    padding: 0;
+
+    margin: 5px 0 0;
+
+    color: #B3402B;
+
+    font-size: 11px;
+
+    font-weight: 500;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.submit-btn {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 5px;
+
+    background: #1D3D2D;
+
+    color: #F0F3E8;
+
+    border: none;
+
+    border-radius: 9px;
+
+    font-family: 'Inter', sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 11px 22px rgba(29, 61, 45, 0.25);
+
+    transition:
+        background 0.15s ease,
+        transform 0.12s ease;
+}
+
+.submit-btn:hover {
+    background: #274F3B;
+
+    transform: translateY(-1px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   LOGIN FOOTER
+========================= */
+
+.ledger-note {
+    text-align: center;
+
+    padding-top: 16px;
+
+    font-size: 11px;
+
+    color: #9AA292;
+
+    border-top: 1px dashed #DAE3CE;
+
+    margin-top: 20px;
+}
+
+.ledger-note a {
+    color: #1D3D2D;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    margin-left: 4px;
+}
+
+.ledger-note a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   SITE FOOTER
+========================= */
+
+.site-footer {
+    width: 100%;
+
+    background: #1D3D2D;
+
+    color: #F0F3E8;
+
+    font-family: 'Inter', sans-serif;
+}
+
+.footer-content {
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 42px 30px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        1fr;
+
+    gap: 35px;
+}
+
+
+/* BRAND */
+
+.footer-brand h2 {
+    font-family: 'Fraunces', serif;
+
+    font-size: 27px;
+
+    margin: 0 0 9px;
+
+    color: #F0F3E8;
+}
+
+.footer-brand p {
+    max-width: 260px;
+
+    color: #C9D5C2;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    margin: 0;
+}
+
+
+/* FOOTER HEADINGS */
+
+.footer-links h3,
+.footer-contact h3 {
+    font-size: 13px;
+
+    margin: 0 0 13px;
+
+    color: #FFFFFF;
+}
+
+
+/* LINKS */
+
+.footer-links {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.footer-links a {
+    color: #C9D5C2;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    transition: 0.2s;
+}
+
+.footer-links a:hover {
+    color: #FFFFFF;
+
+    transform: translateX(2px);
+}
+
+
+/* CONTACT */
+
+.footer-contact p {
+    color: #C9D5C2;
+
+    font-size: 11px;
+
+    margin: 0 0 9px;
+}
+
+
+/* FOOTER BOTTOM */
+
+.footer-bottom {
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 17px 30px;
+
+    border-top:
+        1px solid rgba(240, 243, 232, 0.15);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.footer-bottom p {
+    margin: 0;
+
+    color: #AEBEAA;
+
+    font-size: 10px;
+}
+
+
+/* SOCIAL */
+
+.social-links {
+    display: flex;
+
+    gap: 16px;
+}
+
+.social-links a {
+    color: #C9D5C2;
+
+    font-size: 10px;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+.social-links a:hover {
+    color: #FFFFFF;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .auth-stage {
+        padding: 70px 12px 35px;
+    }
+
+    .auth-card {
+        max-width: 400px;
+    }
+
+    .card-body {
+        padding: 30px 22px 25px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+
+        padding: 35px 22px;
+
+        gap: 28px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        padding: 17px 22px;
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .card-body h1 {
+        font-size: 25px;
+    }
+
+    .register-row {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+}
+
+</style>
+
+
+<!-- =========================
+     REGISTER PAGE
+========================= -->
+
+<div class="auth-stage">
+
+    <div class="auth-card">
+
+
+        <!-- =========================
+             TABS
+        ========================= -->
+
+        <div class="tab-row">
+
+            <a
+                href="{% url 'Login' %}"
+                class="tab tab-inactive"
+            >
+                Log In
+            </a>
+
+            <span class="tab tab-active">
+                Register
+            </span>
+
+        </div>
+
+
+        <!-- =========================
+             CARD BODY
+        ========================= -->
+
+        <div class="card-body">
+
+
+            <!-- LOCATION -->
+
+            <div class="pin-row">
+
+                <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#5C6B57"
+                    stroke-width="2"
+                >
+
+                    <path
+                        d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"
+                    />
+
+                    <circle
+                        cx="12"
+                        cy="10"
+                        r="2.5"
+                    />
+
+                </svg>
+
+                <span class="loc">
+                    Trading near you
+                </span>
+
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h1>
+                Create your account
+            </h1>
+
+            <p class="sub">
+                Join GoFlip and start buying and selling with people near you.
+            </p>
+
+
+            <!-- =========================
+                 FORM
+            ========================= -->
+
+            <form
+                method="post"
+                enctype="multipart/form-data"
+                novalidate
+            >
+
+                {% csrf_token %}
+
+
+                <!-- USERNAME -->
+
+                <div class="field">
+
+                    <label for="id_username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        name="username"
+                        id="id_username"
+                        value="{{ form.username.value|default:'' }}"
+                        placeholder="Enter username"
+                        autocomplete="username"
+                    >
+
+                    {% if form.username.errors %}
+
+                    <ul class="errorlist">
+
+                        {% for error in form.username.errors %}
+
+                        <li>
+                            {{ error }}
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- PASSWORD + CONFIRM -->
+
+                <div class="register-row">
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="field">
+
+                        <label for="id_password1">
+                            Password
+                        </label>
+
+                        <input
+                            type="password"
+                            name="password1"
+                            id="id_password1"
+                            placeholder="Password"
+                            autocomplete="new-password"
+                        >
+
+                        {% if form.password1.errors %}
+
+                        <ul class="errorlist">
+
+                            {% for error in form.password1.errors %}
+
+                            <li>
+                                {{ error }}
+                            </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- CONFIRM -->
+
+                    <div class="field">
+
+                        <label for="id_password2">
+                            Confirm
+                        </label>
+
+                        <input
+                            type="password"
+                            name="password2"
+                            id="id_password2"
+                            placeholder="Confirm"
+                            autocomplete="new-password"
+                        >
+
+                        {% if form.password2.errors %}
+
+                        <ul class="errorlist">
+
+                            {% for error in form.password2.errors %}
+
+                            <li>
+                                {{ error }}
+                            </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMAIL + PHONE -->
+
+                <div class="register-row">
+
+
+                    <!-- EMAIL -->
+
+                    <div class="field">
+
+                        <label for="id_email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            id="id_email"
+                            value="{{ form.email.value|default:'' }}"
+                            placeholder="Email"
+                            autocomplete="email"
+                        >
+
+                        {% if form.email.errors %}
+
+                        <ul class="errorlist">
+
+                            {% for error in form.email.errors %}
+
+                            <li>
+                                {{ error }}
+                            </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="field">
+
+                        <label for="id_phone">
+                            Phone
+                        </label>
+
+                        <input
+                            type="tel"
+                            name="phone"
+                            id="id_phone"
+                            value="{{ form.phone.value|default:'' }}"
+                            placeholder="Phone"
+                            autocomplete="tel"
+                        >
+
+                        {% if form.phone.errors %}
+
+                        <ul class="errorlist">
+
+                            {% for error in form.phone.errors %}
+
+                            <li>
+                                {{ error }}
+                            </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- ADDRESS + PINCODE -->
+
+                <div class="register-row">
+
+
+                    <!-- ADDRESS -->
+
+                    <div class="field">
+
+                        <label for="id_address">
+                            Address
+                        </label>
+
+                        <input
+                            type="text"
+                            name="address"
+                            id="id_address"
+                            value="{{ form.address.value|default:'' }}"
+                            placeholder="Address"
+                            autocomplete="street-address"
+                        >
+
+                        {% if form.address.errors %}
+
+                        <ul class="errorlist">
+
+                            {% for error in form.address.errors %}
+
+                            <li>
+                                {{ error }}
+                            </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- PINCODE -->
+
+                    <div class="field">
+
+                        <label for="id_pincode">
+                            Pincode
+                        </label>
+
+                        <input
+                            type="text"
+                            name="pincode"
+                            id="id_pincode"
+                            value="{{ form.pincode.value|default:'' }}"
+                            placeholder="Pincode"
+                            inputmode="numeric"
+                            autocomplete="postal-code"
+                        >
+
+                        {% if form.pincode.errors %}
+
+                        <ul class="errorlist">
+
+                            {% for error in form.pincode.errors %}
+
+                            <li>
+                                {{ error }}
+                            </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOCATION -->
+
+                <div class="field">
+
+                    <label for="id_Location">
+                        Location
+                    </label>
+
+                    {{ form.Location }}
+
+                    {% if form.Location.errors %}
+
+                    <ul class="errorlist">
+
+                        {% for error in form.Location.errors %}
+
+                        <li>
+                            {{ error }}
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- PROFILE IMAGE -->
+
+                <div class="profile-section">
+
+                    <label
+                        for="id_profile_image"
+                        class="profile-label"
+                    >
+
+                        <img
+                            id="profilePreview"
+                            class="profile-image"
+                            src="{% static 'default-profile.png' %}"
+                            alt="Profile Image"
+                        >
+
+                        <span class="camera-button">
+                            📷
+                        </span>
+
+                    </label>
+
+
+                    <div class="profile-info">
+
+                        <strong>
+                            Profile picture
+                        </strong>
+
+                        <span>
+                            Click the image to choose a photo
+                        </span>
+
+                    </div>
+
+
+                    <div class="profile-file">
+
+                        {{ form.profile_image }}
+
+                    </div>
+
+                </div>
+
+
+                <!-- NON FIELD ERRORS -->
+
+                {% if form.non_field_errors %}
+
+                <ul class="errorlist">
+
+                    {% for error in form.non_field_errors %}
+
+                    <li>
+                        {{ error }}
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+                {% endif %}
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Create account
+                </button>
+
+            </form>
+
+
+            <!-- LOGIN -->
+
+            <p class="ledger-note">
+
+                Already have an account?
+
+                <a href="{% url 'Login' %}">
+                    Sign in
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SITE FOOTER
+========================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-content">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+            <h2>
+                GoFlip
+            </h2>
+
+            <p>
+                Your local marketplace to buy and sell
+                products with people near you.
+            </p>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-links">
+
+            <h3>
+                Quick Links
+            </h3>
+
+            <a href="{% url 'Login' %}">
+                Sign in
+            </a>
+
+            <a href="{% url 'index' %}">
+                Create account
+            </a>
+
+            <a href="#">
+                About us
+            </a>
+
+            <a href="#">
+                Contact us
+            </a>
+
+        </div>
+
+
+        <!-- HELP -->
+
+        <div class="footer-links">
+
+            <h3>
+                Help
+            </h3>
+
+            <a href="#">
+                Help Center
+            </a>
+
+            <a href="#">
+                Safety
+            </a>
+
+            <a href="#">
+                Privacy Policy
+            </a>
+
+            <a href="#">
+                Terms & Conditions
+            </a>
+
+        </div>
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-contact">
+
+            <h3>
+                Contact
+            </h3>
+
+            <p>
+                📧 support@GoFlip.com
+            </p>
+
+            <p>
+                📞 +91 00000 00000
+            </p>
+
+            <p>
+                📍 India
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 GoFlip. All rights reserved.
+        </p>
+
+        <div class="social-links">
+
+            <a href="#">
+                Instagram
+            </a>
+
+            <a href="#">
+                Facebook
+            </a>
+
+            <a href="#">
+                X
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     PROFILE IMAGE PREVIEW
+========================= -->
+
+<script>
+
+const imageInput =
+    document.getElementById("id_profile_image");
+
+const imagePreview =
+    document.getElementById("profilePreview");
+
+
+if (imageInput && imagePreview) {
+
+    imageInput.addEventListener(
+        "change",
+        function () {
+
+            const file = this.files[0];
+
+            if (file) {
+
+                const reader =
+                    new FileReader();
+
+                reader.onload =
+                    function (e) {
+
+                        imagePreview.src =
+                            e.target.result;
+
+                    };
+
+                reader.readAsDataURL(file);
+
+            }
+
+        }
+    );
+
+}
+
+</script>
+
+{% endblock %}

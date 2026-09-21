@@ -1,0 +1,703 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    /* ================================
+       HOME PAGE
+    ================================= */
+
+    .home-page {
+        background-color: #CFDCBD;
+
+        background-image:
+            radial-gradient(
+                rgba(29, 61, 45, 0.1) 1px,
+                transparent 1px
+            );
+
+        background-size: 20px 20px;
+
+        font-family: 'Inter', sans-serif;
+
+        min-height: 100vh;
+
+
+    }
+
+
+    .home-wrap {
+        max-width: 1290px;
+        margin: 0 auto;
+    }
+
+
+    /* ================================
+       BANNER
+    ================================= */
+
+    .banner-wrapper {
+        width: 100%;
+        height: 295px;
+
+        border-radius: 15px;
+
+        overflow: hidden;
+
+        margin-top: -29px;
+        margin-bottom: 29px;
+
+        background: #E2E8F0;
+
+        box-shadow:
+            0 8px 20px rgba(29, 61, 45, 0.12),
+            0 2px 5px rgba(29, 61, 45, 0.08);
+    }
+
+
+    /* ================================
+       SLIDER
+    ================================= */
+
+    .banner-slider {
+        display: flex;
+
+        width: 300%;
+        height: 100%;
+
+        animation: bannerSlide 8s infinite ease-in-out;
+    }
+
+
+    .banner-slider img {
+        width: 33.333333%;
+
+        height: 100%;
+
+        flex-shrink: 0;
+
+        display: block;
+
+        object-fit: cover;
+    }
+
+
+    /* ================================
+       AUTO SLIDE
+    ================================= */
+
+    @keyframes bannerSlide {
+
+        0% {
+            transform: translateX(0);
+        }
+
+        27% {
+            transform: translateX(0);
+        }
+
+        33.33% {
+            transform: translateX(-33.333333%);
+        }
+
+        60% {
+            transform: translateX(-33.333333%);
+        }
+
+        66.66% {
+            transform: translateX(-66.666666%);
+        }
+
+        93% {
+            transform: translateX(-66.666666%);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+
+    /* ================================
+       FEATURES SECTION
+    ================================= */
+
+    .features-section {
+        background: #F0F3E8;
+
+        border-radius: 16px;
+
+        padding: 20px;
+
+        margin-bottom: 22px;
+
+        box-shadow:
+            0 4px 12px rgba(29, 61, 45, 0.08),
+            0 12px 28px rgba(29, 61, 45, 0.06);
+    }
+
+
+    .features-title {
+        font-family: 'Fraunces', serif;
+
+        font-size: 22px;
+
+        font-weight: 600;
+
+        color: #1D3D2D;
+
+        margin: 0 0 14px;
+    }
+
+
+    .features-grid {
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 12px;
+    }
+
+
+    /* ================================
+       FEATURE CARD
+    ================================= */
+
+    .feature-card {
+        background: #FFFFFF;
+
+        border-radius: 14px;
+
+        padding: 16px 14px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        border: 1px solid rgba(29, 61, 45, 0.07);
+
+        text-decoration: none;
+
+        color: inherit;
+
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+
+    .feature-card:hover {
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 8px 18px rgba(29, 61, 45, 0.10);
+    }
+
+
+    /* ================================
+       FEATURE ICON
+    ================================= */
+
+    .feature-icon {
+        width: 42px;
+        height: 42px;
+
+        min-width: 42px;
+
+        border-radius: 12px;
+
+        background: #E5EDD9;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 21px;
+    }
+
+
+    /* ================================
+       FEATURE TEXT
+    ================================= */
+
+    .feature-content h3 {
+        margin: 0 0 3px;
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+        color: #1D3D2D;
+    }
+
+
+    .feature-content p {
+        margin: 0;
+
+        font-size: 11.5px;
+
+        line-height: 1.4;
+
+        color: #687467;
+    }
+
+
+    /* ================================
+       SECTION BOX
+    ================================= */
+
+    .section-box {
+        background-color: #F0F3E8;
+
+        border-radius: 16px;
+
+        padding: 20px;
+
+        margin-top: -6.5px;
+
+        margin-bottom: 22px;
+
+        box-shadow:
+            0 4px 12px rgba(29, 61, 45, 0.08),
+            0 12px 28px rgba(29, 61, 45, 0.06);
+    }
+
+
+    /* ================================
+       FRESH RECOMMENDED
+    ================================= */
+
+    .fresh-title {
+        font-family: 'Fraunces', serif;
+
+        font-size: 22px;
+
+        font-weight: 600;
+
+        color: #1D3D2D;
+
+        margin: 29px 5px -20px;
+    }
+
+
+    .latest-wrapper {
+        max-width: 1290px;
+
+        margin-top: 0;
+
+        padding-top: 0;
+
+        padding-bottom: 30px;
+    }
+
+
+    /* ================================
+       TABLET
+    ================================= */
+
+    @media (max-width: 900px) {
+
+        .home-page {
+            padding: 20px 16px 40px;
+        }
+
+
+        .features-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+
+        .banner-wrapper {
+            margin-top: -29px;
+        }
+
+    }
+
+
+/* ================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .home-page {
+        padding: 20px 12px 40px;
+    }
+
+    /* BANNER */
+
+    .banner-wrapper {
+        width: 100%;
+        height: 190px;
+        border-radius: 14px;
+        margin-top: -55px;
+        margin-bottom: 24px;
+        overflow: hidden;
+    }
+
+    .banner-slider {
+        width: 300%;
+        height: 100%;
+    }
+
+    .banner-slider img {
+    width: 33.333333%;
+    height: 100%;
+    flex-shrink: 0;
+    display: block;
+
+    object-fit: cover;
+    object-position: left;
+}
+
+
+    /* FEATURES */
+
+    .features-section {
+        padding: 14px;
+        border-radius: 14px;
+        margin-bottom: 20px;
+    }
+
+    .features-title {
+        font-size: 19px;
+        margin-bottom: 10px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 9px;
+    }
+
+    .feature-card {
+        padding: 13px 10px;
+        gap: 9px;
+        border-radius: 12px;
+    }
+
+    .feature-icon {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        border-radius: 10px;
+        font-size: 18px;
+    }
+
+    .feature-content h3 {
+        font-size: 12px;
+    }
+
+    .feature-content p {
+        font-size: 10px;
+    }
+
+    .section-box {
+        padding: 14px;
+        border-radius: 14px;
+        margin-bottom: 20px;
+    }
+
+    .fresh-title {
+        font-size: 19px;
+        margin: 20px 3px -9px;
+    }
+
+    .latest-wrapper {
+        margin-top: 0;
+        padding-top: 0;
+    }
+}
+
+    /* ================================
+       SMALL MOBILE
+    ================================= */
+
+    @media (max-width: 380px) {
+
+        .home-page {
+            padding: 16px 10px 35px;
+        }
+
+
+        /* BANNER */
+
+        .banner-wrapper {
+            height: 170px;
+
+            margin-top: -100px;
+        }
+
+
+        /* FEATURES */
+
+        .features-section {
+            padding: 12px;
+        }
+
+
+        .features-grid {
+            gap: 7px;
+        }
+
+
+        .feature-card {
+            padding: 11px 8px;
+        }
+
+
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+
+            min-width: 32px;
+
+            font-size: 16px;
+        }
+
+
+        .feature-content h3 {
+            font-size: 11px;
+        }
+
+
+        .feature-content p {
+            display: none;
+        }
+
+
+        /* SORT / FILTER */
+
+        .section-box {
+            padding: 12px;
+        }
+
+
+        /* FRESH */
+
+        .fresh-title {
+            font-size: 18px;
+
+            margin: 18px 2px -12px;
+        }
+
+    }
+
+</style>
+
+
+<div class="home-page">
+
+    <div class="home-wrap">
+
+
+        <!-- ============================
+             BANNER SLIDER
+        ============================= -->
+
+        <div class="banner-wrapper">
+
+            <div class="banner-slider">
+
+                <!-- IMAGE 1 -->
+
+                <img
+                    src="{% static 'image.svg' %}"
+                    alt="Marketplace banner 1"
+                >
+
+
+                <!-- IMAGE 2 -->
+
+                <img
+                    src="{% static 'image2.svg' %}"
+                    alt="Marketplace banner 2"
+                >
+
+
+                <!-- IMAGE 3 -->
+
+                <img
+                    src="{% static 'image3.svg' %}"
+                    alt="Marketplace banner 3"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ============================
+             FEATURES
+        ============================= -->
+
+        <div class="features-section">
+
+            <h2 class="features-title">
+                Why GoFlip?
+            </h2>
+
+
+            <div class="features-grid">
+
+
+                <!-- FEATURE 1 -->
+
+                <a
+                    href="{% url 'Choose' %}"
+                    class="feature-card"
+                >
+
+                    <div class="feature-icon">
+                        🛍️
+                    </div>
+
+                    <div class="feature-content">
+
+                        <h3>
+                            Buy & Sell Easily
+                        </h3>
+
+                        <p>
+                            Simple buying and selling
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+
+                <!-- FEATURE 2 -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        🔒
+                    </div>
+
+                    <div class="feature-content">
+
+                        <h3>
+                            Safe & Secure
+                        </h3>
+
+                        <p>
+                            A trusted marketplace
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FEATURE 3 -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📍
+                    </div>
+
+                    <div class="feature-content">
+
+                        <h3>
+                            Nearby Listings
+                        </h3>
+
+                        <p>
+                            Find products near you
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FEATURE 4 -->
+
+                <a
+                    href="{% url 'Addproduct' %}"
+                    class="feature-card"
+                >
+
+                    <div class="feature-icon">
+                        ⚡
+                    </div>
+
+                    <div class="feature-content">
+
+                        <h3>
+                            Quick & Simple
+                        </h3>
+
+                        <p>
+                            Post your product quickly
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ============================
+             SORT & FILTER
+        ============================= -->
+
+        <div class="section-box">
+
+            {% include 'sort.html' %}
+
+        </div>
+
+
+
+        <!-- ============================
+             FRESH RECOMMENDED
+        ============================= -->
+
+        <h2 class="fresh-title">
+            Fresh Recommended
+        </h2>
+
+
+        <div class="latest-wrapper">
+
+            {% include 'latest.html' %}
+
+        </div>
+
+
+    </div>
+
+</div>
+
+{% endblock %}
+

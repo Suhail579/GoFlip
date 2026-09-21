@@ -1,0 +1,343 @@
+
+{% block content %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+  body{
+    margin: 0;
+    padding: 0;
+  }
+  * { box-sizing: border-box; }
+
+  .choose-stage {
+    min-height: calc(100vh - 90px);
+    background: #CFDCBD;
+    background-image: radial-gradient(rgba(29, 61, 45, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #F0F3E8;
+    color: #1D3D2D;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.55rem 1.05rem;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 6px 16px rgba(29, 61, 45, 0.14);
+    transition: background 0.15s ease, transform 0.12s ease;
+  }
+
+  .skip-link:hover {
+    background: #DAE3CE;
+    color: #1D3D2D;
+    transform: translateY(-1px);
+  }
+
+  .skip-link svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .choose-wrap {
+    width: 100%;
+    max-width: 880px;
+  }
+
+  .choose-heading {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-top: 0.5rem;
+  }
+
+  .choose-heading h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+    color: #1D3D2D;
+    margin: 0 0 0.6rem;
+  }
+
+  .choose-heading p {
+    font-size: 0.95rem;
+    color: #5C6B57;
+    max-width: 46ch;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  .choose-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .choose-card {
+    background: #F0F3E8;
+    border-radius: 22px;
+    padding: 2.4rem 2.1rem;
+    box-shadow:
+      0 1px 2px rgba(29, 61, 45, 0.08),
+      0 14px 30px rgba(29, 61, 45, 0.14),
+      0 30px 54px rgba(29, 61, 45, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .choose-card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 1px 2px rgba(29, 61, 45, 0.08),
+      0 18px 36px rgba(29, 61, 45, 0.18),
+      0 34px 60px rgba(29, 61, 45, 0.12);
+  }
+
+  .card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.4rem;
+  }
+
+  .icon-sell { background: #1D3D2D; }
+  .icon-buy { background: #D8B36A; }
+
+  .card-icon svg { width: 24px; height: 24px; }
+
+  .choose-card h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #1D3D2D;
+    margin: 0 0 0.6rem;
+  }
+
+  .choose-card p {
+    font-size: 0.88rem;
+    color: #6B7568;
+    line-height: 1.55;
+    margin: 0 0 1.6rem;
+    flex-grow: 1;
+  }
+
+  .choose-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.8rem;
+  }
+
+  .choose-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    font-size: 0.82rem;
+    color: #4B5A47;
+    margin-bottom: 0.55rem;
+  }
+
+  .choose-list li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #D8B36A;
+    margin-top: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .choose-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.94rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 12px 24px rgba(29, 61, 45, 0.2);
+    transition: background 0.15s ease, transform 0.12s ease;
+  }
+
+  .btn-sell {
+    background: #1D3D2D;
+    color: #F0F3E8;
+  }
+
+  .btn-sell:hover {
+    background: #274F3B;
+    color: #F0F3E8;
+    transform: translateY(-1px);
+  }
+
+  .btn-buy {
+    background: #D8B36A;
+    color: #1D3D2D;
+  }
+
+  .btn-buy:hover {
+    background: #C7A155;
+    color: #1D3D2D;
+    transform: translateY(-1px);
+  }
+
+  .choose-foot {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.83rem;
+    color: #6B7568;
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 700px) {
+    .choose-stage {
+      padding: 4.5rem 1.1rem 2rem;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .skip-link {
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.8rem;
+    }
+
+    .choose-heading {
+      margin-bottom: 1.75rem;
+      padding-top: 0;
+    }
+
+    .choose-heading h1 {
+      font-size: 1.5rem;
+    }
+
+    .choose-heading p {
+      font-size: 0.88rem;
+    }
+
+    .choose-grid {
+      grid-template-columns: 1fr;
+      gap: 1.1rem;
+    }
+
+    .choose-card {
+      padding: 1.75rem 1.4rem;
+      border-radius: 18px;
+    }
+
+    .choose-card:hover {
+      transform: none;
+    }
+
+    .card-icon {
+      width: 46px;
+      height: 46px;
+      margin-bottom: 1.1rem;
+    }
+
+    .choose-card h2 {
+      font-size: 1.3rem;
+    }
+
+    .choose-btn {
+      padding: 1rem;
+      font-size: 0.96rem;
+    }
+
+    .choose-foot {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      padding: 0 0.5rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .choose-stage { padding: 4rem 0.85rem 1.75rem; }
+    .choose-card { padding: 1.5rem 1.2rem; }
+  }
+</style>
+
+<div class="choose-stage">
+
+  <a href="{% url 'Home' %}" class="skip-link">
+    Skip
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"/>
+      <polyline points="12 5 19 12 12 19"/>
+    </svg>
+  </a>
+
+  <div class="choose-wrap">
+
+    <div class="choose-heading">
+      <h1>Buy / Sell</h1>
+        <p>Kindred works both ways — the same neighbor selling their old bike today might be buying a desk from someone else tomorrow.</p>
+    </div>
+
+    <div class="choose-grid">
+
+      <div class="choose-card">
+        <div class="card-icon icon-sell">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F0F3E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/>
+            <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/>
+            <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/>
+          </svg>
+        </div>
+        <h2>Sell Now</h2>
+        <p>Turn what you're not using into cash, without warehouse fees or a middleman taking a cut.</p>
+        <ul class="choose-list">
+          <li>List a photo and price in under a minute</li>
+          <li>Only verified buyers can message you</li>
+          <li>You choose to meet locally or ship</li>
+        </ul>
+        <a href="{% url 'Addproduct' %}" class="choose-btn btn-sell">Start selling</a>
+      </div>
+
+      <div class="choose-card">
+        <div class="card-icon icon-buy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1D3D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+        </div>
+        <h2>Buy Now</h2>
+        <p>Find what you need from someone nearby, at a fairer price than new — and skip the shipping wait.</p>
+        <ul class="choose-list">
+          <li>Browse real listings from real neighbors</li>
+          <li>Ask sellers questions before you commit</li>
+          <li>Payment stays protected until it's in hand</li>
+        </ul>
+        <a href="{% url 'Home' %}" class="choose-btn btn-buy">Start browsing</a>
+      </div>
+
+    </div>
+
+    <p class="choose-foot">Most members do both — list something you don't need, then browse for something you do.</p>
+
+  </div>
+</div>
+{% endblock %}

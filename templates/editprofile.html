@@ -1,0 +1,1270 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    /* =================================
+       PROFILE PAGE
+    ================================= */
+
+    .profile-page {
+        background-color: #CFDCBD;
+
+        background-image:
+            radial-gradient(
+                rgba(29, 61, 45, 0.1) 1px,
+                transparent 1px
+            );
+
+        background-size: 20px 20px;
+
+        min-height: 100vh;
+
+        padding: 95px 20px 60px;
+
+        font-family: 'Inter', sans-serif;
+    }
+
+
+    .profile-wrap {
+        max-width: 620px;
+
+        margin: 0 auto;
+    }
+
+
+    /* =================================
+       FORM CARD
+    ================================= */
+
+    .form-card {
+        background-color: #FFFFFF;
+
+        border-radius: 22px;
+
+        overflow: hidden;
+
+        box-shadow:
+            0 2px 6px rgba(29, 61, 45, 0.06),
+            0 14px 30px rgba(29, 61, 45, 0.12);
+    }
+
+
+    /* =================================
+       COVER
+    ================================= */
+
+    .form-cover {
+        background:
+            linear-gradient(
+                135deg,
+                #1D3D2D,
+                #2F5A41
+            );
+
+        height: 100px;
+
+        position: relative;
+
+        overflow: hidden;
+    }
+
+
+    .form-cover::after {
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        background-image:
+            radial-gradient(
+                rgba(255,255,255,0.08) 1px,
+                transparent 1px
+            );
+
+        background-size: 14px 14px;
+    }
+
+
+    .form-cover h1 {
+        position: relative;
+
+        z-index: 2;
+
+        color: #F5F1DE;
+
+        font-family: 'Fraunces', serif;
+
+        font-weight: 600;
+
+        font-size: 19px;
+
+        margin: 0;
+
+        padding: 20px 28px;
+    }
+
+
+    /* =================================
+       AVATAR
+    ================================= */
+
+    .avatar-block {
+        padding: 0 28px 8px;
+
+        margin-top: -46px;
+
+        position: relative;
+
+        text-align: center;
+
+        z-index: 5;
+    }
+
+
+    .avatar-label {
+        cursor: pointer;
+
+        display: inline-block;
+
+        position: relative;
+    }
+
+
+    .profile-image {
+        width: 92px;
+        height: 92px;
+
+        border-radius: 50%;
+
+        object-fit: cover;
+
+        border: 4px solid #FFFFFF;
+
+        box-shadow:
+            0 8px 18px rgba(29, 61, 45, 0.18);
+
+        display: block;
+
+        transition: opacity 0.15s ease;
+    }
+
+
+    .avatar-label:hover .profile-image {
+        opacity: 0.85;
+    }
+
+
+    /* =================================
+       CAMERA
+    ================================= */
+
+    .camera-badge {
+        position: absolute;
+
+        right: -2px;
+
+        bottom: -2px;
+
+        width: 30px;
+        height: 30px;
+
+        border-radius: 50%;
+
+        background-color: #1D3D2D;
+
+        color: #F0F3E8;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border: 3px solid #FFFFFF;
+    }
+
+
+    .camera-badge svg {
+        width: 14px;
+        height: 14px;
+    }
+
+
+    .avatar-hint {
+        font-size: 12px;
+
+        color: #8A9484;
+
+        margin: 10px 0 0;
+    }
+
+
+    /* =================================
+       FORM BODY
+    ================================= */
+
+    .form-body {
+        padding: 10px 28px 28px;
+    }
+
+
+    /* =================================
+       FIELD
+    ================================= */
+
+    .field-group {
+        margin-bottom: 18px;
+    }
+
+
+    .field-group label {
+        display: flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        color: #1D3D2D;
+
+        margin-bottom: 6px;
+    }
+
+
+    .field-group label svg {
+        width: 15px;
+        height: 15px;
+
+        color: #8A9484;
+
+        flex-shrink: 0;
+    }
+
+
+    /* =================================
+       INPUT
+    ================================= */
+
+    .field-group input {
+        width: 100%;
+
+        padding: 0.78rem 0.95rem;
+
+        border: 1.5px solid #DAE3CE;
+
+        border-radius: 10px;
+
+        background-color: #FBFAF3;
+
+        font-family: 'Inter', sans-serif;
+
+        font-size: 0.95rem;
+
+        color: #1D3D2D;
+
+        outline: none;
+
+        transition:
+            border-color 0.15s ease,
+            box-shadow 0.15s ease,
+            background 0.15s ease;
+    }
+
+
+    .field-group input:focus {
+        border-color: #1D3D2D;
+
+        background-color: #FFFFFF;
+
+        box-shadow:
+            0 0 0 4px rgba(29, 61, 45, 0.1);
+    }
+
+
+    /* =================================
+       LOCATION DROPDOWN
+    ================================= */
+
+    .location-select {
+        width: 100%;
+
+        height: 48px;
+
+        padding: 0 42px 0 15px;
+
+        border: 1.5px solid #DAE3CE;
+
+        border-radius: 10px;
+
+        background-color: #FBFAF3;
+
+        font-family: 'Inter', sans-serif;
+
+        font-size: 0.95rem;
+
+        color: #1D3D2D;
+
+        outline: none;
+
+        cursor: pointer;
+
+        appearance: auto;
+
+        transition:
+            border-color 0.15s ease,
+            box-shadow 0.15s ease,
+            background 0.15s ease;
+    }
+
+
+    .location-select:hover {
+        border-color: #B9C8AC;
+    }
+
+
+    .location-select:focus {
+        border-color: #1D3D2D;
+
+        background-color: #FFFFFF;
+
+        box-shadow:
+            0 0 0 4px rgba(29, 61, 45, 0.1);
+    }
+
+
+    .location-select option {
+        background-color: #FFFFFF;
+
+        color: #1D3D2D;
+
+        padding: 10px;
+    }
+
+
+    /* =================================
+       TWO COLUMN ROW
+    ================================= */
+
+    .field-row {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 16px;
+    }
+
+
+    /* =================================
+       SUBMIT BUTTON
+    ================================= */
+
+    .submit-btn {
+        width: 100%;
+
+        padding: 0.85rem;
+
+        margin-top: 6px;
+
+        background-color: #1D3D2D;
+
+        color: #F0F3E8;
+
+        border: none;
+
+        border-radius: 10px;
+
+        font-family: 'Inter', sans-serif;
+
+        font-size: 0.96rem;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 12px 24px rgba(29, 61, 45, 0.25);
+
+        transition:
+            background 0.15s ease,
+            transform 0.12s ease,
+            box-shadow 0.12s ease;
+    }
+
+
+    .submit-btn:hover {
+        background-color: #274F3B;
+
+        box-shadow:
+            0 14px 28px rgba(29, 61, 45, 0.3);
+
+        transform: translateY(-1px);
+    }
+
+
+    .submit-btn:active {
+        transform: translateY(0);
+    }
+
+
+    /* =================================
+       MOBILE
+    ================================= */
+
+    @media (max-width: 600px) {
+
+        .profile-page {
+            padding: 80px 12px 40px;
+        }
+
+
+        .form-cover {
+            height: 90px;
+        }
+
+
+        .form-cover h1 {
+            padding: 18px 20px;
+
+            font-size: 17px;
+        }
+
+
+        .avatar-block {
+            padding: 0 20px 6px;
+
+            margin-top: -42px;
+        }
+
+
+        .form-body {
+            padding: 8px 20px 22px;
+        }
+
+
+        .field-row {
+            grid-template-columns: 1fr;
+
+            gap: 0;
+        }
+
+
+        .profile-image {
+            width: 88px;
+            height: 88px;
+        }
+
+
+        .location-select {
+            height: 47px;
+        }
+    }
+
+
+    /* =================================
+       SMALL MOBILE
+    ================================= */
+
+    @media (max-width: 380px) {
+
+        .profile-page {
+            padding-left: 8px;
+
+            padding-right: 8px;
+        }
+
+
+        .form-body {
+            padding-left: 16px;
+
+            padding-right: 16px;
+        }
+
+
+        .avatar-block {
+            padding-left: 16px;
+
+            padding-right: 16px;
+        }
+    }
+
+</style>
+
+
+<div class="profile-page">
+
+    <div class="profile-wrap">
+
+        <div class="form-card">
+
+
+            <!-- =========================
+                 COVER
+            ========================== -->
+
+            <div class="form-cover">
+
+                <h1>
+                    Edit Profile
+                </h1>
+
+            </div>
+
+
+            <!-- =========================
+                 FORM
+            ========================== -->
+
+            <form
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- =========================
+                     PROFILE IMAGE
+                ========================== -->
+
+                <div class="avatar-block">
+
+                    <label
+                        for="profile_image"
+                        class="avatar-label"
+                    >
+
+                        {% if user.profile_image %}
+
+                            <img
+                                src="{{ user.profile_image.url }}"
+                                class="profile-image"
+                                id="avatarPreview"
+                                alt="Profile picture"
+                            >
+
+                        {% else %}
+
+                            <img
+                                src="/static/default-profile.png"
+                                class="profile-image"
+                                id="avatarPreview"
+                                alt="Profile picture"
+                            >
+
+                        {% endif %}
+
+
+                        <span class="camera-badge">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+
+                                <path
+                                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+                                />
+
+                                <circle
+                                    cx="12"
+                                    cy="13"
+                                    r="4"
+                                />
+
+                            </svg>
+
+                        </span>
+
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="profile_image"
+                        name="profile_image"
+                        accept="image/*"
+                        style="display: none;"
+                        onchange="previewAvatar(event)"
+                    >
+
+
+                    <p class="avatar-hint">
+                        Tap the photo to change it
+                    </p>
+
+                </div>
+
+
+                <!-- =========================
+                     FORM BODY
+                ========================== -->
+
+                <div class="form-body">
+
+
+                    <!-- =========================
+                         USERNAME
+                    ========================== -->
+
+                    <div class="field-group">
+
+                        <label for="id_username">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+
+                                <circle
+                                    cx="12"
+                                    cy="8"
+                                    r="4"
+                                />
+
+                                <path
+                                    d="M4 21v-1a8 8 0 0 1 16 0v1"
+                                />
+
+                            </svg>
+
+                            Username
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            name="username"
+                            id="id_username"
+                            value="{{ user.username }}"
+                            autocomplete="username"
+                        >
+
+                    </div>
+
+
+                    <!-- =========================
+                         EMAIL
+                    ========================== -->
+
+                    <div class="field-group">
+
+                        <label for="id_email">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+
+                                <path
+                                    d="M4 4h16c1.1 0 2 .9 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"
+                                />
+
+                                <polyline
+                                    points="22,6 12,13 2,6"
+                                />
+
+                            </svg>
+
+                            Email
+
+                        </label>
+
+
+                        <input
+                            type="email"
+                            name="email"
+                            id="id_email"
+                            value="{{ user.email }}"
+                            autocomplete="email"
+                        >
+
+                    </div>
+
+
+                    <!-- =========================
+                         PHONE
+                    ========================== -->
+
+                    <div class="field-group">
+
+                        <label for="id_phone">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2
+                                    19.79 19.79 0 0 1-8.63-3.07
+                                    19.5 19.5 0 0 1-6-6
+                                    19.79 19.79 0 0 1-3.07-8.67
+                                    A2 2 0 0 1 4.11 2h3
+                                    a2 2 0 0 1 2 1.72
+                                    c.127.96.362 1.903.7 2.81
+                                    a2 2 0 0 1-.45 2.11L8.09 9.91
+                                    a16 16 0 0 0 6 6l1.27-1.27
+                                    a2 2 0 0 1 2.11-.45
+                                    c.907.338 1.85.573 2.81.7
+                                    A2 2 0 0 1 22 16.92z"
+                                />
+
+                            </svg>
+
+                            Phone
+
+                        </label>
+
+
+                        <input
+                            type="number"
+                            name="phone"
+                            id="id_phone"
+                            value="{{ user.phone }}"
+                            autocomplete="tel"
+                        >
+
+                    </div>
+
+
+                    <!-- =========================
+                         ADDRESS
+                    ========================== -->
+
+                    <div class="field-group">
+
+                        <label for="id_address">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+
+                                <path
+                                    d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"
+                                />
+
+                                <circle
+                                    cx="12"
+                                    cy="10"
+                                    r="2.5"
+                                />
+
+                            </svg>
+
+                            Address
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            name="address"
+                            id="id_address"
+                            value="{{ user.address }}"
+                            autocomplete="street-address"
+                        >
+
+                    </div>
+
+
+                    <!-- =========================
+                         PINCODE + LOCATION
+                    ========================== -->
+
+                    <div class="field-row">
+
+
+                        <!-- =====================
+                             PINCODE
+                        ====================== -->
+
+                        <div class="field-group">
+
+                            <label for="id_pincode">
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+
+                                    <rect
+                                        x="3"
+                                        y="4"
+                                        width="18"
+                                        height="18"
+                                        rx="2"
+                                    />
+
+                                    <line
+                                        x1="16"
+                                        y1="2"
+                                        x2="16"
+                                        y2="6"
+                                    />
+
+                                    <line
+                                        x1="8"
+                                        y1="2"
+                                        x2="8"
+                                        y2="6"
+                                    />
+
+                                    <line
+                                        x1="3"
+                                        y1="10"
+                                        x2="21"
+                                        y2="10"
+                                    />
+
+                                </svg>
+
+                                Pincode
+
+                            </label>
+
+
+                            <input
+                                type="number"
+                                name="pincode"
+                                id="id_pincode"
+                                value="{{ user.pincode }}"
+                                autocomplete="postal-code"
+                            >
+
+                        </div>
+
+
+                        <!-- =====================
+                             LOCATION
+                        ====================== -->
+
+                        <div class="field-group">
+
+                            <label for="id_Location">
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+
+                                    <path
+                                        d="M12 22s7-7.58 7-12A7 7 0 0 0 5 10c0 4.42 7 12 7 12z"
+                                    />
+
+                                    <circle
+                                        cx="12"
+                                        cy="10"
+                                        r="2.5"
+                                    />
+
+                                </svg>
+
+                                Location
+
+                            </label>
+
+
+                            <!-- =====================
+                                 LOCATION DROPDOWN
+                            ====================== -->
+
+                            <select
+                                name="Location"
+                                id="id_Location"
+                                class="location-select"
+                            >
+
+                                <!-- SELECT DISTRICT -->
+
+                                <option value="">
+                                    Select District
+                                </option>
+
+
+                                <!-- 1. THIRUVANANTHAPURAM -->
+
+                                {% if user.Location == "Thiruvananthapuram" %}
+
+                                    <option
+                                        value="Thiruvananthapuram"
+                                        selected
+                                    >
+                                        Thiruvananthapuram
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Thiruvananthapuram">
+                                        Thiruvananthapuram
+                                    </option>
+
+                                {% endif %}
+
+
+                                <!-- 2. KOLLAM -->
+
+                                {% if user.Location == "Kollam" %}
+
+                                    <option
+                                        value="Kollam"
+                                        selected
+                                    >
+                                        Kollam
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Kollam">
+                                        Kollam
+                                    </option>
+
+                                {% endif %}
+
+
+                                <!-- 3. PATHANAMTHITTA -->
+
+                                {% if user.Location == "Pathanamthitta" %}
+
+                                    <option
+                                        value="Pathanamthitta"
+                                        selected
+                                    >
+                                        Pathanamthitta
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Pathanamthitta">
+                                        Pathanamthitta
+                                    </option>
+
+                                {% endif %}
+
+
+                                <!-- 4. ALAPPUZHA -->
+
+                                {% if user.Location == "Alappuzha" %}
+
+                                    <option
+                                        value="Alappuzha"
+                                        selected
+                                    >
+                                        Alappuzha
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Alappuzha">
+                                        Alappuzha
+                                    </option>
+
+                                {% endif %}
+
+
+                                <!-- 5. KOTTAYAM -->
+
+                                {% if user.Location == "Kottayam" %}
+
+                                    <option
+                                        value="Kottayam"
+                                        selected
+                                    >
+                                        Kottayam
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Kottayam">
+                                        Kottayam
+                                    </option>
+
+                                {% endif %}
+
+
+                                <!-- 6. IDUKKI -->
+
+                                {% if user.Location == "Idukki" %}
+
+                                    <option
+                                        value="Idukki"
+                                        selected
+                                    >
+                                        Idukki
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Idukki">
+                                        Idukki
+                                    </option>
+
+                                {% endif %}
+
+
+                                <!-- 7. ERNAKULAM -->
+
+                                {% if user.Location == "Ernakulam" %}
+
+                                    <option
+                                        value="Ernakulam"
+                                        selected
+                                    >
+                                        Ernakulam
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Ernakulam">
+                                        Ernakulam
+                                    </option>
+
+                                {% endif %}
+
+
+                                <!-- 8. THRISSUR -->
+
+                                {% if user.Location == "Thrissur" %}
+
+                                    <option
+                                        value="Thrissur"
+                                        selected
+                                    >
+                                        Thrissur
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Thrissur">
+                                        Thrissur
+                                    </option>
+
+                                {% endif %}
+
+
+                                <!-- 9. PALAKKAD -->
+
+                                {% if user.Location == "Palakkad" %}
+
+                                    <option
+                                        value="Palakkad"
+                                        selected
+                                    >
+                                        Palakkad
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Palakkad">
+                                        Palakkad
+                                    </option>
+
+                                {% endif %}
+
+
+                                <!-- 10. MALAPPURAM -->
+
+                                {% if user.Location == "Malappuram" %}
+
+                                    <option
+                                        value="Malappuram"
+                                        selected
+                                    >
+                                        Malappuram
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Malappuram">
+                                        Malappuram
+                                    </option>
+
+                                {% endif %}
+
+
+                                <!-- 11. KOZHIKODE -->
+
+                                {% if user.Location == "Kozhikode" %}
+
+                                    <option
+                                        value="Kozhikode"
+                                        selected
+                                    >
+                                        Kozhikode
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Kozhikode">
+                                        Kozhikode
+                                    </option>
+
+                                {% endif %}
+
+
+                                <!-- 12. WAYANAD -->
+
+                                {% if user.Location == "Wayanad" %}
+
+                                    <option
+                                        value="Wayanad"
+                                        selected
+                                    >
+                                        Wayanad
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Wayanad">
+                                        Wayanad
+                                    </option>
+
+                                {% endif %}
+
+
+                                <!-- 13. KANNUR -->
+
+                                {% if user.Location == "Kannur" %}
+
+                                    <option
+                                        value="Kannur"
+                                        selected
+                                    >
+                                        Kannur
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Kannur">
+                                        Kannur
+                                    </option>
+
+                                {% endif %}
+
+
+                                <!-- 14. KASARAGOD -->
+
+                                {% if user.Location == "Kasaragod" %}
+
+                                    <option
+                                        value="Kasaragod"
+                                        selected
+                                    >
+                                        Kasaragod
+                                    </option>
+
+                                {% else %}
+
+                                    <option value="Kasaragod">
+                                        Kasaragod
+                                    </option>
+
+                                {% endif %}
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =========================
+                         SAVE BUTTON
+                    ========================== -->
+
+                    <button
+                        type="submit"
+                        class="submit-btn"
+                    >
+                        Save changes
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================
+     IMAGE PREVIEW
+================================= -->
+
+<script>
+
+    function previewAvatar(event) {
+
+        const file = event.target.files[0];
+
+        if (file) {
+
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+
+                document.getElementById(
+                    'avatarPreview'
+                ).src = e.target.result;
+
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+    }
+
+</script>
+
+
+{% endblock %}

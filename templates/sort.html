@@ -1,0 +1,234 @@
+{% load static %}
+
+<style>
+
+    /* ================================
+       CATEGORY GRID
+    ================================= */
+
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+        gap: 27px;
+    }
+
+
+    /* ================================
+       EACH CATEGORY CARD
+    ================================= */
+
+    .category-card {
+        background-color: #FFFFFF;
+        border-radius: 18px;
+        padding: 20px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow:
+            0 2px 6px rgba(29, 61, 45, 0.05),
+            0 8px 18px rgba(29, 61, 45, 0.07);
+        transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+                    background-color 0.18s ease;
+    }
+
+    .category-card:hover {
+        transform: translateY(-4px);
+        background-color: #FFFFFF;
+        box-shadow:
+            0 4px 12px rgba(29, 61, 45, 0.08),
+            0 14px 28px rgba(29, 61, 45, 0.12);
+    }
+
+    .category-card:hover .category-icon {
+        background-color: #D8B36A;
+        transform: scale(1.05);
+    }
+
+    .category-card:hover .category-icon svg {
+        stroke: #1D3D2D;
+    }
+
+    /* ================================
+       ICON CIRCLE
+    ================================= */
+
+    .category-icon {
+        width: 54px;
+        height: 52px;
+        margin-bottom: 10px;
+        border-radius: 50%;
+        background-color: #E9EFDD;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .category-icon svg {
+        width: 24px;
+        height: 24px;
+        transition: stroke 0.18s ease;
+    }
+
+    .category-icon img {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+    }
+
+    /* ================================
+       CATEGORY NAME
+    ================================= */
+
+    .category-name {
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: #1D3D2D;
+        line-height: 1.2;
+    }
+
+    /* ================================
+       MOBILE
+    ================================= */
+
+    @media (max-width: 600px) {
+        .category-grid {
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 12px;
+        }
+
+        .category-card {
+            padding: 14px 6px;
+            border-radius: 14px;
+        }
+
+        .category-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .category-icon {
+            width: 44px;
+            height: 44px;
+            margin-bottom: 8px;
+        }
+
+        .category-icon svg,
+        .category-icon img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .category-name {
+            font-size: 11.5px;
+        }
+    }
+
+</style>
+
+
+<div class="category-grid">
+
+    <!-- CARS -->
+    <a href="{% url 'CategoryProducts' 'cars' %}" class="category-card">
+        <div class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1D3D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 12 10s-6.7.6-8.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"/>
+                <circle cx="7" cy="17" r="2"/>
+                <circle cx="17" cy="17" r="2"/>
+                <path d="M5 10l2-4h10l2 4"/>
+                <line x1="9" y1="14" x2="15" y2="14"/>
+            </svg>
+        </div>
+        <div class="category-name">Cars</div>
+    </a>
+
+    <!-- BIKES -->
+    <a href="{% url 'CategoryProducts' 'bike' %}" class="category-card">
+        <div class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1D3D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="5" cy="16" r="3"/>
+                <circle cx="19" cy="16" r="3"/>
+                <path d="M12 16h-4l-3-5h5l3 5z"/>
+                <path d="M14 11l-2-6h4"/>
+                <path d="M19 16l-4-5"/>
+            </svg>
+        </div>
+        <div class="category-name">Bikes</div>
+    </a>
+
+    <!-- MOBILES -->
+    <a href="{% url 'CategoryProducts' 'mobile' %}" class="category-card">
+        <div class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1D3D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="6" y="2" width="12" height="20" rx="3"/>
+                <circle cx="12" cy="5" r="0.8" fill="#1D3D2D"/>
+                <line x1="10" y1="19" x2="14" y2="19"/>
+            </svg>
+        </div>
+        <div class="category-name">Mobiles</div>
+    </a>
+
+    <!-- ELECTRONICS -->
+    <a href="{% url 'CategoryProducts' 'electronics' %}" class="category-card">
+        <div class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1D3D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="11" rx="1.5"/>
+                <path d="M2 19h20v-1a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v1z"/>
+            </svg>
+        </div>
+        <div class="category-name">Electronics</div>
+    </a>
+
+    <!-- FURNITURE -->
+    <a href="{% url 'CategoryProducts' 'furniture' %}" class="category-card">
+        <div class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1D3D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/>
+                <path d="M4 11a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4H4v-4z"/>
+                <path d="M5 15v4M19 15v4"/>
+            </svg>
+        </div>
+        <div class="category-name">Furniture</div>
+    </a>
+
+    <!-- GADGETS -->
+    <a href="{% url 'CategoryProducts' 'gadgets' %}" class="category-card">
+        <div class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1D3D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+            </svg>
+        </div>
+        <div class="category-name">Gadgets</div>
+    </a>
+
+    <!-- BOOKS -->
+    <a href="{% url 'CategoryProducts' 'book' %}" class="category-card">
+        <div class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1D3D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+        </div>
+        <div class="category-name">Books</div>
+    </a>
+
+    <!-- FASHION (NEW) -->
+    <a href="{% url 'CategoryProducts' 'fashion' %}" class="category-card">
+        <div class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1D3D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>
+            </svg>
+        </div>
+        <div class="category-name">Fashion</div>
+    </a>
+
+
+
+
+</div>
