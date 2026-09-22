@@ -10,7 +10,7 @@ from django.conf import settings
 # Coustom User
 
 class CoustomUser(AbstractUser):
-    address = models.CharField(null=True)
+    address = models.CharField(null=True,max_length=100)
     pincode = models.IntegerField(null=True)
     profile_image = models.ImageField(
         upload_to="profile/",
@@ -20,7 +20,7 @@ class CoustomUser(AbstractUser):
     otp = models.IntegerField(null=True)
     verified = models.BooleanField(default=False)
     phone = models.IntegerField(null=True)
-    Location = models.CharField(null=True)
+    Location = models.CharField(null=True,max_length=100)
 
 
 # Car Adding model
@@ -35,7 +35,7 @@ class Cars(models.Model):
     Model = models.CharField(max_length=100,null=True)
     year = models.IntegerField(null=True)
     Fuel = models.CharField(max_length=50,null=True)
-    Transmission = models.CharField(null=True)
+    Transmission = models.CharField(null=True,max_length=100)
     KM_drive = models.IntegerField(null=True)
     Title = models.CharField(max_length=200,null=True)
     Description = models.CharField(max_length=500,null=True)
@@ -52,14 +52,14 @@ class Bikes(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True)
-    Brand = models.CharField()
-    Model = models.CharField()
+    Brand = models.CharField(max_length=100)
+    Model = models.CharField(max_length=100)
     year = models.IntegerField()
-    Fuel = models.CharField()
+    Fuel = models.CharField(max_length=100)
     KM_drive = models.IntegerField()
-    Title = models.CharField(null=True)
-    Ownership = models.CharField(null=True)
-    Description = models.CharField()
+    Title = models.CharField(null=True,max_length=100)
+    Ownership = models.CharField(null=True,max_length=100)
+    Description = models.CharField(max_length=100)
     Price = models.IntegerField()
     Images = models.ImageField(upload_to="books/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
@@ -73,11 +73,11 @@ class Mobiles(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True)
-    Brand = models.CharField()
-    Model = models.CharField()
+    Brand = models.CharField(max_length=100)
+    Model = models.CharField(max_length=100)
     year = models.IntegerField()
     Title = models.CharField(max_length=20)
-    Description = models.CharField()
+    Description = models.CharField(max_length=100)
     Price = models.IntegerField()
     Images = models.ImageField(upload_to="books/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
@@ -91,11 +91,11 @@ class Electronicss(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True)
-    Items = models.CharField(null=True)
-    Brand  = models.CharField(null=True)
+    Items = models.CharField(null=True,max_length=100)
+    Brand  = models.CharField(null=True,max_length=100)
     year  = models.IntegerField()
     Title = models.CharField(null=True, max_length=20)
-    Description = models.CharField()
+    Description = models.CharField(max_length=100)
     Price = models.IntegerField()
     Images = models.ImageField(upload_to="books/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
@@ -109,11 +109,11 @@ class Bookss(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True)
-    Book_name = models.CharField()
-    Author = models.CharField()
+    Book_name = models.CharField(max_length=100)
+    Author = models.CharField(max_length=100)
     year = models.IntegerField()
     Title = models.CharField(max_length=20)
-    Description = models.CharField()
+    Description = models.CharField(max_length=100)
     Price = models.IntegerField()
     Images = models.ImageField(upload_to="books/",null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True,null=True)
@@ -132,7 +132,7 @@ class Furniture(models.Model):
     Material = models.CharField(max_length=100)
     Condition = models.CharField(max_length=50)
     Title = models.CharField(max_length=20)
-    Description = models.CharField()
+    Description = models.CharField(max_length=100)
     Price = models.IntegerField()
     Images = models.ImageField(upload_to="furniture/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -145,11 +145,11 @@ class Book_Detail(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True)
-    Book_name = models.CharField()
-    Author = models.CharField()
+    Book_name = models.CharField(max_length=100)
+    Author = models.CharField(max_length=100)
     year = models.IntegerField()
-    Title = models.CharField()
-    Description = models.CharField()
+    Title = models.CharField(max_length=100)
+    Description = models.CharField(max_length=100)
     Price = models.IntegerField()
     Images = models.ImageField(null=True, blank=True)
 
@@ -163,11 +163,11 @@ class Gadgets(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True)
-    Brand = models.CharField()
-    Item = models.CharField()
+    Brand = models.CharField(max_length=100)
+    Item = models.CharField(max_length=100)
     year = models.IntegerField()
     Title = models.CharField(max_length=20)
-    Description = models.CharField()
+    Description = models.CharField(max_length=100)
     Price = models.IntegerField()
     Images = models.ImageField(upload_to="books/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
