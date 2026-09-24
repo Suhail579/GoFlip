@@ -1,9 +1,29 @@
-
+{% extends 'base.html' %}
 {% block content %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
 
 <style>
+
+
+/* Hide GoFlip AI on OTP page */
+.goflip-ai-button,
+.goflip-ai-chat {
+    display: none !important;
+}
+
+
+
+
+    .GoFlip-navbar {
+        display: none !important;
+    }
+
+    .GoFlip-page {
+        padding-top: 1px !important;
+    }
+
+
 body {
     margin: 0;
     padding: 0;
@@ -427,134 +447,6 @@ body {
 }
 
 </style>
-
-
-<footer class="site-footer">
-
-    <div class="footer-content">
-
-        <!-- BRAND -->
-
-        <div class="footer-brand">
-
-            <h2>
-                GoFlip
-            </h2>
-
-            <p>
-                Your local marketplace to buy and sell
-                products with people near you.
-            </p>
-
-        </div>
-
-
-        <!-- QUICK LINKS -->
-
-        <div class="footer-links">
-
-            <h3>
-                Quick Links
-            </h3>
-
-            <a href="{% url 'Login' %}">
-                Sign in
-            </a>
-
-            <a href="{% url 'index' %}">
-                Create account
-            </a>
-
-            <a href="#">
-                About us
-            </a>
-
-            <a href="#">
-                Contact us
-            </a>
-
-        </div>
-
-
-        <!-- HELP -->
-
-        <div class="footer-links">
-
-            <h3>
-                Help
-            </h3>
-
-            <a href="#">
-                Help Center
-            </a>
-
-            <a href="#">
-                Safety
-            </a>
-
-            <a href="#">
-                Privacy Policy
-            </a>
-
-            <a href="#">
-                Terms & Conditions
-            </a>
-
-        </div>
-
-
-        <!-- CONTACT -->
-
-        <div class="footer-contact">
-
-            <h3>
-                Contact
-            </h3>
-
-            <p>
-                📧 support@GoFlip.com
-            </p>
-
-            <p>
-                📞 +91 00000 00000
-            </p>
-
-            <p>
-                📍 India
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <!-- FOOTER BOTTOM -->
-
-    <div class="footer-bottom">
-
-        <p>
-            © 2026 GoFlip. All rights reserved.
-        </p>
-
-        <div class="social-links">
-
-            <a href="#">
-                Instagram
-            </a>
-
-            <a href="#">
-                Facebook
-            </a>
-
-            <a href="#">
-                X
-            </a>
-
-        </div>
-
-    </div>
-
-</footer>
 
 
 {% endblock %}

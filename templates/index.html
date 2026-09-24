@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+
 {% load static %}
 
 {% block content %}
@@ -11,6 +13,13 @@
 
 <style>
 
+    .GoFlip-navbar {
+        display: none !important;
+    }
+
+    .GoFlip-page {
+        padding-top: 1px !important;
+    }
 /* =========================
    RESET
 ========================= */
@@ -48,7 +57,7 @@ body {
     align-items: center;
     justify-content: center;
 
-    padding: 95px 20px 50px;
+    padding: 80px 20px 50px;
 }
 
 
@@ -356,6 +365,13 @@ body {
     gap: 12px;
 }
 
+/* LOCATION FIELD - DESKTOP ONLY */
+.location-field {
+    width: 100%;
+    grid-column: 1 / -1;
+
+}
+
 
 /* =========================
    HELP TEXT
@@ -471,174 +487,13 @@ body {
 
 
 /* =========================
-   SITE FOOTER
-========================= */
-
-.site-footer {
-    width: 100%;
-
-    background: #1D3D2D;
-
-    color: #F0F3E8;
-
-    font-family: 'Inter', sans-serif;
-}
-
-.footer-content {
-    max-width: 1100px;
-
-    margin: auto;
-
-    padding: 42px 30px;
-
-    display: grid;
-
-    grid-template-columns:
-        1.5fr
-        1fr
-        1fr
-        1fr;
-
-    gap: 35px;
-}
-
-
-/* BRAND */
-
-.footer-brand h2 {
-    font-family: 'Fraunces', serif;
-
-    font-size: 27px;
-
-    margin: 0 0 9px;
-
-    color: #F0F3E8;
-}
-
-.footer-brand p {
-    max-width: 260px;
-
-    color: #C9D5C2;
-
-    font-size: 12px;
-
-    line-height: 1.6;
-
-    margin: 0;
-}
-
-
-/* FOOTER HEADINGS */
-
-.footer-links h3,
-.footer-contact h3 {
-    font-size: 13px;
-
-    margin: 0 0 13px;
-
-    color: #FFFFFF;
-}
-
-
-/* LINKS */
-
-.footer-links {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-}
-
-.footer-links a {
-    color: #C9D5C2;
-
-    text-decoration: none;
-
-    font-size: 11px;
-
-    transition: 0.2s;
-}
-
-.footer-links a:hover {
-    color: #FFFFFF;
-
-    transform: translateX(2px);
-}
-
-
-/* CONTACT */
-
-.footer-contact p {
-    color: #C9D5C2;
-
-    font-size: 11px;
-
-    margin: 0 0 9px;
-}
-
-
-/* FOOTER BOTTOM */
-
-.footer-bottom {
-    max-width: 1100px;
-
-    margin: auto;
-
-    padding: 17px 30px;
-
-    border-top:
-        1px solid rgba(240, 243, 232, 0.15);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 20px;
-}
-
-.footer-bottom p {
-    margin: 0;
-
-    color: #AEBEAA;
-
-    font-size: 10px;
-}
-
-
-/* SOCIAL */
-
-.social-links {
-    display: flex;
-
-    gap: 16px;
-}
-
-.social-links a {
-    color: #C9D5C2;
-
-    font-size: 10px;
-
-    text-decoration: none;
-
-    transition: 0.2s;
-}
-
-.social-links a:hover {
-    color: #FFFFFF;
-}
-
-
-/* =========================
    MOBILE
 ========================= */
 
 @media (max-width: 700px) {
 
     .auth-stage {
-        padding: 70px 12px 35px;
+        padding: 84px 12px 35px;
     }
 
     .auth-card {
@@ -649,25 +504,9 @@ body {
         padding: 30px 22px 25px;
     }
 
-    .footer-content {
-        grid-template-columns: 1fr 1fr;
 
-        padding: 35px 22px;
 
-        gap: 28px;
-    }
 
-    .footer-brand {
-        grid-column: 1 / -1;
-    }
-
-    .footer-bottom {
-        padding: 17px 22px;
-
-        flex-direction: column;
-
-        text-align: center;
-    }
 }
 
 
@@ -683,12 +522,8 @@ body {
         gap: 0;
     }
 
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-brand {
-        grid-column: auto;
+    .location-field {
+        width: 100%;
     }
 }
 
@@ -979,112 +814,22 @@ body {
                 </div>
 
 
-                <!-- ADDRESS + PINCODE -->
-
                 <div class="register-row">
-
-
-                    <!-- ADDRESS -->
-
-                    <div class="field">
-
-                        <label for="id_address">
-                            Address
+                    <!-- LOCATION -->
+                    <div class="field location-field">
+                        <label for="id_Location">
+                            Location
                         </label>
+                        {{ form.Location }}
 
-                        <input
-                            type="text"
-                            name="address"
-                            id="id_address"
-                            value="{{ form.address.value|default:'' }}"
-                            placeholder="Address"
-                            autocomplete="street-address"
-                        >
-
-                        {% if form.address.errors %}
-
+                        {% if form.Location.errors %}
                         <ul class="errorlist">
-
-                            {% for error in form.address.errors %}
-
-                            <li>
-                                {{ error }}
-                            </li>
-
+                            {% for error in form.Location.errors %}
+                            <li>{{ error }}</li>
                             {% endfor %}
-
                         </ul>
-
                         {% endif %}
-
                     </div>
-
-
-                    <!-- PINCODE -->
-
-                    <div class="field">
-
-                        <label for="id_pincode">
-                            Pincode
-                        </label>
-
-                        <input
-                            type="text"
-                            name="pincode"
-                            id="id_pincode"
-                            value="{{ form.pincode.value|default:'' }}"
-                            placeholder="Pincode"
-                            inputmode="numeric"
-                            autocomplete="postal-code"
-                        >
-
-                        {% if form.pincode.errors %}
-
-                        <ul class="errorlist">
-
-                            {% for error in form.pincode.errors %}
-
-                            <li>
-                                {{ error }}
-                            </li>
-
-                            {% endfor %}
-
-                        </ul>
-
-                        {% endif %}
-
-                    </div>
-
-                </div>
-
-
-                <!-- LOCATION -->
-
-                <div class="field">
-
-                    <label for="id_Location">
-                        Location
-                    </label>
-
-                    {{ form.Location }}
-
-                    {% if form.Location.errors %}
-
-                    <ul class="errorlist">
-
-                        {% for error in form.Location.errors %}
-
-                        <li>
-                            {{ error }}
-                        </li>
-
-                        {% endfor %}
-
-                    </ul>
-
-                    {% endif %}
-
                 </div>
 
 
@@ -1158,7 +903,7 @@ body {
                     type="submit"
                     class="submit-btn"
                 >
-                    Create account
+                    Register Now
                 </button>
 
             </form>
@@ -1181,139 +926,6 @@ body {
     </div>
 
 </div>
-
-
-<!-- =========================
-     SITE FOOTER
-========================= -->
-
-<footer class="site-footer">
-
-    <div class="footer-content">
-
-
-        <!-- BRAND -->
-
-        <div class="footer-brand">
-
-            <h2>
-                GoFlip
-            </h2>
-
-            <p>
-                Your local marketplace to buy and sell
-                products with people near you.
-            </p>
-
-        </div>
-
-
-        <!-- QUICK LINKS -->
-
-        <div class="footer-links">
-
-            <h3>
-                Quick Links
-            </h3>
-
-            <a href="{% url 'Login' %}">
-                Sign in
-            </a>
-
-            <a href="{% url 'index' %}">
-                Create account
-            </a>
-
-            <a href="#">
-                About us
-            </a>
-
-            <a href="#">
-                Contact us
-            </a>
-
-        </div>
-
-
-        <!-- HELP -->
-
-        <div class="footer-links">
-
-            <h3>
-                Help
-            </h3>
-
-            <a href="#">
-                Help Center
-            </a>
-
-            <a href="#">
-                Safety
-            </a>
-
-            <a href="#">
-                Privacy Policy
-            </a>
-
-            <a href="#">
-                Terms & Conditions
-            </a>
-
-        </div>
-
-
-        <!-- CONTACT -->
-
-        <div class="footer-contact">
-
-            <h3>
-                Contact
-            </h3>
-
-            <p>
-                📧 support@GoFlip.com
-            </p>
-
-            <p>
-                📞 +91 00000 00000
-            </p>
-
-            <p>
-                📍 India
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <!-- FOOTER BOTTOM -->
-
-    <div class="footer-bottom">
-
-        <p>
-            © 2026 GoFlip. All rights reserved.
-        </p>
-
-        <div class="social-links">
-
-            <a href="#">
-                Instagram
-            </a>
-
-            <a href="#">
-                Facebook
-            </a>
-
-            <a href="#">
-                X
-            </a>
-
-        </div>
-
-    </div>
-
-</footer>
 
 
 <!-- =========================

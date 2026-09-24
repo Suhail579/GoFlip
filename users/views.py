@@ -1,29 +1,27 @@
 import random
 from multiprocessing import context
-
+from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, logout
 from django.core.mail import send_mail
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
-
-from users.forms import RegisterForm, LoginForm, Carform, Bikeform, Mobileform, Electronicsform, Booksform, Gadgetsform, \
-    Furnitureform
+from django.contrib.auth import login
+from users.forms import (RegisterForm, LoginForm, Carform, Bikeform, Mobileform,
+Electronicsform, Booksform, Gadgetsform,Furnitureform)
 from users.models import Cars, Bikes, Electronicss, Bookss, Mobiles, Furniture, Gadgets
 from users.models import CoustomUser
 
 
 # Create your views here.
-class Home(View):
 
+class Home(View):
     def get(self, request):
 
-        # Check login
+        # Check if user is login
         if not request.user.is_authenticated:
             return redirect("Login")
-
-
 
         products = []
 
@@ -57,69 +55,65 @@ class Home(View):
 
         products.sort(
             key=lambda x: x.created_at,
-            reverse=True
-        )
+            reverse=True)
 
-        return render(request, "home.html", {
-            "products": products
-        })
+        context = {"products": products}
+        return render(request, "home.html", context)
+
 
 
 class Register(View):
     def get(self, request):
-        form_instance = RegisterForm()
-        context = {"form": form_instance}
-        return render(request, "index.html", context)
+        form = RegisterForm()
+        context = {"form": form}
+        return render(request,"index.html",context)
 
     def post(self, request):
-        form_instance = RegisterForm(request.POST, request.FILES)
-        if form_instance.is_valid():
-            v = form_instance.save(commit=False)
-            v.is_active = False
+        form = RegisterForm(request.POST,request.FILES)
+        if form.is_valid():
+            user = form.save()
+            otp = random.randint(100000,999999)
+            user.otp = otp
+            user.save()
 
-            o = random.randint(10000, 999999)
-            v.otp = o
-            v.save()
+            send_mail("GoFlip Email Verification OTP",
+                f"""Your GoFlip verification OTP is:{otp}
+                Enter this OTP on the GoFlip verification page.""",None,
+                [user.email],fail_silently=False)
 
-            send_mail(
-                "Django Auth OTP",
-                f"Your OTP is {v.otp}",
-                "suhailnasim579@gmail.com",
-                [v.email],
-                fail_silently=False,
-            )
+            request.session["otp_user_id"] = user.id
             return redirect("Otp")
+            context = {"form": form}
+            return render(request,"index.html",context)
 
-        return render(request, "index.html", {"form": form_instance})
-
-
-
-
-from django.contrib.auth import login
 
 class Otp(View):
-
     def get(self, request):
-        return render(request, "otp.html")
+        return render(request,"otp.html")
 
     def post(self, request):
+        entered_otp = request.POST.get("otp")
+        user_id = request.session.get("otp_user_id")
 
-        otp = request.POST.get("otp")
+        if not user_id:
+            return render(request,"otp.html",{"error": "OTP session expired."})
 
+        User = get_user_model()
         try:
-            user = CoustomUser.objects.get(otp=otp)
+            user = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            return render(request,"otp.html",{"error": "User not found."})
 
-            user.is_active = True
+        if str(user.otp) == str(entered_otp):
             user.verified = True
+            user.is_active = True
             user.otp = None
             user.save()
+
             login(request, user)
+            request.session.pop("otp_user_id", None)
             return redirect("Choose")
 
-        except CoustomUser.DoesNotExist:
-            return render(request, "otp.html", {
-                "error": "Invalid OTP"
-            })
 
 class Choose(View):
     def get(self,request):
@@ -169,7 +163,7 @@ class Car(View):
             car = form.save()
             car.seller = request.user # Logged-in user becomes the seller
             car.save()
-            return redirect("Addproduct")
+            return redirect("Viewproduct")
 
 
 class Bike(View):
@@ -198,7 +192,7 @@ class Mobile(View):
             mobile = form.save()
             mobile.seller = request.user  # Automatically identify logged-in user
             mobile.save()
-            return redirect("Addproduct")
+            return redirect("Viewproduct")
 
 
 class Electronics(View):
@@ -219,7 +213,7 @@ class Electronics(View):
             electronics.seller = request.user
             electronics.save()
 
-            return redirect("Addproduct")
+            return redirect("Viewproduct")
 
         context = {"Electronics": form}
         return render(request, "electronics.html", context)
@@ -236,7 +230,7 @@ class Furnitures(View):
             Furniture = form.save()
             Furniture.seller = request.user  # Automatically identify logged-in user
             Furniture.save()
-            return redirect("Addproduct")
+            return redirect("Viewproduct")
 
 class Books(View):
     def get(self, request):
@@ -250,7 +244,7 @@ class Books(View):
             book = form.save()
             book.seller = request.user  # Automatically identify logged-in user
             book.save()
-            return redirect("Addproduct")
+            return redirect("Viewproduct")
 
 class Gadgetss(View):
     def get(self, request):
@@ -264,7 +258,7 @@ class Gadgetss(View):
             gadget = form.save()
             gadget.seller = request.user  # Automatically identify logged-in user
             gadget.save()
-            return redirect("Addproduct")
+            return redirect("Viewproduct")
 
 class CategoryProducts(View):
 
@@ -593,27 +587,31 @@ class Search(View):
 
 
 class Login(View):
-    def get(self,request):
-        form = LoginForm
-        context = {"form":form}
-        return render(request,"login.html",context)
+    def get(self, request):
+        return render(request, "login.html")
 
-    def post(self,request):
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            print(data)
+    def post(self, request):
 
-            u = data["username"]
-            p = data["password"]
+        email = request.POST.get("email")
+        password = request.POST.get("password")
 
-            user = authenticate(username=u , password=p)
+        try:
+            user_obj = CoustomUser.objects.get(email__iexact=email)
+        except CoustomUser.DoesNotExist:
+            return render(
+                request,"login.html",{"error": "Invalid Gmail or password."})
 
-            if user:    
-                login(request,user)
-                return redirect("Home")
-            else:
-                return redirect("Login")
+        user = authenticate(
+            request,
+            username=user_obj.username,
+            password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect("Home")
+
+        return render(request,"login.html",{"error": "Invalid Gmail or password."})
+
 
 class Logout(View):
     def get(self,request):

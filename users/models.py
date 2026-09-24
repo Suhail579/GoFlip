@@ -5,24 +5,75 @@ from django.db import models
 from django.forms import CharField
 from django.conf import settings
 
+
+from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.db import models
+
+
 # Create your models here.
 
 # Coustom User
 
+
+
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+
 class CoustomUser(AbstractUser):
-    address = models.CharField(null=True,max_length=100)
-    pincode = models.IntegerField(null=True)
+
+    username = models.CharField(
+        max_length=150,
+        unique=True
+    )
+
+    email = models.EmailField(
+        blank=True,
+        null=True
+
+
+    )
+
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email"]
+
+    address = models.CharField(
+        null=True,
+        blank=True,
+        max_length=100
+    )
+
+    pincode = models.IntegerField(
+        null=True,
+        blank=True
+    )
+
     profile_image = models.ImageField(
         upload_to="profile/",
         null=True,
         blank=True
     )
-    otp = models.IntegerField(null=True)
-    verified = models.BooleanField(default=False)
-    phone = models.IntegerField(null=True)
-    Location = models.CharField(null=True,max_length=100)
 
+    otp = models.IntegerField(
+        null=True,
+        blank=True
+    )
 
+    verified = models.BooleanField(
+        default=False
+    )
+
+    phone = models.CharField(
+        max_length=15,
+        null=True,
+        blank=True
+    )
+
+    Location = models.CharField(
+        null=True,
+        blank=True,
+        max_length=100
+    )
 # Car Adding model
 
 class Cars(models.Model):
@@ -167,7 +218,7 @@ class Gadgets(models.Model):
     Item = models.CharField(max_length=100)
     year = models.IntegerField()
     Title = models.CharField(max_length=20)
-    Description = models.CharField(max_length=100)
+    Description = models.CharField()
     Price = models.IntegerField()
     Images = models.ImageField(upload_to="books/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)

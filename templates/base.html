@@ -1,231 +1,192 @@
-<!DOCTYPE html>
-{% load static %}
+    <!DOCTYPE html>
+    {% load static %}
 
-<html lang="en">
+    <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="UTF-8">
+        <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0">
 
-    <title>
-        {% block title %}
-            GoFlip - Buy & Sell
-        {% endblock %}
-    </title>
+        <title>
+            {% block title %}
+                GoFlip - Buy & Sell
+            {% endblock %}
+        </title>
 
 
-    <!-- =====================================================
-         BOOTSTRAP
-    ====================================================== -->
+        <!-- =====================================================
+             BOOTSTRAP
+        ====================================================== -->
 
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-        crossorigin="anonymous"
-    >
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+        >
 
 
-    <!-- =====================================================
-         GOOGLE FONTS
-    ====================================================== -->
+        <!-- =====================================================
+             GOOGLE FONTS
+        ====================================================== -->
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+        <link rel="preconnect"
+              href="https://fonts.googleapis.com">
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+        <link rel="preconnect"
+              href="https://fonts.gstatic.com"
+              crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        >
 
 
-    <!-- =====================================================
-         BOOTSTRAP ICONS
-    ====================================================== -->
+        <!-- =====================================================
+             BOOTSTRAP ICONS
+        ====================================================== -->
 
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    >
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        >
 
 
-    <!-- =====================================================
-         MAIN CSS
-    ====================================================== -->
+        <!-- =====================================================
+             MAIN CSS
+        ====================================================== -->
 
-    <link
-        rel="stylesheet"
-        href="{% static 'css/style.css' %}"
-    >
+        <link
+            rel="stylesheet"
+            href="{% static 'css/style.css' %}"
+        >
 
 
-<style>
+    <style>
 
-/* =====================================================
-   GLOBAL
-===================================================== */
 
-* {
-    box-sizing: border-box;
-}
+    /* =====================================================
+       GLOBAL
+    ===================================================== */
 
-html {
-    scroll-behavior: smooth;
-}
+    * {
+        box-sizing: border-box;
+    }
 
-body {
+    html {
+        scroll-behavior: smooth;
+    }
 
-    min-height: 100vh;
+    body {
 
-    margin: 0;
+        min-height: 100vh;
 
-    font-family: 'Inter', sans-serif;
+        margin: 0;
 
-    color: #1D3D2D;
+        font-family: 'Inter', sans-serif;
 
-    background: #CFDCBD;
+        color: #1D3D2D;
 
-    background-image:
-        radial-gradient(
-            rgba(29, 61, 45, 0.10) 1px,
-            transparent 1px
-        );
+        background: #CFDCBD;
 
-    background-size: 20px 20px;
+        background-image:
+            radial-gradient(
+                rgba(29, 61, 45, 0.10) 1px,
+                transparent 1px
+            );
 
-    -webkit-font-smoothing: antialiased;
-}
+        background-size: 20px 20px;
 
+        -webkit-font-smoothing: antialiased;
+    }
 
-/* =====================================================
-   FIXED NAVBAR
-===================================================== */
 
-.GoFlip-nav-wrapper {
+    /* =====================================================
+       FIXED NAVBAR
+    ===================================================== */
 
-    position: fixed;
+    .GoFlip-nav-wrapper {
 
-    top: 15px;
+        position: fixed;
 
-    left: 0;
+        top: 15px;
 
-    width: 100%;
+        left: 0;
 
-    padding: 0 12px;
+        width: 100%;
 
-    display: flex;
+        padding: 0 12px;
 
-    justify-content: center;
+        display: flex;
 
-    z-index: 9999;
-}
+        justify-content: center;
 
+        z-index: 9999;
+    }
 
-.GoFlip-navbar {
 
-    width: 100%;
+    .GoFlip-navbar {
 
-    max-width: 1299px;
+        width: 100%;
 
-    min-height: 68px;
+        max-width: 1299px;
 
-    padding: 8px 14px;
+        min-height: 68px;
 
-    display: flex;
+        padding: 8px 14px;
 
-    align-items: center;
+        display: flex;
 
-    justify-content: space-between;
+        align-items: center;
 
-    gap: 16px;
+        justify-content: space-between;
 
-    background: #1D3D2D;
+        gap: 16px;
 
-    border-radius: 20px;
+        background: #1D3D2D;
 
-    border:
-        1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
 
-    box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.12),
-        0 16px 36px rgba(15, 32, 24, 0.35);
+        border:
+            1px solid rgba(255, 255, 255, 0.12);
 
-    position: relative;
-}
+        box-shadow:
+            0 4px 15px rgba(0, 0, 0, 0.12),
+            0 16px 36px rgba(15, 32, 24, 0.35);
 
+        position: relative;
+    }
 
-.GoFlip-navbar:hover {
 
-    box-shadow:
-        0 6px 20px rgba(0, 0, 0, 0.15),
-        0 20px 45px rgba(15, 32, 24, 0.42);
-}
+    .GoFlip-navbar:hover {
 
+        box-shadow:
+            0 6px 20px rgba(0, 0, 0, 0.15),
+            0 20px 45px rgba(15, 32, 24, 0.42);
+    }
 
-/* =====================================================
-   NAVBAR SECTIONS
-===================================================== */
 
-.nav-section-left {
+    /* =====================================================
+       NAVBAR SECTIONS
+    ===================================================== */
 
-    display: flex;
+    .nav-section-left {
 
-    align-items: center;
+        display: flex;
 
-    gap: 10px;
+        align-items: center;
 
-    flex-shrink: 0;
-}
+        gap: 10px;
 
+        flex-shrink: 0;
+    }
 
-.nav-section-center {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    flex: 1;
-}
-
-
-.nav-section-right {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    flex-shrink: 0;
-}
-
-
-/* =====================================================
-   DESKTOP — BUY + SELL CENTER
-===================================================== */
-
-@media (min-width: 769px) {
 
     .nav-section-center {
-
-        position: absolute;
-
-        left: 50%;
-
-        top: 50%;
-
-        transform: translate(-50%, -50%);
 
         display: flex;
 
@@ -235,719 +196,9 @@ body {
 
         gap: 10px;
 
-        width: auto;
-
-        flex: none;
-
-        margin: 0;
+        flex: 1;
     }
 
-
-    .buy-link,
-    .sell-link {
-
-        margin: 0;
-    }
-}
-
-
-/* =====================================================
-   LOGO
-===================================================== */
-
-.GoFlip-logo {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    text-decoration: none;
-
-    color: #F0F3E8;
-
-    flex-shrink: 0;
-
-    margin-right: 4px;
-}
-
-
-.logo-icon {
-
-    width: 40px;
-
-    height: 40px;
-
-    min-width: 40px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 12px;
-
-    background: #c9d5ac;
-
-    color: #1D3D2D;
-
-    font-family: 'Fraunces', serif;
-
-    font-size: 22px;
-
-    font-weight: 600;
-
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.18);
-}
-
-
-.GoFlip-logo:hover .logo-icon {
-
-    transform:
-        rotate(-6deg)
-        scale(1.08);
-
-    background: #FFFFFF;
-}
-
-
-.logo-text {
-
-    font-family: 'Fraunces', serif;
-
-    font-size: 20px;
-
-    font-weight: 600;
-
-    letter-spacing: -0.3px;
-
-    color: #F0F3E8;
-}
-
-
-/* =====================================================
-   NAV LINKS
-===================================================== */
-
-.GoFlip-link,
-.nav-icon-btn,
-.mobile-search-toggle {
-
-    position: relative;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 6px;
-
-    padding: 8px 14px;
-
-    border-radius: 12px;
-
-    color:
-        rgba(240, 243, 232, 0.75);
-
-    background: transparent;
-
-    border: none;
-
-    text-decoration: none;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    white-space: nowrap;
-
-    cursor: pointer;
-
-    transition:
-        all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-
-.GoFlip-link i,
-.nav-icon-btn i,
-.mobile-search-toggle i {
-
-    font-size: 15px;
-}
-
-
-.GoFlip-link:hover,
-.nav-icon-btn:hover,
-.mobile-search-toggle:hover {
-
-    color: #1D3D2D;
-
-    background: #D8B36A;
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-
-/* =====================================================
-   BUY
-===================================================== */
-
-.buy-link {
-
-    background:
-        rgba(240, 243, 232, 0.08);
-
-    border:
-        1px solid rgba(255, 255, 255, 0.06);
-
-    margin-left: 24px;
-}
-
-
-.buy-link:hover {
-
-    background: #F0F3E8;
-
-    color: #1D3D2D;
-}
-
-
-/* =====================================================
-   SELL
-===================================================== */
-
-.sell-link {
-
-    background: #D8B36A;
-
-    color: #1D3D2D;
-
-    box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-
-.sell-link:hover {
-
-    background: #E5C782;
-
-    color: #1D3D2D;
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-.GoFlip-search {
-
-    width: 260px;
-
-    height: 42px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background: #F0F3E8;
-
-    border-radius: 16px;
-
-    padding: 3px 3px 3px 12px;
-}
-
-
-.GoFlip-search input {
-
-    width: 100%;
-
-    border: none;
-
-    outline: none;
-
-    background: transparent;
-
-    padding: 4px 0;
-
-    font-family: 'Inter', sans-serif;
-
-    font-size: 13px;
-
-    color: #1D3D2D;
-}
-
-
-.GoFlip-search input::placeholder {
-
-    color: #8A9484;
-}
-
-
-.search-button {
-
-    width: 36px;
-
-    height: 36px;
-
-    border: none;
-
-    border-radius: 14px;
-
-    background: #1D3D2D;
-
-    color: #F0F3E8;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    cursor: pointer;
-}
-
-
-.search-button:hover {
-
-    background: #274F3B;
-
-    transform: scale(1.08);
-}
-
-
-/* =====================================================
-   MOBILE SEARCH
-===================================================== */
-
-.mobile-search-toggle {
-
-    display: none;
-}
-
-
-.mobile-search-drawer {
-
-    display: none;
-
-    position: absolute;
-
-    top: 95px;
-
-    left: 0;
-
-    width: 100%;
-
-    padding: 0 4px;
-
-    z-index: 9998;
-}
-
-
-.mobile-search-drawer form {
-
-    background: #1D3D2D;
-
-    border:
-        1px solid rgba(255, 255, 255, 0.15);
-
-    border-radius: 20px;
-
-    padding: 8px 12px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 8px;
-
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.3);
-}
-
-
-.mobile-search-drawer input {
-
-    flex: 1;
-
-    background: #F0F3E8;
-
-    border: none;
-
-    border-radius: 15px;
-
-    padding: 8px 14px;
-
-    font-size: 14px;
-
-    color: #1D3D2D;
-
-    outline: none;
-}
-
-
-.mobile-search-drawer button {
-
-    background: #D8B36A;
-
-    color: #1D3D2D;
-
-    border: none;
-
-    border-radius: 15px;
-
-    padding: 8px 16px;
-
-    font-weight: 600;
-
-    font-size: 13px;
-
-    cursor: pointer;
-}
-
-
-/* =====================================================
-   ACCOUNT
-===================================================== */
-
-.GoFlip-account {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 8px;
-
-    padding: 5px 14px 5px 5px;
-
-    border-radius: 12px;
-
-    background: #F0F3E8;
-
-    color: #1D3D2D;
-
-    text-decoration: none;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    white-space: nowrap;
-}
-
-
-.GoFlip-account:hover {
-
-    background: #DAE3CE;
-
-    color: #1D3D2D;
-
-    transform: translateY(-2px);
-}
-
-
-.user-circle {
-
-    width: 32px;
-
-    height: 32px;
-
-    border-radius: 9px;
-
-    background: #D8B36A;
-
-    color: #1D3D2D;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 12px;
-
-    font-weight: 700;
-}
-
-
-/* =====================================================
-   MAIN CONTENT
-===================================================== */
-
-.GoFlip-page {
-
-    padding-top: 134px;
-
-    min-height: 100vh;
-}
-
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 1024px) {
-
-    .GoFlip-search {
-
-        display: none;
-    }
-
-
-    .logo-text {
-
-        display: none;
-    }
-
-
-    .mobile-search-toggle {
-
-        display: flex;
-    }
-}
-
-
-/* =====================================================
-   MOBILE NAVBAR
-===================================================== */
-
-@media (max-width: 768px) {
-
-    .GoFlip-nav-wrapper {
-
-        top: 15px;
-
-        left: 0;
-
-        width: 100%;
-
-        padding: 0 8px;
-
-        display: flex;
-
-        justify-content: center;
-    }
-
-
-    .GoFlip-navbar {
-
-        width: 100%;
-
-        min-height: 64px;
-
-        padding: 6px 8px;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: space-between;
-
-        gap: 0;
-
-        position: relative;
-
-        border-radius: 20px;
-    }
-
-
-    /* =================================================
-       LEFT SECTION
-    ================================================= */
-
-    .nav-section-left {
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: flex-start;
-
-        gap: 2px;
-
-        flex: 0 0 auto;
-
-        min-width: 0;
-    }
-
-
-    /* =================================================
-       LOGO
-    ================================================= */
-
-    .GoFlip-logo {
-
-        margin: 0;
-
-        padding: 0;
-
-        gap: 0;
-    }
-
-
-    .logo-icon {
-
-        width: 40px;
-
-        min-width: 40px;
-
-        height: 40px;
-
-        border-radius: 11px;
-
-        font-size: 21px;
-    }
-
-
-    .logo-text {
-
-        display: none;
-    }
-
-
-    /* =================================================
-       CENTER — BUY + SELL
-    ================================================= */
-
-    .nav-section-center {
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        gap: 5px;
-
-        flex: 0 0 auto;
-
-        min-width: 0;
-
-        margin: 0;
-
-        position: absolute;
-
-        left: 50%;
-
-        top: 50%;
-
-        transform: translate(
-            -50%,
-            -50%
-        );
-
-        z-index: 2;
-    }
-
-
-    /* =================================================
-       ALL NAV BUTTONS
-    ================================================= */
-
-    .GoFlip-link,
-    .nav-icon-btn,
-    .mobile-search-toggle {
-
-        width: 48px;
-
-        min-width: 48px;
-
-        height: 50px;
-
-        padding: 4px;
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        justify-content: center;
-
-        gap: 3px;
-
-        border-radius: 10px;
-
-        font-size: 9px;
-
-        line-height: 1;
-
-        margin: 0;
-
-        flex-shrink: 0;
-    }
-
-
-    .GoFlip-link i,
-    .nav-icon-btn i,
-    .mobile-search-toggle i {
-
-        font-size: 17px;
-
-        line-height: 1;
-    }
-
-
-    .GoFlip-link span,
-    .nav-icon-btn span,
-    .mobile-search-toggle span {
-
-        display: block !important;
-
-        font-size: 8px;
-
-        line-height: 1;
-
-        margin: 0;
-    }
-
-
-    /* =================================================
-       BUY
-    ================================================= */
-
-    .buy-link {
-
-        width: 48px;
-
-        min-width: 48px;
-
-        margin: 0;
-
-        padding: 4px;
-    }
-
-
-    /* =================================================
-       SELL
-    ================================================= */
-
-    .sell-link {
-
-        width: 48px;
-
-        min-width: 48px;
-
-        margin: 0;
-
-        padding: 4px;
-    }
-
-
-    /* =================================================
-       RIGHT SECTION
-    ================================================= */
 
     .nav-section-right {
 
@@ -955,100 +206,455 @@ body {
 
         align-items: center;
 
-        justify-content: flex-end;
+        gap: 10px;
 
-        gap: 2px;
-
-        flex: 0 0 auto;
-
-        min-width: 0;
-
-        margin-left: auto;
+        flex-shrink: 0;
     }
 
 
-    /* =================================================
-       DESKTOP SEARCH HIDDEN
-    ================================================= */
+    /* =====================================================
+       DESKTOP — BUY + SELL CENTER
+    ===================================================== */
 
-    .GoFlip-search {
+    @media (min-width: 769px) {
 
-        display: none;
+        .nav-section-center {
+
+            position: absolute;
+
+            left: 50%;
+
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            width: auto;
+
+            flex: none;
+
+            margin: 0;
+        }
+
+
+        .buy-link,
+        .sell-link {
+
+            margin: 0;
+        }
     }
 
 
-    /* =================================================
-       MOBILE SEARCH
-    ================================================= */
+    /* =====================================================
+       LOGO
+    ===================================================== */
 
-    .mobile-search-toggle {
+    .GoFlip-logo {
 
         display: flex;
 
-        width: 48px;
+        align-items: center;
 
-        min-width: 48px;
+        gap: 10px;
 
-        height: 50px;
+        text-decoration: none;
 
-        transform: none !important;
+        color: #F0F3E8;
 
-        margin-right: 10px;
+        flex-shrink: 0;
+
+        margin-right: 4px;
     }
 
 
-    .mobile-search-toggle:hover {
-
-        transform:
-            translateY(-2px) !important;
-    }
-
-
-    /* =================================================
-       WISHLIST
-    ================================================= */
-
-    .nav-section-right .nav-icon-btn {
-
-        width: 48px;
-
-        min-width: 48px;
-
-        height: 50px;
-
-        margin: 0;
-
-        transform: translateX(-9px);
-    }
-
-
-    /* =================================================
-       ACCOUNT / LOGIN
-    ================================================= */
-
-    .GoFlip-account {
+    .logo-icon {
 
         width: 40px;
 
-        min-width: 40px;
-
         height: 40px;
 
-        padding: 4px;
-
-        border-radius: 10px;
+        min-width: 40px;
 
         display: flex;
 
         align-items: center;
 
         justify-content: center;
+
+        border-radius: 12px;
+
+        background: #c9d5ac;
+
+        color: #1D3D2D;
+
+        font-family: 'Fraunces', serif;
+
+        font-size: 22px;
+
+        font-weight: 600;
+
+        box-shadow:
+            0 4px 12px rgba(0, 0, 0, 0.18);
     }
 
 
-    .GoFlip-account span:not(.user-circle) {
+    .GoFlip-logo:hover .logo-icon {
+
+        transform:
+            rotate(-6deg)
+            scale(1.08);
+
+        background: #FFFFFF;
+    }
+
+
+    .logo-text {
+
+        font-family: 'Fraunces', serif;
+
+        font-size: 20px;
+
+        font-weight: 600;
+
+        letter-spacing: -0.3px;
+
+        color: #F0F3E8;
+    }
+
+
+    /* =====================================================
+       NAV LINKS
+    ===================================================== */
+
+    .GoFlip-link,
+    .nav-icon-btn,
+    .mobile-search-toggle {
+
+        position: relative;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 6px;
+
+        padding: 8px 14px;
+
+        border-radius: 12px;
+
+        color:
+            rgba(240, 243, 232, 0.75);
+
+        background: transparent;
+
+        border: none;
+
+        text-decoration: none;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        white-space: nowrap;
+
+        cursor: pointer;
+
+        transition:
+            all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+
+    .GoFlip-link i,
+    .nav-icon-btn i,
+    .mobile-search-toggle i {
+
+        font-size: 15px;
+    }
+
+
+    .GoFlip-link:hover,
+    .nav-icon-btn:hover,
+    .mobile-search-toggle:hover {
+
+        color: #1D3D2D;
+
+        background: #D8B36A;
+
+        transform:
+            translateY(-2px);
+
+        box-shadow:
+            0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+
+    /* =====================================================
+       BUY
+    ===================================================== */
+
+    .buy-link {
+
+        background:
+            rgba(240, 243, 232, 0.08);
+
+        border:
+            1px solid rgba(255, 255, 255, 0.06);
+
+        margin-left: 24px;
+    }
+
+
+    .buy-link:hover {
+
+        background: #F0F3E8;
+
+        color: #1D3D2D;
+    }
+
+
+    /* =====================================================
+       SELL
+    ===================================================== */
+
+    .sell-link {
+
+        background: #D8B36A;
+
+        color: #1D3D2D;
+
+        box-shadow:
+            0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+
+    .sell-link:hover {
+
+        background: #E5C782;
+
+        color: #1D3D2D;
+    }
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    .GoFlip-search {
+
+        width: 260px;
+
+        height: 42px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        background: #F0F3E8;
+
+        border-radius: 16px;
+
+        padding: 3px 3px 3px 12px;
+    }
+
+
+    .GoFlip-search input {
+
+        width: 100%;
+
+        border: none;
+
+        outline: none;
+
+        background: transparent;
+
+        padding: 4px 0;
+
+        font-family: 'Inter', sans-serif;
+
+        font-size: 13px;
+
+        color: #1D3D2D;
+    }
+
+
+    .GoFlip-search input::placeholder {
+
+        color: #8A9484;
+    }
+
+
+    .search-button {
+
+        width: 36px;
+
+        height: 36px;
+
+        border: none;
+
+        border-radius: 14px;
+
+        background: #1D3D2D;
+
+        color: #F0F3E8;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        cursor: pointer;
+    }
+
+
+    .search-button:hover {
+
+        background: #274F3B;
+
+        transform: scale(1.08);
+    }
+
+
+    /* =====================================================
+       MOBILE SEARCH
+    ===================================================== */
+
+    .mobile-search-toggle {
 
         display: none;
+    }
+
+
+    .mobile-search-drawer {
+
+        display: none;
+
+        position: absolute;
+
+        top: 95px;
+
+        left: 0;
+
+        width: 100%;
+
+        padding: 0 4px;
+
+        z-index: 9998;
+    }
+
+
+    .mobile-search-drawer form {
+
+        background: #1D3D2D;
+
+        border:
+            1px solid rgba(255, 255, 255, 0.15);
+
+        border-radius: 20px;
+
+        padding: 8px 12px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        box-shadow:
+            0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+
+    .mobile-search-drawer input {
+
+        flex: 1;
+
+        background: #F0F3E8;
+
+        border: none;
+
+        border-radius: 15px;
+
+        padding: 8px 14px;
+
+        font-size: 14px;
+
+        color: #1D3D2D;
+
+        outline: none;
+    }
+
+
+    .mobile-search-drawer button {
+
+        background: #D8B36A;
+
+        color: #1D3D2D;
+
+        border: none;
+
+        border-radius: 15px;
+
+        padding: 8px 16px;
+
+        font-weight: 600;
+
+        font-size: 13px;
+
+        cursor: pointer;
+    }
+
+
+    /* =====================================================
+       ACCOUNT
+    ===================================================== */
+
+    .GoFlip-account {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        padding: 5px 14px 5px 5px;
+
+        border-radius: 12px;
+
+        background: #F0F3E8;
+
+        color: #1D3D2D;
+
+        text-decoration: none;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        white-space: nowrap;
+    }
+
+
+    .GoFlip-account:hover {
+
+        background: #DAE3CE;
+
+        color: #1D3D2D;
+
+        transform: translateY(-2px);
     }
 
 
@@ -1058,1317 +664,2101 @@ body {
 
         height: 32px;
 
-        border-radius: 8px;
+        border-radius: 9px;
+
+        background: #D8B36A;
+
+        color: #1D3D2D;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 12px;
+
+        font-weight: 700;
     }
 
 
-    /* =================================================
-       PAGE
-    ================================================= */
+    /* =====================================================
+       MAIN CONTENT
+    ===================================================== */
 
     .GoFlip-page {
 
-        padding-top: 125px;
-    }
-}
+        padding-top: 134px;
 
-
-/* =====================================================
-   PROFILE POSITION
-===================================================== */
-
-.nav-section-left > .GoFlip-link[title="Profile"] {
-
-    transform: translateX(-8px);
-}
-
-
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
-
-@media (max-width: 380px) {
-
-    .GoFlip-nav-wrapper {
-
-        padding: 0 6px;
+        min-height: 100vh;
     }
 
 
-    .GoFlip-navbar {
+    /* =====================================================
+       TABLET
+    ===================================================== */
 
-        min-height: 60px;
+    @media (max-width: 1024px) {
 
-        padding: 5px 6px;
+        .GoFlip-search {
 
-        border-radius: 18px;
+            display: none;
+        }
+
+
+        .logo-text {
+
+            display: none;
+        }
+
+
+        .mobile-search-toggle {
+
+            display: flex;
+        }
     }
 
 
-    .logo-icon {
+    /* =====================================================
+       MOBILE NAVBAR
+    ===================================================== */
 
-        width: 38px;
+    @media (max-width: 768px) {
 
-        min-width: 38px;
+        .GoFlip-nav-wrapper {
 
-        height: 38px;
+            top: 15px;
 
-        font-size: 20px;
+            left: 0;
 
-        border-radius: 10px;
+            width: 100%;
+
+            padding: 0 8px;
+
+            display: flex;
+
+            justify-content: center;
+        }
+
+
+        .GoFlip-navbar {
+
+            width: 100%;
+
+            min-height: 64px;
+
+            padding: 6px 8px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 0;
+
+            position: relative;
+
+            border-radius: 20px;
+        }
+
+
+        /* =================================================
+           LEFT SECTION
+        ================================================= */
+
+        .nav-section-left {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-start;
+
+            gap: 2px;
+
+            flex: 0 0 auto;
+
+            min-width: 0;
+        }
+
+
+        /* =================================================
+           LOGO
+        ================================================= */
+
+        .GoFlip-logo {
+
+            margin: 0;
+
+            padding: 0;
+
+            gap: 0;
+        }
+
+
+        .logo-icon {
+
+            width: 40px;
+
+            min-width: 40px;
+
+            height: 40px;
+
+            border-radius: 11px;
+
+            font-size: 21px;
+        }
+
+
+        .logo-text {
+
+            display: none;
+        }
+
+
+        /* =================================================
+           CENTER — BUY + SELL
+        ================================================= */
+
+        .nav-section-center {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 5px;
+
+            flex: 0 0 auto;
+
+            min-width: 0;
+
+            margin: 0;
+
+            position: absolute;
+
+            left: 50%;
+
+            top: 50%;
+
+            transform: translate(
+                -50%,
+                -50%
+            );
+
+            z-index: 2;
+        }
+
+
+        /* =================================================
+           ALL NAV BUTTONS
+        ================================================= */
+
+        .GoFlip-link,
+        .nav-icon-btn,
+        .mobile-search-toggle {
+
+            width: 48px;
+
+            min-width: 48px;
+
+            height: 50px;
+
+            padding: 4px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 3px;
+
+            border-radius: 10px;
+
+            font-size: 9px;
+
+            line-height: 1;
+
+            margin: 0;
+
+            flex-shrink: 0;
+        }
+
+
+        .GoFlip-link i,
+        .nav-icon-btn i,
+        .mobile-search-toggle i {
+
+            font-size: 17px;
+
+            line-height: 1;
+        }
+
+
+        .GoFlip-link span,
+        .nav-icon-btn span,
+        .mobile-search-toggle span {
+
+            display: block !important;
+
+            font-size: 8px;
+
+            line-height: 1;
+
+            margin: 0;
+        }
+
+
+        /* =================================================
+           BUY
+        ================================================= */
+
+        .buy-link {
+
+            width: 48px;
+
+            min-width: 48px;
+
+            margin: 0;
+
+            padding: 4px;
+        }
+
+
+        /* =================================================
+           SELL
+        ================================================= */
+
+        .sell-link {
+
+            width: 48px;
+
+            min-width: 48px;
+
+            margin: 0;
+
+            padding: 4px;
+        }
+
+
+        /* =================================================
+           RIGHT SECTION
+        ================================================= */
+
+        .nav-section-right {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            gap: 2px;
+
+            flex: 0 0 auto;
+
+            min-width: 0;
+
+            margin-left: auto;
+        }
+
+
+        /* =================================================
+           DESKTOP SEARCH HIDDEN
+        ================================================= */
+
+        .GoFlip-search {
+
+            display: none;
+        }
+
+
+        /* =================================================
+           MOBILE SEARCH
+        ================================================= */
+
+        .mobile-search-toggle {
+
+            display: flex;
+
+            width: 48px;
+
+            min-width: 48px;
+
+            height: 50px;
+
+            transform: none !important;
+
+            margin-right: 10px;
+        }
+
+
+        .mobile-search-toggle:hover {
+
+            transform:
+                translateY(-2px) !important;
+        }
+
+
+        /* =================================================
+           WISHLIST
+        ================================================= */
+
+        .nav-section-right .nav-icon-btn {
+
+            width: 48px;
+
+            min-width: 48px;
+
+            height: 50px;
+
+            margin: 0;
+
+            transform: translateX(-9px);
+        }
+
+
+        /* =================================================
+           ACCOUNT / LOGIN
+        ================================================= */
+
+        .GoFlip-account {
+
+            width: 40px;
+
+            min-width: 40px;
+
+            height: 40px;
+
+            padding: 4px;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .GoFlip-account span:not(.user-circle) {
+
+            display: none;
+        }
+
+
+        .user-circle {
+
+            width: 32px;
+
+            height: 32px;
+
+            border-radius: 8px;
+        }
+
+
+        /* =================================================
+           PAGE
+        ================================================= */
+
+        .GoFlip-page {
+
+            padding-top: 125px;
+        }
     }
 
 
-    .nav-section-center {
+    /* =====================================================
+       PROFILE POSITION
+    ===================================================== */
 
-        gap: 5px;
+    .nav-section-left > .GoFlip-link[title="Profile"] {
+
+        transform: translateX(-8px);
     }
 
 
-    .GoFlip-link,
-    .nav-icon-btn,
-    .mobile-search-toggle {
+    /* =====================================================
+       SMALL MOBILE
+    ===================================================== */
 
-        width: 44px;
+    @media (max-width: 380px) {
 
-        min-width: 44px;
+        .GoFlip-nav-wrapper {
 
-        height: 48px;
+            padding: 0 6px;
+        }
 
-        padding: 3px;
+
+        .GoFlip-navbar {
+
+            min-height: 60px;
+
+            padding: 5px 6px;
+
+            border-radius: 18px;
+        }
+
+
+        .logo-icon {
+
+            width: 38px;
+
+            min-width: 38px;
+
+            height: 38px;
+
+            font-size: 20px;
+
+            border-radius: 10px;
+        }
+
+
+        .nav-section-center {
+
+            gap: 5px;
+        }
+
+
+        .GoFlip-link,
+        .nav-icon-btn,
+        .mobile-search-toggle {
+
+            width: 44px;
+
+            min-width: 44px;
+
+            height: 48px;
+
+            padding: 3px;
+        }
+
+
+        .buy-link,
+        .sell-link {
+
+            width: 44px;
+
+            min-width: 44px;
+        }
+
+
+        .GoFlip-link i,
+        .nav-icon-btn i,
+        .mobile-search-toggle i {
+
+            font-size: 16px;
+        }
+
+
+        .GoFlip-link span,
+        .nav-icon-btn span,
+        .mobile-search-toggle span {
+
+            font-size: 7px;
+        }
+
+
+        .mobile-search-toggle {
+
+            width: 44px;
+
+            min-width: 44px;
+        }
+
+
+        .nav-section-right .nav-icon-btn {
+
+            width: 44px;
+
+            min-width: 44px;
+        }
+
+
+        .GoFlip-account {
+
+            width: 38px;
+
+            min-width: 38px;
+
+            height: 38px;
+        }
+
+
+        .user-circle {
+
+            width: 30px;
+
+            height: 30px;
+        }
     }
 
 
-    .buy-link,
-    .sell-link {
-
-        width: 44px;
-
-        min-width: 44px;
-    }
-
-
-    .GoFlip-link i,
-    .nav-icon-btn i,
-    .mobile-search-toggle i {
-
-        font-size: 16px;
-    }
-
-
-    .GoFlip-link span,
-    .nav-icon-btn span,
-    .mobile-search-toggle span {
-
-        font-size: 7px;
-    }
-
-
-    .mobile-search-toggle {
-
-        width: 44px;
-
-        min-width: 44px;
-    }
-
-
-    .nav-section-right .nav-icon-btn {
-
-        width: 44px;
-
-        min-width: 44px;
-    }
-
-
-    .GoFlip-account {
-
-        width: 38px;
-
-        min-width: 38px;
-
-        height: 38px;
-    }
-
-
-    .user-circle {
-
-        width: 30px;
-
-        height: 30px;
-    }
-}
-
-
-/* =====================================================
-   GOFLIP AI BUTTON
-===================================================== */
-
-.goflip-ai-button {
-
-    position: fixed;
-
-    right: 80px;
-
-    bottom: 70px;
-
-    width: 62px;
-
-    height: 62px;
-
-    border:
-        3px solid #F0F3E8;
-
-    border-radius: 50%;
-
-    background: #1D3D2D;
-
-    color: #D8B36A;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 29px;
-
-    cursor: pointer;
-
-    z-index: 10001;
-
-    box-shadow:
-        0 8px 25px rgba(29, 61, 45, 0.30),
-        0 0 0 5px rgba(216, 179, 106, 0.15);
-
-    transition: all 0.25s ease;
-}
-
-
-.goflip-ai-button:hover {
-
-    transform:
-        translateY(-4px)
-        scale(1.06);
-
-    background: #D8B36A;
-
-    color: #1D3D2D;
-}
-
-
-.goflip-ai-button::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 13px;
-
-    height: 13px;
-
-    right: 0;
-
-    top: 0;
-
-    background: #D8B36A;
-
-    border:
-        2px solid #1D3D2D;
-
-    border-radius: 50%;
-}
-
-
-/* =====================================================
-   AI CHAT WINDOW
-===================================================== */
-
-.goflip-ai-chat {
-
-    position: fixed;
-
-    right: 140px;
-
-    bottom: 140px;
-
-    width: 360px;
-
-    height: 500px;
-
-    max-width: calc(100vw - 30px);
-
-    max-height: calc(100vh - 130px);
-
-    background: #F0F3E8;
-
-    border-radius: 22px;
-
-    overflow: hidden;
-
-    display: none;
-
-    flex-direction: column;
-
-    z-index: 10000;
-
-    border:
-        1px solid rgba(29, 61, 45, 0.12);
-
-    box-shadow:
-        0 18px 50px rgba(29, 61, 45, 0.30);
-}
-
-
-.goflip-ai-chat.show {
-
-    display: flex;
-
-    animation:
-        goflipAIOpen 0.2s ease;
-}
-
-
-@keyframes goflipAIOpen {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(15px)
-            scale(0.96);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-}
-
-
-/* =====================================================
-   AI HEADER
-===================================================== */
-
-.goflip-ai-header {
-
-    background: #1D3D2D;
-
-    color: #F0F3E8;
-
-    padding: 14px 15px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-}
-
-
-.goflip-ai-header-left {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-}
-
-
-.goflip-ai-avatar {
-
-    width: 42px;
-
-    height: 42px;
-
-    border-radius: 13px;
-
-    background: #D8B36A;
-
-    color: #1D3D2D;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 22px;
-}
-
-
-.goflip-ai-title {
-
-    font-family: 'Fraunces', serif;
-
-    font-size: 17px;
-
-    font-weight: 600;
-}
-
-
-.goflip-ai-status {
-
-    margin-top: 2px;
-
-    font-size: 11px;
-
-    color:
-        rgba(240, 243, 232, 0.70);
-}
-
-
-.goflip-ai-close {
-
-    width: 34px;
-
-    height: 34px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background:
-        rgba(240, 243, 232, 0.08);
-
-    color: #F0F3E8;
-
-    cursor: pointer;
-
-    font-size: 14px;
-}
-
-
-/* =====================================================
-   AI MESSAGES
-===================================================== */
-
-.goflip-ai-messages {
-
-    flex: 1;
-
-    padding: 16px;
-
-    overflow-y: auto;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 10px;
-
-    background:
-        rgba(207, 220, 189, 0.45);
-}
-
-
-.goflip-ai-message {
-
-    max-width: 82%;
-
-    padding: 10px 13px;
-
-    border-radius: 15px;
-
-    font-size: 13px;
-
-    line-height: 1.5;
-
-    word-break: break-word;
-}
-
-
-.goflip-ai-message.bot {
-
-    align-self: flex-start;
-
-    background: #FFFFFF;
-
-    color: #1D3D2D;
-
-    border-bottom-left-radius: 5px;
-}
-
-
-.goflip-ai-message.user {
-
-    align-self: flex-end;
-
-    background: #1D3D2D;
-
-    color: #F0F3E8;
-
-    border-bottom-right-radius: 5px;
-}
-
-
-.goflip-ai-message.typing {
-
-    opacity: 0.65;
-
-    font-style: italic;
-}
-
-
-/* =====================================================
-   AI INPUT
-===================================================== */
-
-.goflip-ai-input-area {
-
-    padding: 10px;
-
-    background: #F0F3E8;
-
-    border-top:
-        1px solid rgba(29, 61, 45, 0.10);
-
-    display: flex;
-
-    gap: 8px;
-}
-
-
-.goflip-ai-input {
-
-    flex: 1;
-
-    height: 43px;
-
-    border:
-        1px solid rgba(29, 61, 45, 0.15);
-
-    border-radius: 14px;
-
-    padding: 0 13px;
-
-    outline: none;
-
-    background: #FFFFFF;
-
-    color: #1D3D2D;
-
-    font-family: 'Inter', sans-serif;
-
-    font-size: 13px;
-}
-
-
-.goflip-ai-input:focus {
-
-    border-color: #D8B36A;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(216, 179, 106, 0.18);
-}
-
-
-.goflip-ai-send {
-
-    width: 43px;
-
-    height: 43px;
-
-    border: none;
-
-    border-radius: 14px;
-
-    background: #1D3D2D;
-
-    color: #F0F3E8;
-
-    cursor: pointer;
-
-    font-size: 16px;
-}
-
-
-/* =====================================================
-   AI MOBILE
-===================================================== */
-
-@media (max-width: 768px) {
+    /* =====================================================
+       GOFLIP AI BUTTON
+    ===================================================== */
 
     .goflip-ai-button {
 
-        right: 29px;
+        position: fixed;
 
-        bottom: 60px;
+        right: 80px;
 
-        width: 58px;
+        bottom: 70px;
 
-        height: 58px;
+        width: 62px;
 
-        font-size: 27px;
+        height: 62px;
+
+        border:
+            3px solid #F0F3E8;
+
+        border-radius: 50%;
+
+        background: #1D3D2D;
+
+        color: #D8B36A;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 29px;
+
+        cursor: pointer;
+
+        z-index: 10001;
+
+        box-shadow:
+            0 8px 25px rgba(29, 61, 45, 0.30),
+            0 0 0 5px rgba(216, 179, 106, 0.15);
+
+        transition: all 0.25s ease;
     }
 
+
+    .goflip-ai-button:hover {
+
+        transform:
+            translateY(-4px)
+            scale(1.06);
+
+        background: #D8B36A;
+
+        color: #1D3D2D;
+    }
+
+
+    .goflip-ai-button::after {
+
+        content: "";
+
+        position: absolute;
+
+        width: 13px;
+
+        height: 13px;
+
+        right: 0;
+
+        top: 0;
+
+        background: #D8B36A;
+
+        border:
+            2px solid #1D3D2D;
+
+        border-radius: 50%;
+    }
+
+
+    /* =====================================================
+       AI CHAT WINDOW
+    ===================================================== */
 
     .goflip-ai-chat {
 
-        right: 70px;
+        position: fixed;
 
-        bottom: 129px;
+        right: 140px;
 
-        width: 300px;
+        bottom: 140px;
 
-        height: 400px;
+        width: 360px;
 
-        max-width: calc(100vw - 20px);
+        height: 500px;
 
-        max-height: calc(100vh - 120px);
+        max-width: calc(100vw - 30px);
 
-        border-radius: 20px;
+        max-height: calc(100vh - 130px);
+
+        background: #F0F3E8;
+
+        border-radius: 22px;
+
+        overflow: hidden;
+
+        display: none;
+
+        flex-direction: column;
+
+        z-index: 10000;
+
+        border:
+            1px solid rgba(29, 61, 45, 0.12);
+
+        box-shadow:
+            0 18px 50px rgba(29, 61, 45, 0.30);
     }
 
 
+    .goflip-ai-chat.show {
+
+        display: flex;
+
+        animation:
+            goflipAIOpen 0.2s ease;
+    }
+
+
+    @keyframes goflipAIOpen {
+
+        from {
+
+            opacity: 0;
+
+            transform:
+                translateY(15px)
+                scale(0.96);
+        }
+
+        to {
+
+            opacity: 1;
+
+            transform:
+                translateY(0)
+                scale(1);
+        }
+    }
+
+
+    /* =====================================================
+       AI HEADER
+    ===================================================== */
+
     .goflip-ai-header {
 
-        padding: 10px 12px;
+        background: #1D3D2D;
+
+        color: #F0F3E8;
+
+        padding: 14px 15px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+    }
+
+
+    .goflip-ai-header-left {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
     }
 
 
     .goflip-ai-avatar {
 
-        width: 36px;
+        width: 42px;
 
-        height: 36px;
+        height: 42px;
 
-        border-radius: 10px;
+        border-radius: 13px;
 
-        font-size: 18px;
+        background: #D8B36A;
+
+        color: #1D3D2D;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 22px;
     }
 
 
     .goflip-ai-title {
 
-        font-size: 15px;
+        font-family: 'Fraunces', serif;
+
+        font-size: 17px;
+
+        font-weight: 600;
     }
 
 
     .goflip-ai-status {
 
-        font-size: 10px;
+        margin-top: 2px;
+
+        font-size: 11px;
+
+        color:
+            rgba(240, 243, 232, 0.70);
     }
 
 
+    .goflip-ai-close {
+
+        width: 34px;
+
+        height: 34px;
+
+        border: none;
+
+        border-radius: 10px;
+
+        background:
+            rgba(240, 243, 232, 0.08);
+
+        color: #F0F3E8;
+
+        cursor: pointer;
+
+        font-size: 14px;
+    }
+
+
+    /* =====================================================
+       AI MESSAGES
+    ===================================================== */
+
     .goflip-ai-messages {
 
-        padding: 12px;
+        flex: 1;
 
-        gap: 8px;
+        padding: 16px;
+
+        overflow-y: auto;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        background:
+            rgba(207, 220, 189, 0.45);
     }
 
 
     .goflip-ai-message {
 
-        max-width: 85%;
+        max-width: 82%;
 
-        padding: 8px 11px;
+        padding: 10px 13px;
 
-        font-size: 12px;
+        border-radius: 15px;
 
-        line-height: 1.4;
+        font-size: 13px;
+
+        line-height: 1.5;
+
+        word-break: break-word;
     }
 
 
+    .goflip-ai-message.bot {
+
+        align-self: flex-start;
+
+        background: #FFFFFF;
+
+        color: #1D3D2D;
+
+        border-bottom-left-radius: 5px;
+    }
+
+
+    .goflip-ai-message.user {
+
+        align-self: flex-end;
+
+        background: #1D3D2D;
+
+        color: #F0F3E8;
+
+        border-bottom-right-radius: 5px;
+    }
+
+
+    .goflip-ai-message.typing {
+
+        opacity: 0.65;
+
+        font-style: italic;
+    }
+
+
+    /* =====================================================
+       AI INPUT
+    ===================================================== */
+
     .goflip-ai-input-area {
 
-        padding: 8px;
+        padding: 10px;
 
-        gap: 6px;
+        background: #F0F3E8;
+
+        border-top:
+            1px solid rgba(29, 61, 45, 0.10);
+
+        display: flex;
+
+        gap: 8px;
     }
 
 
     .goflip-ai-input {
 
-        height: 38px;
+        flex: 1;
 
-        padding: 0 11px;
+        height: 43px;
 
-        font-size: 12px;
+        border:
+            1px solid rgba(29, 61, 45, 0.15);
+
+        border-radius: 14px;
+
+        padding: 0 13px;
+
+        outline: none;
+
+        background: #FFFFFF;
+
+        color: #1D3D2D;
+
+        font-family: 'Inter', sans-serif;
+
+        font-size: 13px;
+    }
+
+
+    .goflip-ai-input:focus {
+
+        border-color: #D8B36A;
+
+        box-shadow:
+            0 0 0 3px
+            rgba(216, 179, 106, 0.18);
     }
 
 
     .goflip-ai-send {
 
-        width: 38px;
+        width: 43px;
 
-        height: 38px;
+        height: 43px;
 
-        font-size: 14px;
+        border: none;
 
-        border-radius: 12px;
-    }
-}
+        border-radius: 14px;
 
+        background: #1D3D2D;
 
-/* =====================================================
-   SMALL MOBILE AI
-===================================================== */
+        color: #F0F3E8;
 
-@media (max-width: 450px) {
+        cursor: pointer;
 
-    .goflip-ai-button {
-
-        right: 16px;
-
-        bottom: 55px;
-
-        width: 56px;
-
-        height: 56px;
-
-        font-size: 26px;
+        font-size: 16px;
     }
 
 
-    .goflip-ai-chat {
+    /* =====================================================
+       AI MOBILE
+    ===================================================== */
 
-        right: 10px;
+    @media (max-width: 768px) {
 
-        bottom: 120px;
+        .goflip-ai-button {
 
-        width: 285px;
+            right: 29px;
 
-        height: 380px;
+            bottom: 60px;
 
-        max-width: calc(100vw - 20px);
+            width: 58px;
 
-        max-height: calc(100vh - 105px);
+            height: 58px;
 
-        border-radius: 18px;
+            font-size: 27px;
+        }
+
+
+        .goflip-ai-chat {
+
+            left: 80px;
+
+            right: auto;
+
+            bottom: 129px;
+
+            width: 300px;
+
+            height: 400px;
+
+            max-width: calc(100vw - 20px);
+
+            max-height: calc(100vh - 120px);
+
+            border-radius: 20px;
+        }
+
+
+        .goflip-ai-header {
+
+            padding: 10px 12px;
+        }
+
+
+        .goflip-ai-avatar {
+
+            width: 36px;
+
+            height: 36px;
+
+            border-radius: 10px;
+
+            font-size: 18px;
+        }
+
+
+        .goflip-ai-title {
+
+            font-size: 15px;
+        }
+
+
+        .goflip-ai-status {
+
+            font-size: 10px;
+        }
+
+
+        .goflip-ai-messages {
+
+            padding: 12px;
+
+            gap: 8px;
+        }
+
+
+        .goflip-ai-message {
+
+            max-width: 85%;
+
+            padding: 8px 11px;
+
+            font-size: 12px;
+
+            line-height: 1.4;
+        }
+
+
+        .goflip-ai-input-area {
+
+            padding: 8px;
+
+            gap: 6px;
+        }
+
+
+        .goflip-ai-input {
+
+            height: 38px;
+
+            padding: 0 11px;
+
+            font-size: 12px;
+        }
+
+
+        .goflip-ai-send {
+
+            width: 38px;
+
+            height: 38px;
+
+            font-size: 14px;
+
+            border-radius: 12px;
+        }
     }
-}
 
 
-/* =====================================================
-   FOOTER
-===================================================== */
+    /* =====================================================
+       SMALL MOBILE AI
+    ===================================================== */
 
-.site-footer {
+    @media (max-width: 450px) {
 
-    width: 100%;
+        .goflip-ai-button {
 
-    background: #1D3D2D;
+            right: 16px;
 
-    color: #F0F3E8;
+            bottom: 55px;
 
-    font-family: 'Inter', sans-serif;
-}
+            width: 56px;
 
+            height: 56px;
 
-.footer-content {
+            font-size: 26px;
+        }
 
-    max-width: 1100px;
 
-    margin: 0 auto;
+        .goflip-ai-chat {
 
-    padding: 50px 30px;
+            margin-left: -2px;
 
-    display: grid;
+            bottom: 120px;
 
-    grid-template-columns:
-        1.5fr
-        1fr
-        1fr
-        1fr;
+            width: 285px;
 
-    gap: 45px;
-}
+            height: 380px;
 
+            max-width: calc(100vw - 20px);
 
-.footer-brand h2 {
+            max-height: calc(100vh - 105px);
 
-    font-family: 'Fraunces', serif;
+            border-radius: 18px;
+        }
+    }
 
-    font-size: 30px;
 
-    margin: 0 0 12px;
+    /* =====================================================
+       FOOTER
+    ===================================================== */
 
-    color: #F0F3E8;
-}
+    .site-footer {
 
+        width: 100%;
 
-.footer-brand p {
+        background: #1D3D2D;
 
-    max-width: 280px;
+        color: #F0F3E8;
 
-    color: #C9D5C2;
+        font-family: 'Inter', sans-serif;
+    }
 
-    font-size: 13px;
-
-    line-height: 1.7;
-
-    margin: 0;
-}
-
-
-.footer-links h3,
-.footer-contact h3 {
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    margin: 0 0 17px;
-
-    color: #FFFFFF;
-}
-
-
-.footer-links {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 10px;
-}
-
-
-.footer-links a {
-
-    color: #C9D5C2;
-
-    font-size: 12px;
-
-    text-decoration: none;
-
-    transition: 0.2s ease;
-}
-
-
-.footer-links a:hover {
-
-    color: #FFFFFF;
-
-    transform:
-        translateX(3px);
-}
-
-
-.footer-contact p {
-
-    color: #C9D5C2;
-
-    font-size: 12px;
-
-    margin: 0 0 11px;
-}
-
-
-.footer-bottom {
-
-    max-width: 1100px;
-
-    margin: 0 auto;
-
-    padding: 18px 30px;
-
-    border-top:
-        1px solid rgba(240, 243, 232, 0.15);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 20px;
-}
-
-
-.footer-bottom p {
-
-    margin: 0;
-
-    color: #AEBEAA;
-
-    font-size: 11px;
-}
-
-
-.social-links {
-
-    display: flex;
-
-    gap: 20px;
-}
-
-
-.social-links a {
-
-    color: #C9D5C2;
-
-    font-size: 11px;
-
-    text-decoration: none;
-}
-
-
-.social-links a:hover {
-
-    color: #FFFFFF;
-}
-
-
-@media (max-width: 700px) {
 
     .footer-content {
 
+        max-width: 1100px;
+
+        margin: 0 auto;
+
+        padding: 50px 30px;
+
+        display: grid;
+
         grid-template-columns:
-            1fr 1fr;
+            1.5fr
+            1fr
+            1fr
+            1fr;
 
-        padding:
-            40px 22px;
-
-        gap: 30px;
+        gap: 45px;
     }
 
 
-    .footer-brand {
+    .footer-brand h2 {
 
-        grid-column:
-            1 / -1;
+        font-family: 'Fraunces', serif;
+
+        font-size: 30px;
+
+        margin: 0 0 12px;
+
+        color: #F0F3E8;
+    }
+
+
+    .footer-brand p {
+
+        max-width: 280px;
+
+        color: #C9D5C2;
+
+        font-size: 13px;
+
+        line-height: 1.7;
+
+        margin: 0;
+    }
+
+
+    .footer-links h3,
+    .footer-contact h3 {
+
+        font-size: 14px;
+
+        font-weight: 600;
+
+        margin: 0 0 17px;
+
+        color: #FFFFFF;
+    }
+
+
+    .footer-links {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+
+    .footer-links a {
+
+        color: #C9D5C2;
+
+        font-size: 12px;
+
+        text-decoration: none;
+
+        transition: 0.2s ease;
+    }
+
+
+    .footer-links a:hover {
+
+        color: #FFFFFF;
+
+        transform:
+            translateX(3px);
+    }
+
+
+    .footer-contact p {
+
+        color: #C9D5C2;
+
+        font-size: 12px;
+
+        margin: 0 0 11px;
     }
 
 
     .footer-bottom {
 
-        padding:
-            18px 22px;
+        max-width: 1100px;
 
-        flex-direction:
-            column;
+        margin: 0 auto;
 
-        text-align:
-            center;
-    }
-}
+        padding: 18px 30px;
 
+        border-top:
+            1px solid rgba(240, 243, 232, 0.15);
 
-@media (max-width: 450px) {
+        display: flex;
 
-    .footer-content {
+        align-items: center;
 
-        grid-template-columns:
-            1fr;
+        justify-content: space-between;
 
-        gap: 28px;
+        gap: 20px;
     }
 
 
-    .footer-brand {
+    .footer-bottom p {
 
-        grid-column:
-            auto;
+        margin: 0;
+
+        color: #AEBEAA;
+
+        font-size: 11px;
     }
-}
 
+
+    .social-links {
+
+        display: flex;
+
+        gap: 20px;
+    }
+
+
+    .social-links a {
+
+        color: #C9D5C2;
+
+        font-size: 11px;
+
+        text-decoration: none;
+    }
+
+
+    .social-links a:hover {
+
+        color: #FFFFFF;
+    }
+
+
+    @media (max-width: 700px) {
+
+        .footer-content {
+
+            grid-template-columns:
+                1fr 1fr;
+
+            padding:
+                40px 22px;
+
+            gap: 30px;
+        }
+
+
+        .footer-brand {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        .footer-bottom {
+
+            padding:
+                18px 22px;
+
+            flex-direction:
+                column;
+
+            text-align:
+                center;
+        }
+    }
+
+
+    @media (max-width: 450px) {
+
+        .footer-content {
+
+            grid-template-columns:
+                1fr;
+
+            gap: 28px;
+        }
+
+
+        .footer-brand {
+
+            grid-column:
+                auto;
+        }
+    }
+
+    </style>
+
+    </head>
+
+
+    <body>
+
+<!-- Loading Animation -->
+<div id="page-loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading...</div>
+</div>
+
+<style>
+    #page-loader {
+        position: fixed;
+        inset: 0;
+        background: rgba(240, 243, 232, 0.95);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        z-index: 99999;
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transition:
+            opacity 0.35s ease,
+            visibility 0.35s ease;
+    }
+
+    #page-loader.show {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+    }
+
+    .loader-spinner {
+        width: 45px;
+        height: 45px;
+
+        border: 4px solid #d8e0cf;
+        border-top: 4px solid #1d3d2d;
+
+        border-radius: 50%;
+
+        animation: spin 0.8s linear infinite;
+    }
+
+    .loader-text {
+        margin-top: 12px;
+
+        font-family: Inter, sans-serif;
+        font-size: 14px;
+        color: #1d3d2d;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
 </style>
 
-</head>
+<script>
+    let loadingTimer = null;
+    let minimumLoadingTimer = null;
+    let loadingShownTime = 0;
+
+    function startLoading() {
+        clearTimeout(loadingTimer);
+        clearTimeout(minimumLoadingTimer);
+
+        const loader = document.getElementById("page-loader");
+
+        loadingTimer = setTimeout(function () {
+            loader.classList.add("show");
+            loadingShownTime = Date.now();
+        }, 200);
+    }
+
+    function stopLoading() {
+        clearTimeout(loadingTimer);
+        clearTimeout(minimumLoadingTimer);
+
+        const loader = document.getElementById("page-loader");
+
+        if (!loader.classList.contains("show")) {
+            return;
+        }
+
+        const elapsed = Date.now() - loadingShownTime;
+        const remaining = Math.max(0, 2000 - elapsed);
+
+        minimumLoadingTimer = setTimeout(function () {
+            loader.classList.remove("show");
+        }, remaining);
+    }
+
+    /*
+     * Normal page loading
+     */
+    window.addEventListener("load", function () {
+        stopLoading();
+    });
 
 
-<body>
+    /*
+     * IMPORTANT:
+     * Fix browser Previous / Next button
+     */
+    window.addEventListener("pageshow", function () {
+
+        clearTimeout(loadingTimer);
+        clearTimeout(minimumLoadingTimer);
+
+        const loader = document.getElementById("page-loader");
+
+        /*
+         * Immediately hide loader when returning
+         * to a page using browser Previous/Next.
+         */
+        loader.classList.remove("show");
+    });
 
 
-<!-- =========================================================
-     NAVBAR
-========================================================= -->
+    /*
+     * Normal links
+     */
+    document.addEventListener("click", function (event) {
 
-<div class="GoFlip-nav-wrapper">
+        const link = event.target.closest("a");
 
-    <nav class="GoFlip-navbar">
+        if (!link) {
+            return;
+        }
 
-
-        <!-- =================================================
-             LEFT
-        ================================================== -->
-
-        <div class="nav-section-left">
-
-
-            <a
-                href="{% url 'Home' %}"
-                class="GoFlip-logo"
-                title="GoFlip Home"
-            >
-
-                <span class="logo-icon">
-                    Go
-                </span>
-
-                <span class="logo-text">
-                    Flip
-                </span>
-
-            </a>
+        if (
+            link.href &&
+            link.hostname === window.location.hostname &&
+            !link.href.includes("#") &&
+            !link.target &&
+            !event.ctrlKey &&
+            !event.shiftKey &&
+            !event.metaKey &&
+            !event.altKey
+        ) {
+            startLoading();
+        }
+    });
 
 
-            {% if user.is_authenticated %}
+    /*
+     * Forms
+     */
+    document.addEventListener("submit", function () {
+        startLoading();
+    });
+
+</script>
+
+
+
+
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================= -->
+
+    <div class="GoFlip-nav-wrapper">
+
+        <nav class="GoFlip-navbar">
+
+
+            <!-- =================================================
+                 LEFT
+            ================================================== -->
+
+            <div class="nav-section-left">
+
 
                 <a
                     href="{% url 'Home' %}"
-                    class="GoFlip-link"
-                    title="Home"
+                    class="GoFlip-logo"
+                    title="GoFlip Home"
                 >
 
-                    <i class="bi bi-house-door"></i>
+                    <span class="logo-icon">
+                        Go
+                    </span>
+
+                    <span class="logo-text">
+                        Flip
+                    </span>
+
+                </a>
+
+
+                {% if user.is_authenticated %}
+
+                    <a
+                        href="{% url 'Home' %}"
+                        class="GoFlip-link"
+                        title="Home"
+                    >
+
+                        <i class="bi bi-house-door"></i>
+
+                        <span>
+                            Home
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="{% url 'Profile' %}"
+                        class="GoFlip-link"
+                        title="Profile"
+                    >
+
+                        <i class="bi bi-person"></i>
+
+                        <span>
+                            Profile
+                        </span>
+
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- =================================================
+                 CENTER
+            ================================================== -->
+
+            <div class="nav-section-center">
+
+
+                <a
+                    href="{% url 'Viewproduct' %}"
+                    class="GoFlip-link buy-link"
+                    title="Buy"
+                >
+
+                    <i class="bi bi-bag"></i>
 
                     <span>
-                        Home
+                        Buy
                     </span>
 
                 </a>
 
 
                 <a
-                    href="{% url 'Profile' %}"
-                    class="GoFlip-link"
-                    title="Profile"
+                    href="{% url 'Addproduct' %}"
+                    class="GoFlip-link sell-link"
+                    title="Sell"
                 >
 
-                    <i class="bi bi-person"></i>
+                    <i class="bi bi-plus-lg"></i>
 
                     <span>
-                        Profile
+                        Sell
                     </span>
 
                 </a>
 
-            {% endif %}
-
-        </div>
+            </div>
 
 
-        <!-- =================================================
-             CENTER
-        ================================================== -->
+            <!-- =================================================
+                 RIGHT
+            ================================================== -->
 
-        <div class="nav-section-center">
-
-
-            <a
-                href="{% url 'Viewproduct' %}"
-                class="GoFlip-link buy-link"
-                title="Buy"
-            >
-
-                <i class="bi bi-bag"></i>
-
-                <span>
-                    Buy
-                </span>
-
-            </a>
+            <div class="nav-section-right">
 
 
-            <a
-                href="{% url 'Addproduct' %}"
-                class="GoFlip-link sell-link"
-                title="Sell"
-            >
-
-                <i class="bi bi-plus-lg"></i>
-
-                <span>
-                    Sell
-                </span>
-
-            </a>
-
-        </div>
+                {% if user.is_authenticated %}
 
 
-        <!-- =================================================
-             RIGHT
-        ================================================== -->
-
-        <div class="nav-section-right">
-
-
-            {% if user.is_authenticated %}
-
-
-                <form
-                    method="get"
-                    action="{% url 'Search' %}"
-                    class="GoFlip-search"
-                >
-
-                    <input
-                        type="search"
-                        name="q"
-                        placeholder="Search..."
-                        aria-label="Search"
+                    <form
+                        method="get"
+                        action="{% url 'Search' %}"
+                        class="GoFlip-search"
                     >
+
+                        <input
+                            type="search"
+                            name="q"
+                            placeholder="Search..."
+                            aria-label="Search"
+                        >
+
+
+                        <button
+                            type="submit"
+                            class="search-button"
+                            aria-label="Search"
+                        >
+
+                            <i class="bi bi-search"></i>
+
+                        </button>
+
+                    </form>
 
 
                     <button
-                        type="submit"
-                        class="search-button"
-                        aria-label="Search"
+                        type="button"
+                        class="mobile-search-toggle"
+                        id="mobileSearchToggle"
+                        aria-label="Toggle Search"
+                        title="Search"
                     >
 
                         <i class="bi bi-search"></i>
 
+                        <span>
+                            Search
+                        </span>
+
                     </button>
 
-                </form>
+
+                    <a
+                        href=""
+                        class="nav-icon-btn"
+                        title="Wishlist"
+                    >
+
+                        <i class="bi bi-heart"></i>
+
+                        <span>
+                            Wishlist
+                        </span>
+
+                    </a>
 
 
-                <button
-                    type="button"
-                    class="mobile-search-toggle"
-                    id="mobileSearchToggle"
-                    aria-label="Toggle Search"
-                    title="Search"
-                >
-
-                    <i class="bi bi-search"></i>
-
-                    <span>
-                        Search
-                    </span>
-
-                </button>
+                {% else %}
 
 
-                <a
-                    href=""
-                    class="nav-icon-btn"
-                    title="Wishlist"
-                >
+                    <a
+                        href="{% url 'Login' %}"
+                        class="GoFlip-account"
+                        title="Login"
+                    >
 
-                    <i class="bi bi-heart"></i>
+                        <span class="user-circle">
 
-                    <span>
-                        Wishlist
-                    </span>
+                            <i class="bi bi-box-arrow-in-right"></i>
 
-                </a>
+                        </span>
 
+                        <span>
+                            Login
+                        </span>
 
-            {% else %}
-
-
-                <a
-                    href="{% url 'Login' %}"
-                    class="GoFlip-account"
-                    title="Login"
-                >
-
-                    <span class="user-circle">
-
-                        <i class="bi bi-box-arrow-in-right"></i>
-
-                    </span>
-
-                    <span>
-                        Login
-                    </span>
-
-                </a>
+                    </a>
 
 
-            {% endif %}
-
-        </div>
-
-    </nav>
-
-</div>
-
-
-<!-- =========================================================
-     MOBILE SEARCH
-========================================================= -->
-
-{% if user.is_authenticated %}
-
-<div
-    class="mobile-search-drawer"
-    id="mobileSearchDrawer"
->
-
-    <form
-        method="get"
-        action="{% url 'Search' %}"
-    >
-
-        <input
-            type="search"
-            name="q"
-            placeholder="Search products..."
-            aria-label="Search"
-            required
-        >
-
-        <button type="submit">
-            Search
-        </button>
-
-    </form>
-
-</div>
-
-{% endif %}
-
-
-<!-- =========================================================
-     MAIN CONTENT
-========================================================= -->
-
-<main class="GoFlip-page">
-
-    {% block content %}
-
-    {% endblock %}
-
-</main>
-
-
-<!-- =========================================================
-     GOFLIP AI BUTTON
-========================================================= -->
-
-{% if user.is_authenticated %}
-
-<button
-    type="button"
-    class="goflip-ai-button"
-    id="goflipAIButton"
-    aria-label="Open GoFlip AI"
-    aria-expanded="false"
->
-
-    <i class="bi bi-robot"></i>
-
-</button>
-
-{% endif %}
-
-
-<!-- =========================================================
-     GOFLIP AI CHAT
-========================================================= -->
-
-<div
-    class="goflip-ai-chat"
-    id="goflipAIChat"
-    role="dialog"
-    aria-label="GoFlip AI Assistant"
-    aria-hidden="true"
->
-
-
-    <div class="goflip-ai-header">
-
-
-        <div class="goflip-ai-header-left">
-
-
-            <div class="goflip-ai-avatar">
-
-                <i class="bi bi-robot"></i>
+                {% endif %}
 
             </div>
 
-
-            <div>
-
-                <div class="goflip-ai-title">
-                    GoFlip AI
-                </div>
-
-                <div class="goflip-ai-status">
-                    AI Assistant • Online
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <button
-            type="button"
-            class="goflip-ai-close"
-            id="goflipAIClose"
-            aria-label="Close GoFlip AI"
-        >
-
-            <i class="bi bi-x-lg"></i>
-
-        </button>
+        </nav>
 
     </div>
 
+
+    <!-- =========================================================
+         MOBILE SEARCH
+    ========================================================= -->
+
+    {% if user.is_authenticated %}
 
     <div
-        class="goflip-ai-messages"
-        id="goflipAIMessages"
+        class="mobile-search-drawer"
+        id="mobileSearchDrawer"
     >
 
-        <div class="goflip-ai-message bot">
+        <form
+            method="get"
+            action="{% url 'Search' %}"
+        >
 
-            Hi! 👋
+            <input
+                type="search"
+                name="q"
+                placeholder="Search products..."
+                aria-label="Search"
+                required
+            >
 
-            <br>
+            <button type="submit">
+                Search
+            </button>
 
-            I'm <strong>GoFlip AI</strong>.
+        </form>
 
-            <br>
+    </div>
 
-            How can I help you today?
+    {% endif %}
+
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================= -->
+
+    <main class="GoFlip-page">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+
+    <!-- =========================================================
+         GOFLIP AI BUTTON
+    ========================================================= -->
+
+    {% if user.is_authenticated %}
+
+    <button
+        type="button"
+        class="goflip-ai-button"
+        id="goflipAIButton"
+        aria-label="Open GoFlip AI"
+        aria-expanded="false"
+    >
+
+        <i class="bi bi-robot"></i>
+
+    </button>
+
+    {% endif %}
+
+
+    <!-- =========================================================
+         GOFLIP AI CHAT
+    ========================================================= -->
+
+    <div
+        class="goflip-ai-chat"
+        id="goflipAIChat"
+        role="dialog"
+        aria-label="GoFlip AI Assistant"
+        aria-hidden="true"
+    >
+
+
+        <div class="goflip-ai-header">
+
+
+            <div class="goflip-ai-header-left">
+
+
+                <div class="goflip-ai-avatar">
+
+                    <i class="bi bi-robot"></i>
+
+                </div>
+
+
+                <div>
+
+                    <div class="goflip-ai-title">
+                        GoFlip AI
+                    </div>
+
+                    <div class="goflip-ai-status">
+                        AI Assistant • Online
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="goflip-ai-close"
+                id="goflipAIClose"
+                aria-label="Close GoFlip AI"
+            >
+
+                <i class="bi bi-x-lg"></i>
+
+            </button>
 
         </div>
+
+
+        <div
+            class="goflip-ai-messages"
+            id="goflipAIMessages"
+        >
+
+            <div class="goflip-ai-message bot">
+
+                Hi! 👋
+
+                <br>
+
+                I'm <strong>GoFlip AI</strong>.
+
+                <br>
+
+                How can I help you today?
+
+            </div>
+
+        </div>
+
+
+        <form
+            class="goflip-ai-input-area"
+            id="goflipAIForm"
+        >
+
+            {% csrf_token %}
+
+            <input
+                type="text"
+                class="goflip-ai-input"
+                id="goflipAIInput"
+                placeholder="Ask GoFlip AI..."
+                autocomplete="off"
+            >
+
+
+            <button
+                type="submit"
+                class="goflip-ai-send"
+                aria-label="Send message"
+            >
+
+                <i class="bi bi-send-fill"></i>
+
+            </button>
+
+        </form>
 
     </div>
 
 
-    <form
-        class="goflip-ai-input-area"
-        id="goflipAIForm"
-    >
+    <!-- =========================================================
+         BOOTSTRAP JS
+    ========================================================= -->
 
-        {% csrf_token %}
-
-        <input
-            type="text"
-            class="goflip-ai-input"
-            id="goflipAIInput"
-            placeholder="Ask GoFlip AI..."
-            autocomplete="off"
-        >
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"
+    ></script>
 
 
-        <button
-            type="submit"
-            class="goflip-ai-send"
-            aria-label="Send message"
-        >
+    <!-- =========================================================
+         GOFLIP AI CHAT LOGIC
+    ========================================================= -->
 
-            <i class="bi bi-send-fill"></i>
+    <script>
 
-        </button>
+    document.addEventListener('DOMContentLoaded', function () {
 
-    </form>
+        var aiButton = document.getElementById('goflipAIButton');
+        var aiChat = document.getElementById('goflipAIChat');
+        var aiClose = document.getElementById('goflipAIClose');
+        var aiForm = document.getElementById('goflipAIForm');
+        var aiInput = document.getElementById('goflipAIInput');
+        var aiMessages = document.getElementById('goflipAIMessages');
 
-</div>
+        if (aiButton && aiChat) {
+            aiButton.addEventListener('click', function () {
+                aiChat.classList.toggle('show');
+                var expanded = aiChat.classList.contains('show');
+                aiButton.setAttribute('aria-expanded', expanded);
+                aiChat.setAttribute('aria-hidden', !expanded);
+            });
+        }
+
+        if (aiClose && aiChat) {
+            aiClose.addEventListener('click', function () {
+                aiChat.classList.remove('show');
+                aiChat.setAttribute('aria-hidden', 'true');
+                if (aiButton) {
+                    aiButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        if (aiForm && aiInput && aiMessages) {
+            aiForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                var text = aiInput.value.trim();
+                if (!text) {
+                    return;
+                }
+
+                var userMsg = document.createElement('div');
+                userMsg.className = 'goflip-ai-message user';
+                userMsg.textContent = text;
+                aiMessages.appendChild(userMsg);
+
+                aiInput.value = '';
+                aiMessages.scrollTop = aiMessages.scrollHeight;
+
+                // Placeholder response — wire this up to your backend endpoint.
+                var typingMsg = document.createElement('div');
+                typingMsg.className = 'goflip-ai-message bot typing';
+                typingMsg.textContent = 'Typing...';
+                aiMessages.appendChild(typingMsg);
+                aiMessages.scrollTop = aiMessages.scrollHeight;
+
+                setTimeout(function () {
+                    typingMsg.remove();
+                    var botMsg = document.createElement('div');
+                    botMsg.className = 'goflip-ai-message bot';
+                    botMsg.textContent = "Thanks for your message.";
+                    aiMessages.appendChild(botMsg);
+                    aiMessages.scrollTop = aiMessages.scrollHeight;
+                }, 700);
+            });
+        }
+
+        // Mobile search drawer toggle
+        var mobileSearchToggle = document.getElementById('mobileSearchToggle');
+        var mobileSearchDrawer = document.getElementById('mobileSearchDrawer');
+
+        if (mobileSearchToggle && mobileSearchDrawer) {
+            mobileSearchToggle.addEventListener('click', function () {
+                mobileSearchDrawer.style.display =
+                    mobileSearchDrawer.style.display === 'block' ? 'none' : 'block';
+            });
+        }
+
+    });
+
+    </script>
+
+    <!-- =========================================================
+         GoFlip FOOTER
+    ========================================================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-content">
 
 
-<!-- =========================================================
-     BOOTSTRAP JS
-========================================================= -->
+            <!-- BRAND -->
 
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESaAA55NNkmXc9s9fDVZLESa
+            <div class="footer-brand">
 
+                <h2>
+                    GoFlip
+                </h2>
+
+                <p>
+                    Your local marketplace to buy and sell
+                    products with people near you.
+                </p>
+
+            </div>
+
+
+            <!-- QUICK LINKS -->
+
+            <div class="footer-links">
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="{% url 'Login' %}">
+                    Sign in
+                </a>
+
+                <a href="{% url 'index' %}">
+                    Create account
+                </a>
+
+                <a href="#">
+                    About us
+                </a>
+
+                <a href="#">
+                    Contact us
+                </a>
+
+            </div>
+
+
+            <!-- HELP -->
+
+            <div class="footer-links">
+
+                <h3>
+                    Help
+                </h3>
+
+                <a href="#">
+                    Help Center
+                </a>
+
+                <a href="#">
+                    Safety
+                </a>
+
+                <a href="#">
+                    Privacy Policy
+                </a>
+
+                <a href="#">
+                    Terms & Conditions
+                </a>
+
+            </div>
+
+
+            <!-- CONTACT -->
+
+            <div class="footer-contact">
+
+                <h3>
+                    Contact
+                </h3>
+
+                <p>
+                    📧 support@GoFlip.com
+                </p>
+
+                <p>
+                    📞 +91 00000 00000
+                </p>
+
+                <p>
+                    📍 India
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER BOTTOM -->
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 GoFlip. All rights reserved.
+            </p>
+
+            <div class="social-links">
+
+                <a href="#">
+                    Instagram
+                </a>
+
+                <a href="#">
+                    Facebook
+                </a>
+
+                <a href="#">
+                    X
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    </body>
+
+    </html>

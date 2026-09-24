@@ -157,6 +157,21 @@
         margin: 0;
     }
 
+    .fresh-title {
+        font-family: 'Fraunces', serif;
+
+        font-size: 22px;
+
+        font-weight: 600;
+
+        color: #1D3D2D;
+
+        margin: -26px 116px -20px;
+
+        padding-bottom: 8px;
+
+    }
+
 
     /* ================================
        CATEGORY TAG
@@ -406,9 +421,17 @@
         }
 
 
+        .fresh-title {
+        font-size: 19px;
+        margin: -27px 16px -12px;
+    }
         .product-info {
 
             padding: 11px 12px 13px;
+
+
+            padding-bottom: 8px;
+
         }
 
 
@@ -499,6 +522,13 @@
             font-size: 12px;
         }
 
+        .fresh-title {
+            font-size: 18px;
+
+            margin: -29px  15px -12px;
+
+            padding-bottom: 8px;
+        }
 
         .product-location {
 
@@ -513,6 +543,10 @@
 <!-- =========================================
      PAGE
 ========================================= -->
+
+<h2 class="fresh-title">
+    Latest Added
+</h2>
 
 <div class="page-wrap">
 
@@ -658,7 +692,7 @@
 
                     <!-- 3. TITLE -->
                     <h4 class="product-title">
-                        {{ product.Title }}
+                        {{ product.Model }}
                     </h4>
 
 
@@ -745,7 +779,7 @@
 
                     <!-- 3. TITLE -->
                     <h4 class="product-title">
-                        {{ product.Title }}
+                        {{ product.Model }}
                     </h4>
 
 
@@ -832,7 +866,7 @@
 
                     <!-- 3. TITLE -->
                     <h4 class="product-title">
-                        {{ product.Title }}
+                        {{ product.Model }}
                     </h4>
 
 

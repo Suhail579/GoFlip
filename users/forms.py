@@ -5,30 +5,123 @@ from django.contrib.auth.forms import UserCreationForm
 from users.models import CoustomUser, Bikes, Cars , Mobiles , Electronicss , Bookss , Book_Detail ,Furniture , Gadgets
 
 
-class RegisterForm(UserCreationForm):
+# class RegisterForm(UserCreationForm):
+#     location = (
+#         ("", "Select District"),
+#         ("Thiruvananthapuram", "Thiruvananthapuram,Kerala"),
+#         ("Kollam", "Kollam"),
+#         ("Pathanamthitta", "Pathanamthitta,Kerala"),
+#         ("Alappuzha", "Alappuzha,Kerala"),
+#         ("Kottayam", "Kottayam,Kerala"),
+#         ("Idukki", "Idukki,Kerala"),
+#         ("Ernakulam", "Ernakulam,Kerala"),
+#         ("Thrissur", "Thrissur,Kerala"),
+#         ("Palakkad", "Palakkad,Kerala"),
+#         ("Malappuram", "Malappuram,Kerala"),
+#         ("Kozhikode", "Kozhikode,Kerala"),
+#         ("Wayanad", "Wayanad,Kerala"),
+#         ("Kannur", "Kannur,Kerala"),
+#         ("Kasaragod", "Kasaragod,Kerala"),
+#         ("Kasaragod", "Kasaragod,Kerala")
+#     )
+#     Location = forms.ChoiceField(choices=location,widget=forms.Select())
+#
+#     class Meta:
+#         model = CoustomUser
+#         fields = ("username","password1","password2","email","address","pincode","profile_image","phone","Location")
+
+
+from django import forms
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+
+class RegisterForm(forms.ModelForm):
     location = (
         ("", "Select District"),
-        ("Thiruvananthapuram", "Thiruvananthapuram,Kerala"),
-        ("Kollam", "Kollam"),
-        ("Pathanamthitta", "Pathanamthitta,Kerala"),
-        ("Alappuzha", "Alappuzha,Kerala"),
-        ("Kottayam", "Kottayam,Kerala"),
-        ("Idukki", "Idukki,Kerala"),
-        ("Ernakulam", "Ernakulam,Kerala"),
-        ("Thrissur", "Thrissur,Kerala"),
-        ("Palakkad", "Palakkad,Kerala"),
-        ("Malappuram", "Malappuram,Kerala"),
-        ("Kozhikode", "Kozhikode,Kerala"),
-        ("Wayanad", "Wayanad,Kerala"),
-        ("Kannur", "Kannur,Kerala"),
-        ("Kasaragod", "Kasaragod,Kerala"),
-        ("Kasaragod", "Kasaragod,Kerala")
+        ("Thiruvananthapuram", "Thiruvananthapuram, Kerala"),
+        ("Kollam", "Kollam, Kerala"),
+        ("Pathanamthitta", "Pathanamthitta, Kerala"),
+        ("Alappuzha", "Alappuzha, Kerala"),
+        ("Kottayam", "Kottayam, Kerala"),
+        ("Idukki", "Idukki, Kerala"),
+        ("Ernakulam", "Ernakulam, Kerala"),
+        ("Thrissur", "Thrissur, Kerala"),
+        ("Palakkad", "Palakkad, Kerala"),
+        ("Malappuram", "Malappuram, Kerala"),
+        ("Kozhikode", "Kozhikode, Kerala"),
+        ("Wayanad", "Wayanad, Kerala"),
+        ("Kannur", "Kannur, Kerala"),
+        ("Kasaragod", "Kasaragod, Kerala"),
     )
-    Location = forms.ChoiceField(choices=location,widget=forms.Select())
+
+    Location = forms.ChoiceField(
+        choices=location,
+        widget=forms.Select()
+    )
+
+    password1 = forms.CharField(
+        widget=forms.PasswordInput
+    )
+
+    password2 = forms.CharField(
+        widget=forms.PasswordInput
+    )
 
     class Meta:
-        model = CoustomUser
-        fields = ("username","password1","password2","email","address","pincode","profile_image","phone","Location")
+        model = User
+
+        fields = [
+            "username",
+            "email",
+            "phone",
+            "address",
+            "Location",
+            "profile_image",
+        ]
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+
+        if User.objects.filter(email__iexact=email).exists():
+            raise forms.ValidationError(
+                "This email is already registered."
+            )
+
+        return email
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        password1 = cleaned_data.get("password1")
+        password2 = cleaned_data.get("password2")
+
+        if password1 and password2:
+            if password1 != password2:
+                raise forms.ValidationError(
+                    "Passwords do not match."
+                )
+
+        return cleaned_data
+
+    def save(self, commit=True):
+
+        user = super().save(commit=False)
+
+        password = self.cleaned_data["password1"]
+
+        # Set password securely
+        user.set_password(password)
+
+        # Account waits for OTP verification
+        user.is_active = False
+        user.verified = False
+
+        if commit:
+            user.save()
+
+        return user
 
 
 class Carform(forms.ModelForm):

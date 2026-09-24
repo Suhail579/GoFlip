@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% block content %}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -8,6 +9,14 @@
 >
 
 <style>
+
+    .GoFlip-navbar {
+        display: none !important;
+    }
+
+    .GoFlip-page {
+        padding-top: 1px !important;
+    }
 
 /* =========================
    RESET
@@ -250,6 +259,16 @@ body {
     font-size: 12px;
 
     font-weight: 500;
+}
+
+.login-error {
+    color: #B3402B;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    margin: 0 0 15px;
 }
 
 
@@ -523,7 +542,7 @@ body {
     .footer-content {
         grid-template-columns: 1fr 1fr;
 
-        padding: 40px 22px;
+        padding: 20px 22px;
 
         gap: 30px;
     }
@@ -545,7 +564,7 @@ body {
 @media (max-width: 450px) {
 
     .auth-stage {
-        padding: 60px 15px 40px;
+        padding: 1px 15px 40px;
     }
 
     .card-body {
@@ -648,93 +667,70 @@ body {
 
                 {% csrf_token %}
 
-                {% for field in form %}
 
-                    <div class="field">
+                <!-- LOGIN ERROR -->
 
-                        <label for="{{ field.id_for_label }}">
-                            {{ field.label }}
-                        </label>
+                {% if error %}
 
-
-                        <!-- USERNAME INPUT -->
-
-                        {% if field.name == "username" %}
-
-                            <input
-                                type="text"
-                                name="{{ field.name }}"
-                                id="{{ field.id_for_label }}"
-                                placeholder="Enter username"
-                                value="{{ field.value|default:'' }}"
-                            >
-
-                        {% elif field.name == "password" %}
-
-                            <input
-                                type="text"
-                                name="{{ field.name }}"
-                                id="{{ field.id_for_label }}"
-                                placeholder="Enter password"
-                                value="{{ field.value|default:'' }}"
-                            >
-
-                        {% endif %}
-
-
-                        {% if field.help_text %}
-
-                            <div class="helptext">
-                                {{ field.help_text }}
-                            </div>
-
-                        {% endif %}
-
-
-                        {% if field.errors %}
-
-                            <ul class="errorlist">
-
-                                {% for error in field.errors %}
-
-                                    <li>
-                                        {{ error }}
-                                    </li>
-
-                                {% endfor %}
-
-                            </ul>
-
-                        {% endif %}
-
+                    <div class="login-error">
+                        {{ error }}
                     </div>
-
-                {% endfor %}
-
-
-                {% if form.non_field_errors %}
-
-                    <ul class="errorlist">
-
-                        {% for error in form.non_field_errors %}
-
-                            <li>
-                                {{ error }}
-                            </li>
-
-                        {% endfor %}
-
-                    </ul>
 
                 {% endif %}
 
 
-               <div class="row-between">
-                   <a href="{% url 'password_reset' %}">
-                       Forgot Password?
-                   </a>
-               </div>
+                <!-- GMAIL -->
 
+                <div class="field">
+
+                    <label for="email">
+                        Gmail
+                    </label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Enter your Gmail"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="field">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- FORGOT PASSWORD -->
+
+                <div class="row-between">
+
+                    <a href="{% url 'password_reset' %}">
+                        Forgot Password?
+                    </a>
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
 
                 <button
                     type="submit"
@@ -755,138 +751,5 @@ body {
     </div>
 
 </div>
-
-
-<!-- =========================================================
-     GoFlip FOOTER
-========================================================= -->
-
-<footer class="site-footer">
-
-    <div class="footer-content">
-
-
-        <!-- BRAND -->
-
-        <div class="footer-brand">
-
-            <h2>
-                GoFlip
-            </h2>
-
-            <p>
-                Your local marketplace to buy and sell
-                products with people near you.
-            </p>
-
-        </div>
-
-
-        <!-- QUICK LINKS -->
-
-        <div class="footer-links">
-
-            <h3>
-                Quick Links
-            </h3>
-
-            <a href="{% url 'Login' %}">
-                Sign in
-            </a>
-
-            <a href="{% url 'index' %}">
-                Create account
-            </a>
-
-            <a href="#">
-                About us
-            </a>
-
-            <a href="#">
-                Contact us
-            </a>
-
-        </div>
-
-
-        <!-- HELP -->
-
-        <div class="footer-links">
-
-            <h3>
-                Help
-            </h3>
-
-            <a href="#">
-                Help Center
-            </a>
-
-            <a href="#">
-                Safety
-            </a>
-
-            <a href="#">
-                Privacy Policy
-            </a>
-
-            <a href="#">
-                Terms & Conditions
-            </a>
-
-        </div>
-
-
-        <!-- CONTACT -->
-
-        <div class="footer-contact">
-
-            <h3>
-                Contact
-            </h3>
-
-            <p>
-                📧 support@GoFlip.com
-            </p>
-
-            <p>
-                📞 +91 00000 00000
-            </p>
-
-            <p>
-                📍 India
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <!-- FOOTER BOTTOM -->
-
-    <div class="footer-bottom">
-
-        <p>
-            © 2026 GoFlip. All rights reserved.
-        </p>
-
-        <div class="social-links">
-
-            <a href="#">
-                Instagram
-            </a>
-
-            <a href="#">
-                Facebook
-            </a>
-
-            <a href="#">
-                X
-            </a>
-
-        </div>
-
-    </div>
-
-</footer>
 
 {% endblock %}
