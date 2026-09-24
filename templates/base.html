@@ -2137,9 +2137,15 @@
     /*
      * Forms
      */
-    document.addEventListener("submit", function () {
-        startLoading();
-    });
+   document.addEventListener("submit", function (event) {
+
+    // Do NOT show the page loader for GoFlip AI chat
+    if (event.target && event.target.id === "goflipAIForm") {
+        return;
+    }
+
+    startLoading();
+});
 
 </script>
 
