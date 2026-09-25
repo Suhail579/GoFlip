@@ -2186,6 +2186,133 @@ body {
 
         {% endif %}
 
+        {% if bike.seller == request.user %}
+
+        <div style="margin-top: 12px;">
+
+        <button type="button"
+                class="seller-btn"
+                onclick="showDeleteBox()"
+                style="
+                    background:#F0F3E8;
+                    color:#B42318;
+                    border:1px solid #D6A5A1;
+                ">
+
+            <i class="bi bi-trash"></i>
+            Delete Listing
+
+        </button>
+
+    </div>
+
+
+    <!-- DELETE CONFIRMATION BOX -->
+
+    <div id="deleteBox"
+         style="
+            display:none;
+            position:fixed;
+            inset:0;
+            background:rgba(29,61,45,0.35);
+            z-index:9999;
+            align-items:center;
+            justify-content:center;
+         ">
+
+        <div style="
+            width:90%;
+            max-width:400px;
+            background:#F0F3E8;
+            border-radius:18px;
+            padding:25px;
+            text-align:center;
+            box-shadow:0 10px 35px rgba(0,0,0,0.2);
+        ">
+
+            <div style="
+                width:50px;
+                height:50px;
+                margin:0 auto 15px;
+                border-radius:50%;
+                background:#F8E8E6;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+            ">
+                <i class="bi bi-trash"
+                   style="font-size:22px;color:#B42318;"></i>
+            </div>
+
+            <h5 style="
+                color:#1D3D2D;
+                margin-bottom:8px;
+                font-weight:700;
+            ">
+                Remove Listing?
+            </h5>
+
+            <p style="
+                color:#666;
+                margin-bottom:20px;
+            ">
+                Are you sure you want to remove this product?
+            </p>
+
+
+            <!-- CANCEL -->
+            <button type="button"
+                    onclick="closeDeleteBox()"
+                    style="
+                        padding:10px 20px;
+                        border-radius:10px;
+                        border:1px solid #D6D6D6;
+                        background:white;
+                        color:#1D3D2D;
+                        margin-right:8px;
+                        cursor:pointer;
+                    ">
+                Cancel
+            </button>
+
+
+            <!-- DELETE FORM -->
+            <form method="POST"
+                  action="{% url 'DeleteProduct' 'bike' bike.id %}"
+                  style="display:inline;">
+
+                {% csrf_token %}
+
+                <button type="submit"
+                        style="
+                            padding:10px 20px;
+                            border-radius:10px;
+                            border:1px solid #B42318;
+                            background:#B42318;
+                            color:white;
+                            cursor:pointer;
+                        ">
+                    Delete
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        function showDeleteBox() {
+            document.getElementById("deleteBox").style.display = "flex";
+        }
+
+        function closeDeleteBox() {
+            document.getElementById("deleteBox").style.display = "none";
+        }
+    </script>
+        {% endif %}
+
 
     </div>
 

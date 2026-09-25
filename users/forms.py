@@ -380,6 +380,13 @@ class Electronicsform(forms.ModelForm):
             ("other", "Other"),
         )),
     )
+
+    year = forms.TypedChoiceField(
+        choices=[(year, year) for year in range(2026, 1999, -1)],
+        empty_value=None,
+        widget=forms.Select(attrs={
+
+        }))
     Items = forms.ChoiceField(choices=items,widget=forms.Select)
     Brand = forms.ChoiceField(choices=brands,widget=forms.Select)
     class Meta:
@@ -388,6 +395,14 @@ class Electronicsform(forms.ModelForm):
 
 
 class Booksform(forms.ModelForm):
+    year = forms.TypedChoiceField(
+        choices=[(year, year) for year in range(2026, 1999, -1)],
+        empty_value=None,
+        widget=forms.Select(attrs={
+
+        }))
+
+    
     class Meta:
         model = Bookss
         fields = ["Book_name","Author","Title","year","Description","Price","Images"]

@@ -613,6 +613,104 @@ class Login(View):
         return render(request,"login.html",{"error": "Invalid Gmail or password."})
 
 
+
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import View
+
+
+class DeleteProduct(LoginRequiredMixin, View):
+
+    def post(self, request, category, product_id):
+
+        if category == "car":
+            product = get_object_or_404(Cars, id=product_id)
+
+        elif category == "bike":
+            product = get_object_or_404(Bikes, id=product_id)
+
+        elif category == "mobile":
+            product = get_object_or_404(Mobiles, id=product_id)
+
+        elif category == "electronics":
+            product = get_object_or_404(Electronicss, id=product_id)
+
+        elif category == "book":
+            product = get_object_or_404(Bookss, id=product_id)
+
+        elif category == "furniture":
+            product = get_object_or_404(Furniture, id=product_id)
+
+        elif category == "gadget":
+            product = get_object_or_404(Gadgets, id=product_id)
+
+        else:
+            return redirect("Viewproduct")
+
+        # IMPORTANT:
+        # Only the person who created the product can delete it.
+        if product.seller != request.user:
+            return redirect("Viewproduct")
+
+        product.delete()
+
+        return redirect("Viewproduct")
+
+
+class MyList(View):
+    def get(self, request):
+
+        products = []
+
+        # Cars
+        for product in Cars.objects.filter(seller=request.user):
+            product.category = "car"
+            products.append(product)
+
+        # Bikes
+        for product in Bikes.objects.filter(seller=request.user):
+            product.category = "bike"
+            products.append(product)
+
+        # Mobiles
+        for product in Mobiles.objects.filter(seller=request.user):
+            product.category = "mobile"
+            products.append(product)
+
+        # Electronics
+        for product in Electronicss.objects.filter(seller=request.user):
+            product.category = "electronics"
+            products.append(product)
+
+        # Books
+        for product in Bookss.objects.filter(seller=request.user):
+            product.category = "book"
+            products.append(product)
+
+        # Furniture
+        for product in Furniture.objects.filter(seller=request.user):
+            product.category = "furniture"
+            products.append(product)
+
+        # Gadgets
+        for product in Gadgets.objects.filter(seller=request.user):
+            product.category = "gadgets"
+            products.append(product)
+
+        # Latest products first
+        products.sort(
+            key=lambda x: x.created_at,
+            reverse=True
+        )
+
+        return render(
+            request,
+            "list.html",
+            {
+                "products": products
+            }
+        )
+
 class Logout(View):
     def get(self,request):
         logout(request)

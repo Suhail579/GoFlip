@@ -21,6 +21,8 @@ from django.utils.translation import template
 from users import views
 from users.views import CategoryProducts
 from django.contrib.auth import views as auth_views
+from users.views import DeleteProduct
+from users.views import MyList
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -48,7 +50,9 @@ urlpatterns = [
     path("Car_Details<int:product>/", views.Car_Details.as_view(), name="Car_Details"),
     path("Furniture_Details<int:product>/", views.Furniture_Details.as_view(), name="Furniture_Details"),
     path("Gadgets_Details<int:product>/", views.Gadgets_Details.as_view(), name="Gadgets_Details"),
+    path("delete-product/<str:category>/<int:product_id>/",views.DeleteProduct.as_view(),name="DeleteProduct"),
     path("category/<str:category>/",CategoryProducts.as_view(),name="CategoryProducts"),
+    path("my-list/", views.MyList.as_view(), name="MyList"),
     path("Search/", views.Search.as_view(), name="Search"),
     path("Logout/",views.Logout.as_view(),name="Logout"),
 ]
