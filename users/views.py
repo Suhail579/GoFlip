@@ -62,48 +62,30 @@ class Home(View):
 
 
 
-
 class Register(View):
     def get(self, request):
         form = RegisterForm()
         context = {"form": form}
-        return render(request, "index.html", context)
+        return render(request,"index.html",context)
 
     def post(self, request):
-        form = RegisterForm(request.POST, request.FILES)
-
+        form = RegisterForm(request.POST,request.FILES)
         if form.is_valid():
-            try:
-                user = form.save()
+            user = form.save()
+            otp = random.randint(100000,999999)
+            user.otp = otp
+            user.save()
 
-                otp = random.randint(100000, 999999)
-                user.otp = otp
-                user.save()
+            send_mail("GoFlip Email Verification OTP",
+                f"""Your GoFlip verification OTP is:{otp}
+                Enter this OTP on the GoFlip verification page.""",None,
+                [user.email],fail_silently=False)
 
-                send_mail(
-                    "GoFlip Email Verification OTP",
-                    f"""Your GoFlip verification OTP is: {otp}
+            request.session["otp_user_id"] = user.id
+            return redirect("Otp")
+            context = {"form": form}
+            return render(request,"index.html",context)
 
-Enter this OTP on the GoFlip verification page.""",
-                    settings.EMAIL_HOST_USER,
-                    [user.email],
-                    fail_silently=False
-                )
-
-                request.session["otp_user_id"] = user.id
-
-                return redirect("Otp")
-
-            except Exception as e:
-                print("Email sending error:", e)
-
-                form.add_error(
-                    None,
-                     "Unable to send verification email. Please try again."
-                )
-
-        context = {"form": form}
-        return render(request, "index.html", context)
 
 class Otp(View):
     def get(self, request):
