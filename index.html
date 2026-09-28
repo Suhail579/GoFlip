@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="refresh" content="0; url=https://goflip.pythonanywhere.com/Login">
@@ -7,5 +7,629 @@
     </script>
 </head>
 <body>
+</body>
+</html> -->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GoFlip - Buy & Sell</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #CFDCBD;
+            color: #1D3D2D;
+        }
+
+        /* NAVBAR */
+
+        .navbar-box {
+            width: calc(100% - 30px);
+            max-width: 1299px;
+            margin: 15px auto 0;
+            padding: 12px 22px;
+            background: #F0F3E8;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 5px 20px rgba(29, 61, 45, 0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 23px;
+            color: #1D3D2D;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #c9d5ac;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .login-btn {
+            color: #1D3D2D;
+        }
+
+        .signup-btn {
+            background: #1D3D2D;
+            color: #F0F3E8;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 620px;
+            max-width: 1299px;
+            margin: auto;
+            padding: 80px 40px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .small-label {
+            display: inline-block;
+            background: #F0F3E8;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(55px, 7vw, 92px);
+            line-height: 0.95;
+            margin: 0 0 25px;
+            letter-spacing: -3px;
+        }
+
+        .hero h1 span {
+            color: #8b6b35;
+        }
+
+        .hero-text {
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 570px;
+            color: #496252;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .main-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 15px 25px;
+            border-radius: 35px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .main-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .buy-btn {
+            background: #1D3D2D;
+            color: #F0F3E8;
+        }
+
+        .sell-btn {
+            background: #F0F3E8;
+            color: #1D3D2D;
+        }
+
+        /* HERO CARD */
+
+        .hero-card {
+            width: 390px;
+            min-width: 390px;
+            background: #F0F3E8;
+            border-radius: 35px;
+            padding: 25px;
+            box-shadow: 15px 20px 50px rgba(29, 61, 45, 0.12);
+            transform: rotate(2deg);
+        }
+
+        .card-top {
+            height: 190px;
+            background: #c9d5ac;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .product-info {
+            padding: 22px 5px 5px;
+        }
+
+        .product-info h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .location {
+            color: #718071;
+            font-size: 13px;
+            margin-top: 7px;
+        }
+
+        /* CATEGORIES */
+
+        .section {
+            max-width: 1299px;
+            margin: auto;
+            padding: 50px 40px 90px;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: 42px;
+            margin-bottom: 30px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+        }
+
+        .category {
+            background: #F0F3E8;
+            border-radius: 22px;
+            padding: 25px 10px;
+            text-align: center;
+            text-decoration: none;
+            color: #1D3D2D;
+            transition: 0.2s;
+        }
+
+        .category:hover {
+            transform: translateY(-4px);
+        }
+
+        .category-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .category-name {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* WHY GOFLIP */
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .why-card {
+            background: #F0F3E8;
+            border-radius: 28px;
+            padding: 30px;
+        }
+
+        .why-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            background: #D8B36A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .why-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 25px;
+        }
+
+        .why-card p {
+            color: #607164;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* CTA */
+
+        .cta {
+            max-width: 1219px;
+            margin: 0 auto 80px;
+            background: #1D3D2D;
+            color: #F0F3E8;
+            border-radius: 35px;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #d8e1d4;
+            margin-bottom: 28px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #D8B36A;
+            color: #1D3D2D;
+            padding: 14px 27px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #607164;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .navbar-box {
+                margin-top: 10px;
+                width: calc(100% - 20px);
+            }
+
+            .nav-btn {
+                padding: 9px 13px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 60px 20px 40px;
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 62px;
+            }
+
+            .hero-text {
+                font-size: 16px;
+            }
+
+            .hero-card {
+                width: 100%;
+                min-width: 0;
+                margin-top: 45px;
+            }
+
+            .section {
+                padding: 40px 20px 60px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
+                margin: 0 15px 50px;
+                padding: 45px 25px;
+            }
+
+            .cta h2 {
+                font-size: 38px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar-box">
+
+    <a href="{% url 'landing' %}" class="logo">
+        <span class="logo-icon">Go</span>
+        <span>Flip</span>
+    </a>
+
+    <div class="nav-buttons">
+
+        <a href="{% url 'login' %}" class="nav-btn login-btn">
+            Log in
+        </a>
+
+        <a href="{% url 'index' %}" class="nav-btn signup-btn">
+            Sign up
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="small-label">
+            YOUR EVERYDAY MARKETPLACE
+        </div>
+
+        <h1>
+            Buy.<br>
+            Sell.<br>
+            <span>GoFlip.</span>
+        </h1>
+
+        <p class="hero-text">
+            Discover products you love and sell the things
+            you no longer need. GoFlip makes buying and selling
+            simple for everyone.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{% url 'login' %}" class="main-btn buy-btn">
+                <i class="bi bi-bag"></i>
+                Start Buying
+            </a>
+
+            <a href="{% url 'login' %}" class="main-btn sell-btn">
+                <i class="bi bi-plus-circle"></i>
+                Sell Something
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <div class="card-top">
+            🛍️
+        </div>
+
+        <div class="product-info">
+
+            <h3>
+                Something for everyone
+            </h3>
+
+            <div class="price">
+                Buy • Sell • Discover
+            </div>
+
+            <div class="location">
+                <i class="bi bi-geo-alt"></i>
+                Marketplace made simple
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+
+<section class="section">
+
+    <h2 class="section-title">
+        Explore categories
+    </h2>
+
+    <div class="categories">
+
+        <a href="{% url 'login' %}" class="category">
+            <div class="category-icon">🚗</div>
+            <div class="category-name">Cars</div>
+        </a>
+
+        <a href="{% url 'login' %}" class="category">
+            <div class="category-icon">🏍️</div>
+            <div class="category-name">Bikes</div>
+        </a>
+
+        <a href="{% url 'login' %}" class="category">
+            <div class="category-icon">📱</div>
+            <div class="category-name">Mobiles</div>
+        </a>
+
+        <a href="{% url 'login' %}" class="category">
+            <div class="category-icon">💻</div>
+            <div class="category-name">Electronics</div>
+        </a>
+
+        <a href="{% url 'login' %}" class="category">
+            <div class="category-icon">📚</div>
+            <div class="category-name">Books</div>
+        </a>
+
+        <a href="{% url 'login' %}" class="category">
+            <div class="category-icon">🛋️</div>
+            <div class="category-name">Furniture</div>
+        </a>
+
+        <a href="{% url 'login' %}" class="category">
+            <div class="category-icon">🎧</div>
+            <div class="category-name">Gadgets</div>
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- WHY GOFLIP -->
+
+<section class="section">
+
+    <h2 class="section-title">
+        Everything starts with a flip.
+    </h2>
+
+    <div class="why-grid">
+
+        <div class="why-card">
+
+            <div class="why-icon">
+                <i class="bi bi-search"></i>
+            </div>
+
+            <h3>Find what you need</h3>
+
+            <p>
+                Explore products across different categories
+                and discover something that fits your needs.
+            </p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <div class="why-icon">
+                <i class="bi bi-tag"></i>
+            </div>
+
+            <h3>Sell with ease</h3>
+
+            <p>
+                Have something you no longer need?
+                Put it up for sale and connect with buyers.
+            </p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <div class="why-icon">
+                <i class="bi bi-people"></i>
+            </div>
+
+            <h3>Made for everyone</h3>
+
+            <p>
+                GoFlip brings buyers and sellers together
+                in one simple marketplace.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+    <h2>
+        Ready to GoFlip?
+    </h2>
+
+    <p>
+        Join the marketplace and start buying or selling today.
+    </p>
+
+    <a href="{% url 'login' %}" class="cta-btn">
+        Get Started
+    </a>
+
+</section>
+
+
+<footer>
+    © 2026 GoFlip — Buy & Sell
+</footer>
+
 </body>
 </html>
