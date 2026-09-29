@@ -159,7 +159,6 @@ class Carform(forms.ModelForm):
             ("porsche", "Porsche"),
 
             # Premium / Performance
-            ("volkswagen", "Volkswagen"),
             ("byd", "BYD"),
             ("tesla", "Tesla"),
 
@@ -267,7 +266,6 @@ class Mobileform(forms.ModelForm):
             ("xiaomi", "Xiaomi"),
             ("oneplus", "OnePlus"),
             ("vivo", "Vivo"),
-            ("oppo", "Oppo"),
             ("realme", "Realme"),
             ("motorola", "Motorola"),
             ("iqoo", "iQOO"),
