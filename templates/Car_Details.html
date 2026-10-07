@@ -809,125 +809,127 @@ body {
 
 
 /* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 1100px) {
-
-    .detail-wrap {
-        max-width: 100%;
-    }
-
-    .top-grid {
-        grid-template-columns:
-            minmax(0, 1.2fr)
-            minmax(350px, 0.9fr);
-
-        gap: 25px;
-    }
-
-    .bottom-grid {
-        grid-template-columns:
-            minmax(0, 1.6fr)
-            minmax(330px, 0.9fr);
-    }
-
-}
-
-
-/* =========================================================
-   SMALL TABLET
-========================================================= */
-
-@media (max-width: 900px) {
-
-    .detail-page {
-        padding: 20px 16px 50px;
-    }
-
-    .detail-wrap {
-        top: -45px;
-    }
-
-    .top-grid {
-        grid-template-columns: 1fr;
-
-        gap: 25px;
-    }
-
-    .product-info {
-        top: 0;
-    }
-
-    .main-image-box {
-        height: 430px;
-    }
-
-    .product-actions {
-        top: 0;
-        right: 0;
-    }
-
-    .product-title {
-        margin-right: 110px;
-    }
-
-    .price-section {
-        width: 304px;
-    }
-
-    .bottom-grid {
-        grid-template-columns: 1fr;
-
-        gap: 18px;
-    }
-
-}
-
-
-/* =========================================================
    MOBILE
 ========================================================= */
 
 @media (max-width: 600px) {
 
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
     .detail-page {
+        width: 100%;
+        max-width: 100%;
         padding: 2px 12px 40px;
+        overflow-x: hidden;
     }
 
     .detail-wrap {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
         top: -47px;
+        left: 0;
+        right: 0;
     }
 
+    /* =====================================================
+       BREADCRUMB
+    ===================================================== */
+
     .breadcrumb {
+        width: 100%;
+        max-width: 100%;
+
         margin-bottom: 11px;
 
         font-size: 11px;
-
         gap: 6px;
+
+        overflow: hidden;
     }
 
+    .breadcrumb .current {
+        max-width: 55%;
+        min-width: 0;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+
+    /* =====================================================
+       TOP GRID
+    ===================================================== */
+
     .top-grid {
+        width: 100%;
+        max-width: 100%;
+
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+
         gap: 18px;
     }
 
 
-    /* IMAGE */
+    /* =====================================================
+       IMAGE
+    ===================================================== */
 
     .main-image-box {
+        width: 100%;
+        max-width: 100%;
+
         height: 285px;
 
         border-radius: 15px;
+
+        overflow: hidden;
     }
 
+    .main-image-box img {
+        width: 100%;
+        max-width: 100%;
+
+        height: 100%;
+
+        object-fit: contain;
+    }
+
+
+    /* =====================================================
+       THUMBNAILS
+    ===================================================== */
+
     .thumb-row {
+        width: 100%;
+        max-width: 100%;
+
         margin-top: 8px;
 
+        display: flex;
+
         gap: 7px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        scrollbar-width: none;
+    }
+
+    .thumb-row::-webkit-scrollbar {
+        display: none;
     }
 
     .thumb-box {
         width: 60px;
+        min-width: 60px;
 
         height: 52px;
 
@@ -935,99 +937,136 @@ body {
     }
 
 
-    /* PRODUCT */
+    /* =====================================================
+       PRODUCT INFORMATION
+    ===================================================== */
 
     .product-info {
+        width: 100%;
+        max-width: 100%;
+
         padding-top: 0;
 
-        width: 100%;
-
         top: 0;
+        left: 0;
+
+        min-width: 0;
     }
 
 
-    /* ACTIONS */
+    /* =====================================================
+       ACTION BUTTONS
+    ===================================================== */
 
     .product-actions {
-        top: -2px;
+        position: absolute;
 
+        top: -2px;
         right: 0;
 
+        display: flex;
+
         gap: 5px;
+
+        z-index: 10;
     }
 
     .price-action-btn {
         width: 36px;
+        min-width: 36px;
 
         height: 36px;
-
-        min-width: 36px;
 
         border-radius: 9px;
     }
 
     .price-action-btn svg {
         width: 16px;
-
         height: 16px;
     }
 
 
-    /* CATEGORY */
+    /* =====================================================
+       CATEGORY
+    ===================================================== */
 
     .category-tag {
+        max-width: calc(100% - 90px);
+
         font-size: 10px;
 
         padding: 5px 9px;
 
+        margin-top: 0;
         margin-bottom: 9px;
 
-        margin-right: 90px;
-
         margin-left: 0;
+        margin-right: 90px;
     }
 
 
-    /* TITLE */
+    /* =====================================================
+       TITLE
+    ===================================================== */
 
     .product-title {
+        width: 100%;
+        max-width: 100%;
+
         font-size: 28px;
 
-        margin-bottom: 8px;
+        line-height: 1.08;
 
-        margin-right: 0;
+        margin: 0 0 8px 0;
 
-        margin-left: 0;
+        padding: 0;
+
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 
 
-    /* SUB */
+    /* =====================================================
+       BRAND / MODEL / YEAR
+    ===================================================== */
 
     .product-sub {
-        font-size: 12px;
+        width: 100%;
+        max-width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        flex-wrap: wrap;
 
         gap: 6px;
 
         margin-left: 0;
+
+        font-size: 12px;
+
+        overflow-wrap: anywhere;
     }
 
 
-    /* PRICE */
+    /* =====================================================
+       PRICE
+    ===================================================== */
 
     .price-section {
         width: 65%;
+        max-width: 100%;
 
         min-height: 94px;
 
         margin-top: 14px;
-
         margin-bottom: 17px;
+        margin-left: 0;
 
         padding: 13px 14px;
 
         border-radius: 12px;
-
-        margin-left: 0;
     }
 
     .price-label {
@@ -1039,64 +1078,209 @@ body {
     }
 
     .product-price {
+        max-width: 100%;
+
         font-size: 31px;
 
+        line-height: 1.1;
+
         top: 3px;
+
+        overflow-wrap: anywhere;
     }
 
 
-    /* LOWER GRID */
+    /* =====================================================
+       LOWER GRID
+    ===================================================== */
 
     .bottom-grid {
-        grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 100%;
+
+        display: grid;
+
+        grid-template-columns: minmax(0, 1fr);
 
         gap: 14px;
 
         margin-top: 18px;
     }
 
+
+    /* =====================================================
+       LOWER BOX
+    ===================================================== */
+
     .lower-box {
         width: 100%;
+        max-width: 100%;
+
+        min-width: 0;
 
         padding: 16px;
 
         border-radius: 15px;
+
+        overflow: hidden;
     }
 
     .lower-box-title {
+        width: 100%;
+
         font-size: 21px;
 
         margin-bottom: 14px;
+
+        overflow-wrap: anywhere;
     }
 
 
-    /* SELLER */
+    /* =====================================================
+       MOBILE DETAILS
+    ===================================================== */
+
+    .mobile-details-box {
+        width: 100%;
+        max-width: 100%;
+
+        min-width: 0;
+    }
+
+    .mobile-details-grid {
+        width: 100%;
+        max-width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 7px;
+    }
+
+    .mobile-detail-item {
+        width: 100%;
+        max-width: 100%;
+
+        min-width: 0;
+
+        padding: 10px;
+
+        border-radius: 9px;
+
+        overflow: hidden;
+    }
+
+    .mobile-detail-label {
+        font-size: 10px;
+
+        margin-bottom: 4px;
+    }
+
+    .mobile-detail-value {
+        width: 100%;
+        max-width: 100%;
+
+        font-size: 13px;
+
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+
+    /* =====================================================
+       DESCRIPTION
+    ===================================================== */
+
+    .description-box {
+        width: 100%;
+        max-width: 100%;
+
+        min-height: 80px;
+
+        margin-top: 7px;
+
+        padding: 10px;
+
+        border-radius: 9px;
+
+        overflow: hidden;
+    }
+
+    .description-box .mobile-detail-label {
+        font-size: 10px;
+
+        margin-bottom: 6px;
+    }
+
+    .description-content {
+        width: 100%;
+        max-width: 100%;
+
+        font-size: 13px;
+
+        line-height: 1.6;
+
+        margin-top: -22px;
+
+        overflow-wrap: anywhere;
+        word-break: break-word;
+
+        white-space: pre-line;
+    }
+
+
+    /* =====================================================
+       SELLER
+    ===================================================== */
 
     .seller-box {
         width: 100%;
+        max-width: 100%;
 
         min-height: auto;
+
+        overflow: hidden;
     }
 
     .seller-header {
+        width: 100%;
+        max-width: 100%;
+
         margin-bottom: 14px;
+
+        min-width: 0;
     }
 
     .seller-image,
     .seller-image-fallback {
         width: 48px;
+        min-width: 48px;
 
         height: 48px;
     }
 
     .seller-name {
+        max-width: 100%;
+
         font-size: 16px;
+
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 
 
-    /* CONTACT */
+    /* =====================================================
+       CONTACT INFORMATION
+    ===================================================== */
 
     .contact-grid {
+        width: 100%;
+        max-width: 100%;
+
+        display: grid;
+
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
 
@@ -1104,28 +1288,33 @@ body {
     }
 
     .contact-tile {
-        padding: 9px;
+        width: 100%;
+        max-width: 100%;
+
+        min-width: 0;
 
         min-height: 58px;
+
+        padding: 9px;
 
         gap: 7px;
 
         border-radius: 9px;
+
+        overflow: hidden;
     }
 
     .contact-icon {
         width: 28px;
+        min-width: 28px;
 
         height: 28px;
-
-        min-width: 28px;
 
         border-radius: 7px;
     }
 
     .contact-icon svg {
         width: 14px;
-
         height: 14px;
     }
 
@@ -1134,13 +1323,26 @@ body {
     }
 
     .tile-value {
+        width: 100%;
+        max-width: 100%;
+
         font-size: 12px;
+
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 
 
-    /* SELLER BUTTONS */
+    /* =====================================================
+       SELLER BUTTONS
+    ===================================================== */
 
     .seller-action-row {
+        width: 100%;
+        max-width: 100%;
+
+        display: grid;
+
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
 
@@ -1150,6 +1352,11 @@ body {
     }
 
     .seller-btn {
+        width: 100%;
+        max-width: 100%;
+
+        min-width: 0;
+
         min-height: 43px;
 
         padding: 0 8px;
@@ -1159,69 +1366,43 @@ body {
         border-radius: 9px;
 
         gap: 5px;
+
+        overflow: hidden;
+
+        white-space: nowrap;
     }
 
     .seller-btn svg {
         width: 15px;
-
         height: 15px;
+
+        flex-shrink: 0;
     }
 
 
-    /* CAR DETAILS */
+    /* =====================================================
+       DELETE BUTTON
+    ===================================================== */
 
-    .car-details-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 7px;
-    }
-
-    .car-detail-item {
-        padding: 10px;
-
-        border-radius: 9px;
-    }
-
-    .car-detail-label {
-        font-size: 10px;
-
-        margin-bottom: 4px;
-    }
-
-    .car-detail-value {
-        font-size: 13px;
-    }
-
-
-    /* DESCRIPTION */
-
-    .description-box {
+    .seller-box > div[style*="margin-top"] {
         width: 100%;
-
-        min-height: 80px;
-
-        margin-top: 7px;
-
-        padding: 10px;
-
-        border-radius: 9px;
+        max-width: 100%;
     }
 
-    .description-box .car-detail-label {
-        font-size: 10px;
 
-        margin-bottom: 6px;
+    /* =====================================================
+       DELETE MODAL
+    ===================================================== */
+
+    #deleteBox {
+        padding: 15px;
     }
 
-    .description-content {
-        width: 100%;
+    #deleteBox > div {
+        width: 100% !important;
+        max-width: 400px;
 
-        font-size: 13px;
-
-        line-height: 1.6;
-
-        margin-top: -22px
+        padding: 22px !important;
     }
 
 }
@@ -1232,6 +1413,11 @@ body {
 ========================================================= */
 
 @media (max-width: 380px) {
+
+    .detail-page {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 
     .main-image-box {
         height: 250px;
@@ -1251,16 +1437,48 @@ body {
 
     .price-action-btn {
         width: 32px;
+        min-width: 32px;
 
         height: 32px;
-
-        min-width: 32px;
     }
 
     .price-action-btn svg {
         width: 14px;
-
         height: 14px;
+    }
+
+    .mobile-detail-item {
+        padding: 9px;
+    }
+
+    .mobile-detail-value {
+        font-size: 12px;
+    }
+
+    .description-box {
+        width: 100%;
+        max-width: 100%;
+
+        min-height: 80px;
+
+        padding: 9px;
+    }
+
+    .description-content {
+        width: 100%;
+        max-width: 100%;
+
+        font-size: 11px;
+
+        line-height: 1.55;
+    }
+
+    .contact-tile {
+        padding: 8px;
+    }
+
+    .tile-value {
+        font-size: 10px;
     }
 
     .seller-btn {
@@ -1275,36 +1493,60 @@ body {
 
     .seller-btn svg {
         width: 14px;
-
         height: 14px;
     }
 
-    .contact-tile {
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 340px) {
+
+    .detail-page {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .product-actions {
+        right: 0;
+
+        gap: 3px;
+    }
+
+    .price-action-btn {
+        width: 29px;
+        min-width: 29px;
+
+        height: 29px;
+    }
+
+    .price-action-btn svg {
+        width: 13px;
+        height: 13px;
+    }
+
+    .product-title {
+        font-size: 23px;
+    }
+
+    .mobile-details-grid,
+    .contact-grid {
+        gap: 5px;
+    }
+
+    .mobile-detail-item {
         padding: 8px;
+    }
+
+    .mobile-detail-value {
+        font-size: 11px;
     }
 
     .tile-value {
         font-size: 9px;
-    }
-
-    .car-detail-item {
-        padding: 9px;
-    }
-
-    .description-box {
-        width: 100%;
-
-        min-height: 80px;
-
-        padding: 9px;
-    }
-
-    .description-content {
-        font-size: 10px;
-
-        line-height: 1.55;
-
-
     }
 
 }
